@@ -314,6 +314,73 @@ kbd {
   font-weight: 700;
 }
 
+/* ============ v3.13 — Cross-caller Call History panel ============ */
+.call-hist-count {
+  font-weight: 600;
+  font-size: 10px;
+  color: var(--text-dim, #aaa);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-left: 6px;
+}
+.call-hist-empty {
+  font-size: 11.5px;
+  color: #9a9a9a;
+  font-style: italic;
+  padding: 4px 2px;
+}
+.call-hist-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.call-hist-row {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-left: 3px solid var(--gold);
+  border-radius: 6px;
+  padding: 7px 9px;
+}
+.ch-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5px;
+}
+.ch-outcome-label { font-size: 11.5px; font-weight: 700; color: #fff; }
+.ch-caller { font-size: 11px; color: #e7c66b; font-weight: 600; }
+.ch-variant {
+  font-size: 9.5px; color: #bbb;
+  background: rgba(255,255,255,0.06);
+  padding: 1px 6px; border-radius: 4px;
+}
+.ch-score {
+  font-size: 9.5px; color: #bbb;
+  background: rgba(255,255,255,0.06);
+  padding: 1px 6px; border-radius: 4px;
+}
+.ch-when { font-size: 10px; color: #9a9a9a; margin-left: auto; white-space: nowrap; }
+.ch-detail { display: flex; flex-direction: column; gap: 3px; }
+.ch-line { font-size: 11.5px; color: #ddd; line-height: 1.35; }
+.ch-k {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--gold);
+  margin-right: 5px;
+}
+.ch-next { color: #fff; }
+.ch-next .ch-k { color: #7bd88f; }
+.ch-notes { font-style: italic; }
+.ch-followup .ch-k { color: #6fb6e8; }
+.ch-nonote { font-size: 11px; color: #888; font-style: italic; }
+
 /* ============ VARIANT TABS ============ */
 .variant-tabs {
   display: flex; gap: 4px;

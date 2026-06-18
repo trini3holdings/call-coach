@@ -31,7 +31,7 @@
  *  { action: "sendFollowupNow", brand, call }   // test email
  */
 
-const VERSION = "2.0";
+const VERSION = "2.1";  // v2.1 — listCalls returns full notes/outcome/next_step/timestamp for cross-caller history panel
 
 // Master tab headers — Brand FIRST, Called? SECOND for easy scanning
 const PROSPECT_HEADERS = [
@@ -416,14 +416,23 @@ function listCalls(body) {
     if (sinceTs && ts < sinceTs) continue;
     out.push({
       ts: ts,
+      date_called: row[idx.date_called] || "",
+      time_called: row[idx.time_called] || "",
       brand: row[idx.brand] || "",
       prospect_id: row[idx.prospect_id] || "",
       company: row[idx.company] || "",
       domain: row[idx.domain] || "",
       market: row[idx.market] || "",
       caller: row[idx.caller] || "",
+      variant: row[idx.variant] || "",
       outcome: row[idx.outcome] || "",
-      score: Number(row[idx.score] || 0)
+      score: Number(row[idx.score] || 0),
+      objection_raised: row[idx.objection_raised] || "",
+      what_worked: row[idx.what_worked] || "",
+      next_step: row[idx.next_step] || "",
+      notes: row[idx.notes] || "",
+      followup_date: row[idx.followup_date] || "",
+      followup_time: row[idx.followup_time] || ""
     });
   }
   return { ok: true, calls: out, sheetUrl: ss.getUrl() };

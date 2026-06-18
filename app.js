@@ -283,6 +283,7 @@ async function loadCloudCalls() {
       state.cloudCalls[state.brand] = r.calls;
       saveState();
       renderProspectPicker();
+      if (typeof renderReconCard === 'function') renderReconCard(); // refresh history panel with teammates' notes
     }
   } catch (e) {
     console.warn('listCalls failed:', e);
@@ -311,6 +312,116 @@ function lastCallForProspect(p) {
     if (!latest || (Number(r.ts) || 0) > latest.ts) latest = { ts: Number(r.ts) || 0, caller: r.caller, outcome: r.outcome, source: 'local' };
   }
   return latest;
+}
+
+// v3.13 — ALL calls (every caller) for a prospect, newest first, deduped.
+// Merges cloud calls (from the shared Sheet) + this device's local calls so a
+// caller can see exactly what teammates did before them: notes, outcome, time.
+function allCallsForProspect(p) {
+  if (!p) return [];
+  const cloudList = (state.cloudCalls && state.cloudCalls[state.brand]) || [];
+  const localList = state.calls || [];
+  const matchesP = (row) => {
+    if (row.prospect_id && String(row.prospect_id) === String(p.n)) return true;
+    if (row.prospectN && String(row.prospectN) === String(p.n)) return true;
+    if (p.domain && row.domain && String(row.domain).toLowerCase() === String(p.domain).toLowerCase()) return true;
+    if (p.phone && row.phone && String(row.phone).replace(/\D/g, '') === String(p.phone).replace(/\D/g, '') && String(p.phone).replace(/\D/g, '').length >= 7) return true;
+    return false;
+  };
+  // Normalize a row from either source into one shape
+  const norm = (r, source) => ({
+    ts: Number(r.ts) || 0,
+    caller: r.caller || '?',
+    variant: r.variant || '',
+    outcome: r.outcome || '',
+    score: Number(r.score || 0),
+    objection: r.objectionRaised || r.objection_raised || '',
+    whatWorked: r.whatWorked || r.what_worked || '',
+    nextStep: r.nextStep || r.next_step || '',
+    notes: r.notes || '',
+    followupDate: (r.followup && r.followup.date) || r.followup_date || '',
+    followupTime: (r.followup && r.followup.time) || r.followup_time || '',
+    source
+  });
+  const rows = [];
+  cloudList.forEach(r => { if (matchesP(r)) rows.push(norm(r, 'cloud')); });
+  localList.forEach(r => { if (matchesP(r)) rows.push(norm(r, 'local')); });
+  // Dedupe by ts (a local call that already synced to cloud appears in both)
+  const seen = new Set();
+  const deduped = [];
+  rows.sort((a, b) => b.ts - a.ts);  // newest first
+  for (const r of rows) {
+    const key = r.ts + '|' + (r.caller || '');
+    if (seen.has(key)) continue;
+    seen.add(key);
+    deduped.push(r);
+  }
+  return deduped;
+}
+
+// v3.13 — human "2 hours ago" / "3 days ago" relative time
+function relativeTime(ts) {
+  if (!ts) return '';
+  const diff = Date.now() - ts;
+  const mins = Math.round(diff / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return mins + 'm ago';
+  const hrs = Math.round(mins / 60);
+  if (hrs < 24) return hrs + 'h ago';
+  const days = Math.round(hrs / 24);
+  if (days < 30) return days + 'd ago';
+  const months = Math.round(days / 30);
+  return months + 'mo ago';
+}
+
+// v3.13 — full cross-caller Call History panel for the recon card.
+function renderCallHistory(p) {
+  const calls = allCallsForProspect(p);
+  if (!calls.length) {
+    return `<div class="recon-history">
+        <div class="recon-leaks-title">📞 Call History</div>
+        <div class="call-hist-empty">No prior calls logged — you’re the first to reach this one.</div>
+      </div>`;
+  }
+  const outcomeLabel = (o) => {
+    const map = {
+      BK: 'Booked', SH: 'Showed', CL: 'Closed',
+      DC: 'Declined', NI: 'Not interested', NL: 'No answer',
+      VM: 'Voicemail', GK: 'Gatekeeper', CB: 'Call back', WN: 'Wrong number'
+    };
+    return map[o] || o || '—';
+  };
+  const rows = calls.map(c => {
+    const when = c.ts ? new Date(c.ts) : null;
+    const dateStr = when ? when.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : '';
+    const timeStr = when ? when.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }) : '';
+    const rel = relativeTime(c.ts);
+    const oc = (c.outcome || '').toLowerCase();
+    // Build the note detail lines that exist
+    const detail = [];
+    if (c.objection) detail.push(`<div class="ch-line"><span class="ch-k">Objection</span> ${escapeHTML(c.objection)}</div>`);
+    if (c.whatWorked) detail.push(`<div class="ch-line"><span class="ch-k">What worked</span> ${escapeHTML(c.whatWorked)}</div>`);
+    if (c.nextStep) detail.push(`<div class="ch-line ch-next"><span class="ch-k">Next step</span> ${escapeHTML(c.nextStep)}</div>`);
+    if (c.notes) detail.push(`<div class="ch-line ch-notes"><span class="ch-k">Notes</span> ${escapeHTML(c.notes)}</div>`);
+    if (c.followupDate) detail.push(`<div class="ch-line ch-followup"><span class="ch-k">Follow-up set</span> ${escapeHTML(c.followupDate)}${c.followupTime ? ' ' + escapeHTML(c.followupTime) : ''}</div>`);
+    return `
+      <div class="call-hist-row">
+        <div class="ch-head">
+          <span class="log-outcome ${oc}">${escapeHTML(c.outcome || '?')}</span>
+          <span class="ch-outcome-label">${escapeHTML(outcomeLabel(c.outcome))}</span>
+          <span class="ch-caller">👤 ${escapeHTML(c.caller)}</span>
+          ${c.variant ? `<span class="ch-variant">Script ${escapeHTML(c.variant)}</span>` : ''}
+          ${typeof c.score === 'number' && c.score ? `<span class="ch-score">${c.score}/10</span>` : ''}
+          <span class="ch-when" title="${dateStr} ${timeStr}">${dateStr} · ${rel}</span>
+        </div>
+        ${detail.length ? `<div class="ch-detail">${detail.join('')}</div>` : '<div class="ch-detail ch-nonote">No notes recorded for this call.</div>'}
+      </div>`;
+  }).join('');
+  const countLabel = calls.length === 1 ? '1 prior call' : `${calls.length} prior calls`;
+  return `<div class="recon-history call-hist">
+      <div class="recon-leaks-title">📞 Call History <span class="call-hist-count">${countLabel}</span></div>
+      <div class="call-hist-list">${rows}</div>
+    </div>`;
 }
 
 function prospectOverrideKey(p) {
@@ -733,18 +844,8 @@ function renderReconCard() {
 
   const notesHTML = p.notes ? `<div class="recon-notes">Note: ${expEscape(p.notes)}</div>` : '';
 
-  // History: prior calls for this prospect
-  const priorCalls = state.calls.filter(c => c.prospectN === p.n).slice(-3).reverse();
-  const historyHTML = priorCalls.length
-    ? `<div class="recon-history">
-         <div class="recon-leaks-title">Recent Touches</div>
-         ${priorCalls.map(c => `<div class="recon-history-row">
-            <span class="log-outcome ${c.outcome.toLowerCase()}">${c.outcome}</span>
-            <span>${new Date(c.ts).toLocaleDateString()} · ${c.caller || '?'} · ${c.variant}</span>
-            ${c.nextStep ? `<span class="recon-history-next">→ ${escapeHTML(c.nextStep)}</span>` : ''}
-         </div>`).join('')}
-       </div>`
-    : '';
+  // v3.13 — full cross-caller Call History (notes, outcome, who, when) from cloud + local
+  const historyHTML = renderCallHistory(p);
 
   // v3.5.1: warn if prospect is missing a city/market — script will read "out of ⟨your prospect’s city⟩" without it
   const marketStr = (p.market || '').trim();
