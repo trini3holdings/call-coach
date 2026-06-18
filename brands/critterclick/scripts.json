@@ -10,18 +10,26 @@
         {
           "t": 10,
           "phase": "OPEN",
-          "title": "Booking Process Upside",
-          "line": "Hi, my name is {caller} with CritterClick — I review wildlife removal sites for a living. I pulled up your site, and there's a <em>fix to your booking process that would put roughly $2,000 to $6,000 a week in new jobs back on your calendar</em>. Do you know who I can talk to about this?",
-          "responses": ["That'd be me", "How would that work?", "Who is this again?"],
-          "followup": "Got it — here's what I'm seeing, then I'll show you exactly where that extra revenue comes from.",
-          "note": "GAIN-led open: lead with what they can MAKE, not lose. Calling the business, not a person. No name tokens. Anchor = 5-10 recoverable jobs/wk × $400-$600 avg wildlife removal job."
+          "title": "Cost-Led Leak Open",
+          "line": "Hey, my name is {caller} with CritterClick. I audit wildlife removal websites all day. Yours has a <em>leak that's costing about $2K to $6K a week in lost jobs</em>. Who's the best person to talk to about that?",
+          "responses": [
+            "That'd be me",
+            "Why? / What's this about?",
+            "Who is this again?"
+          ],
+          "followup": "Got it — give me 30 seconds and I'll show you exactly where the leak is.",
+          "note": "COLD open, cost-led + gatekeeper-aware. Lead with the LEAK and the $ cost (reason to route), then ask 'who's the best person' — works whether you hit the gatekeeper (they transfer) or the owner (they say 'that's me'). Say it calm and neutral (Miner tonality), short breath-lines, slow the last line. CritterClick register: friendly authority, no fear-mongering, no kill-talk. Anchor = 5-10 lost jobs/wk x $400-$600 avg wildlife removal job."
         },
         {
           "t": 22,
           "phase": "PROBLEM",
           "title": "Emergency Caller, 3-Second Window",
           "line": "Here's the deal — when a homeowner hears something in the attic at night, they Google, tap the first ad, and decide in about <em>3 seconds</em> whether they're calling you or moving on. <em>Wildlife removal is emergency-service buying</em> — that caller will hire the first shop that makes it easy to reach them. When was the last time someone on your team pulled up your site on a phone and tried to call or book right from it?",
-          "responses": ["Honestly, not recently", "It's fine, we get calls", "We just updated the site"],
+          "responses": [
+            "Honestly, not recently",
+            "It's fine, we get calls",
+            "We just updated the site"
+          ],
           "followup": "Yeah — that's the most common answer. The booking button is just the first leak. The bigger ones come after.",
           "note": "Plain English. Emergency-service mindset. Ends with a question they can't confidently answer."
         },
@@ -30,7 +38,11 @@
           "phase": "AGITATION",
           "title": "The Booking Button Costs You the Job",
           "line": "Here's what's actually happening. <em>The homeowner taps your ad, counts to three, and your phone number isn't front and center</em> — so they back out and tap the next shop. The next shop picks up, gets the job, and gets paid <em>$400 to $600 by 9 in the morning</em>. The ones who do find your number land on a booking process that asks them to fill out a form before they've even said what's in their attic. By the time they figure it out, they've already called two other shops. That's the <em>$2,000 to $6,000 a week</em>. Getting your phone number visible and making it easy to book — those are <em>week-one quick wins</em>. But there's a <em>third issue on your site that costs more than both of those combined</em>. I'd rather show you that one with your page open.",
-          "responses": ["What's the third issue?", "Show me", "How much would this cost to fix?"],
+          "responses": [
+            "What's the third issue?",
+            "Show me",
+            "How much would this cost to fix?"
+          ],
           "followup": "Fair — and that's exactly what the audit answers. Pricing comes after.",
           "note": "Tease the third issue. Do NOT reveal it on the call. The reveal is the audit. Dollar-anchor the competitor steal."
         },
@@ -39,7 +51,11 @@
           "phase": "SOLUTION",
           "title": "100+ Wildlife Sites, Same 3 Leaks",
           "line": "I've done this on <em>over 100 wildlife removal sites</em> — same 10-point checklist, same booking process, same three leaks every time. The shops that fix the top two see calls climb in the first week. The ones that fix all three usually <em>double their booked jobs inside 30 days</em>.",
-          "responses": ["Okay…", "How long does the fix take?", "Sounds like a sales pitch"],
+          "responses": [
+            "Okay…",
+            "How long does the fix take?",
+            "Sounds like a sales pitch"
+          ],
           "followup": "Fair — and that's exactly why I lead with the audit, not the pitch.",
           "note": "Credibility frame. 100+ sites. Same checklist. Pattern recognition."
         },
@@ -48,7 +64,11 @@
           "phase": "AUDIT OFFER",
           "title": "Free $1,500 Audit",
           "line": "Here's what I want to do. I run a <em>$1,500 conversion audit</em> — and I'd like to do yours free. <em>Thirty minutes. Your live site on screen.</em> Every leak named in plain English no agency would dare use, with <em>dollar-anchored estimates per leak</em> — just the numbers, in your numbers. You walk away with a <em>sequenced fix-list ranked by conversion impact and effort to ship — quick wins first</em>. <em>Yours to keep whether you hire me to ship it or not.</em> Not vibes — math.",
-          "responses": ["Yeah I'd look at that", "Send it over first", "What's the catch?"],
+          "responses": [
+            "Yeah I'd look at that",
+            "Send it over first",
+            "What's the catch?"
+          ],
           "followup": "No catch — I'm running a handful of these personally this quarter for case studies. That's the only ask.",
           "note": "Verbatim critterclick.com language throughout. $1,500 free. One-week plan. All fixes shipped at once."
         },
@@ -57,7 +77,11 @@
           "phase": "CLOSE",
           "title": "Calendar or Sample",
           "line": "Here's how this works. I've got <em>Thursday at 10</em> or <em>Friday at 2</em> open — pick one and I'll send the calendar invite. Or, if you'd rather see what this looks like first, give me your email and I'll send over a <em>sample audit I did for another wildlife removal shop</em> — full fix-list, dollar numbers, the whole thing. Which one works for you?",
-          "responses": ["Thursday at 10", "Friday at 2", "Send me the sample first"],
+          "responses": [
+            "Thursday at 10",
+            "Friday at 2",
+            "Send me the sample first"
+          ],
           "followup": "Done — calendar invite or sample audit hits your inbox in 60 seconds.",
           "note": "Dual-path close. Booked call OR sample audit. Either is a win."
         }
@@ -72,7 +96,11 @@
           "phase": "OPEN",
           "title": "Midnight Capture Frame",
           "line": "Hi, my name is {caller} with CritterClick — I review wildlife removal sites for a living. Quick question — <em>do you know how many homeowners hear something scratching in their attic at night, tap your ad, and end up booking the next shop?</em> If we capture even half of those on your site, that's <em>$2,000 to $6,000 a week in new jobs for you</em>. Who's the right person to talk to about this?",
-          "responses": ["That'd be me", "How would you capture them?", "Who is this again?"],
+          "responses": [
+            "That'd be me",
+            "How would you capture them?",
+            "Who is this again?"
+          ],
           "followup": "Got it — here's what I'm seeing, then I'll show you exactly where that extra revenue comes from.",
           "note": "GAIN-led: frame the midnight callers as new jobs to CAPTURE, not jobs lost. Question-first hook. No name tokens."
         },
@@ -81,7 +109,11 @@
           "phase": "PROBLEM",
           "title": "11pm Panic Tap",
           "line": "Here's what I did — I pulled up your site on my phone the way a panicked homeowner would at 11 at night. <em>Your phone number wasn't front and center. There was no obvious way to book right from the page.</em> Emergency-service buyers don't scroll — they tap, they look for a number, and if they don't see it in 3 seconds, they're already on the next shop's site. When's the last time anyone on your team actually tested that on a phone?",
-          "responses": ["Honestly, not recently", "It's fine, we get calls", "We just updated the site"],
+          "responses": [
+            "Honestly, not recently",
+            "It's fine, we get calls",
+            "We just updated the site"
+          ],
           "followup": "Yeah — that's what most operators say. The phone number is just the first leak. The bigger ones come after.",
           "note": "Side-by-side reframe makes the issue concrete. Ends with a question they can't confidently answer."
         },
@@ -90,7 +122,11 @@
           "phase": "AGITATION",
           "title": "Next Shop Gets the Morning Job",
           "line": "Here's what's actually happening. <em>The homeowner taps your ad at 11pm, can't find your number fast enough, and taps the next shop.</em> The next shop has a phone number right at the top. They pick up — or they have a callback request button that works. <em>The next shop gets the $600 job by 9 in the morning. You never even showed up on that homeowner's screen for more than 3 seconds.</em> The ones who do find your number hit a booking process that slows them down before they've decided anything. They open two more tabs and forget you. That's the <em>$2,000 to $6,000 a week</em>. Fixing the phone visibility and the booking path — those are <em>week-one quick wins</em>. But there's a <em>third issue on your site that costs more than both of those combined</em>. I'd rather show you that one with your page open.",
-          "responses": ["What's the third issue?", "Show me", "How much would this cost to fix?"],
+          "responses": [
+            "What's the third issue?",
+            "Show me",
+            "How much would this cost to fix?"
+          ],
           "followup": "Fair — and that's exactly what the audit answers. Pricing comes after.",
           "note": "Tease the third issue. Do NOT reveal it on the call. Steal-frame: competitor gets the morning job."
         },
@@ -99,7 +135,11 @@
           "phase": "SOLUTION",
           "title": "100+ Wildlife Sites Audited",
           "line": "I've audited <em>over 100 wildlife removal sites</em> — same 10-point checklist, same booking process, same three leaks every time. The shops that fix the top two see calls climb in the first week. The ones that fix all three usually <em>double their booked jobs inside 30 days</em>.",
-          "responses": ["Okay…", "How long does the fix take?", "Sounds like a sales pitch"],
+          "responses": [
+            "Okay…",
+            "How long does the fix take?",
+            "Sounds like a sales pitch"
+          ],
           "followup": "Fair — and that's exactly why I lead with the audit, not the pitch.",
           "note": "Credibility frame. 100+ sites. Same checklist. Pattern recognition."
         },
@@ -108,7 +148,11 @@
           "phase": "AUDIT OFFER",
           "title": "Flip the Steal — Free $1,500 Audit",
           "line": "Here's what I want to do. I run a <em>$1,500 conversion audit</em> — and I'd like to do yours free. <em>Thirty minutes. Your live site on screen.</em> I show you every leak, attach a dollar number to each one — just the numbers, in your numbers — and hand you a <em>sequenced fix-list to flip the steal</em>, so the next time a homeowner's panicking at midnight and taps your ad, <em>yours is the site that closes the call</em>. <em>Yours to keep whether you hire me to ship it or not.</em> Not vibes — math.",
-          "responses": ["Yeah I'd look at that", "Send it over first", "What's the catch?"],
+          "responses": [
+            "Yeah I'd look at that",
+            "Send it over first",
+            "What's the catch?"
+          ],
           "followup": "No catch — I'm running a handful of these personally this quarter for case studies. That's the only ask.",
           "note": "Steal-frame hook ties audit back to Beat 3. Dollar-anchored. One-week plan."
         },
@@ -117,7 +161,11 @@
           "phase": "CLOSE",
           "title": "Calendar or Sample",
           "line": "Here's how this works. I've got <em>Thursday at 10</em> or <em>Friday at 2</em> open — pick one and I'll send the calendar invite, and I'll get your site flipped from <em>the one losing the midnight call to the one closing it</em>. Or, if you'd rather see what this looks like first, give me your email and I'll send over a <em>sample audit I did for another wildlife removal shop</em>.",
-          "responses": ["Thursday at 10", "Friday at 2", "Send me the sample first"],
+          "responses": [
+            "Thursday at 10",
+            "Friday at 2",
+            "Send me the sample first"
+          ],
           "followup": "Done — calendar invite or sample audit hits your inbox in 60 seconds.",
           "note": "Dual-path close. Steal-frame tilt on calendar path. Either choice is a win."
         }
@@ -132,7 +180,11 @@
           "phase": "OPEN",
           "title": "Three Wins Frame",
           "line": "Hi, my name is {caller} with CritterClick — I review wildlife removal sites for a living. I pulled up your site and I'm seeing <em>three specific fixes to your booking process</em> that together would put roughly <em>$2,000 to $6,000 a week in new jobs on your calendar</em>. Do you know who I can talk to about this?",
-          "responses": ["That'd be me", "What three fixes?", "Who is this again?"],
+          "responses": [
+            "That'd be me",
+            "What three fixes?",
+            "Who is this again?"
+          ],
           "followup": "Got it — here's what I'm seeing, then I'll show you exactly where that extra revenue comes from.",
           "note": "GAIN-led: three FIXES/WINS that add revenue, not three problems costing money. Sets up the reveal."
         },
@@ -141,7 +193,11 @@
           "phase": "PROBLEM",
           "title": "Three Stuck Spots",
           "line": "Here's the deal — every wildlife removal site I look at has <em>three spots where homeowners get stuck</em> between tapping the ad and actually calling or booking: <em>the top of the page</em>, <em>the part where they actually try to reach you</em>, and <em>one more issue most operators never notice</em>. On your site, all three are losing you jobs. For a panicked homeowner at 11 at night, <em>if your number isn't right there at the top, they're already gone</em>.",
-          "responses": ["What's the third one?", "How would you know?", "We just updated the site"],
+          "responses": [
+            "What's the third one?",
+            "How would you know?",
+            "We just updated the site"
+          ],
           "followup": "Yeah — that's the most common reaction. The reveal is in the audit.",
           "note": "Plain-English version of CRO failure stack. No jargon. Tee up the reveal in Beat 3."
         },
@@ -150,7 +206,11 @@
           "phase": "AGITATION",
           "title": "Walk Through Two Of Three",
           "line": "So here's what's actually happening. <em>The top of your page</em> doesn't have a phone number front and center, and there's no urgency — no reason for a panicked homeowner to call right now instead of scrolling. So they back out and tap the next shop. The ones who stay long enough hit <em>how they actually try to reach you</em> — you're asking them to fill out a form before they've even said what's in their attic. That's a wall. They open two more tabs and forget you. That's the <em>$2,000 to $6,000 a week</em>. Those two are <em>week-one quick wins</em>. But there's a <em>third issue on your site that costs more than both of those combined</em>. I'd rather show you that one with your page open.",
-          "responses": ["What's the third one?", "Show me", "How much would this cost to fix?"],
+          "responses": [
+            "What's the third one?",
+            "Show me",
+            "How much would this cost to fix?"
+          ],
           "followup": "Fair — and that's exactly what the audit answers. Pricing comes after.",
           "note": "Reveal two issues plain. Tease third. Do NOT name the third on the call — the reveal is the audit."
         },
@@ -159,7 +219,11 @@
           "phase": "SOLUTION",
           "title": "100+ Wildlife Sites Audited",
           "line": "I've audited <em>over 100 wildlife removal sites</em> — same 10-point checklist, same booking process, same three leaks every time. The shops that fix the top two see calls climb in the first week. The ones that fix all three usually <em>double their booked jobs inside 30 days</em>.",
-          "responses": ["Okay…", "How long does the fix take?", "Sounds like a sales pitch"],
+          "responses": [
+            "Okay…",
+            "How long does the fix take?",
+            "Sounds like a sales pitch"
+          ],
           "followup": "Fair — and that's exactly why I lead with the audit, not the pitch.",
           "note": "Credibility frame. 100+ sites. Same checklist. Pattern recognition."
         },
@@ -168,7 +232,11 @@
           "phase": "AUDIT OFFER",
           "title": "Free $1,500 Audit",
           "line": "Here's what I want to do. I run a <em>$1,500 conversion audit</em> — and I'd like to do yours free. <em>Thirty minutes. Your live site on screen.</em> Every leak named in plain English no agency would dare use, with <em>dollar-anchored estimates per leak</em> — just the numbers, in your numbers. You walk away with a <em>sequenced fix-list ranked by conversion impact and effort to ship — quick wins first</em>. <em>Yours to keep whether you hire me to ship it or not.</em> Not vibes — math.",
-          "responses": ["Yeah I'd look at that", "Send it over first", "What's the catch?"],
+          "responses": [
+            "Yeah I'd look at that",
+            "Send it over first",
+            "What's the catch?"
+          ],
           "followup": "No catch — I'm running a handful of these personally this quarter for case studies. That's the only ask.",
           "note": "Verbatim critterclick.com language. $1,500 free. Quick-wins plan. Yours to keep."
         },
@@ -177,7 +245,11 @@
           "phase": "CLOSE",
           "title": "Calendar or Sample",
           "line": "Here's how this works. I've got <em>Thursday at 10</em> or <em>Friday at 2</em> open — pick one and I'll send the calendar invite. Or, if you'd rather see what this looks like first, give me your email and I'll send over a <em>sample audit I did for another wildlife removal shop</em> — full fix-list, dollar numbers, the whole thing. Which one works for you?",
-          "responses": ["Thursday at 10", "Friday at 2", "Send me the sample first"],
+          "responses": [
+            "Thursday at 10",
+            "Friday at 2",
+            "Send me the sample first"
+          ],
           "followup": "Done — calendar invite or sample audit hits your inbox in 60 seconds.",
           "note": "Dual-path close. Booked call OR sample audit. Either is a win."
         }
