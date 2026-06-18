@@ -244,7 +244,7 @@ const MARKET_STATS = {
       { k: 'Cost per lead',  v: '$75–$200', s: 'Paid search CPL, luxury auto rental vertical' },
       { k: 'Median shop',    v: '$400K–$1M rev', s: 'Independent exotic rental operator annual revenue' },
     ],
-    why: 'Why it matters: luxury renters decide in 3 seconds — a fast, frictionless booking flow turns a browsing high-net-worth renter into a $500–$3,500/day booking. Every captured rental your fix puts back on their calendar is immediate top-line revenue.',
+    why: 'Luxury renters decide in 3 seconds — a fast, frictionless booking flow turns a browsing high-net-worth renter into a $500–$3,500/day booking. Every captured rental your fix puts back on their calendar is immediate top-line revenue.',
     cite: 'Market Research Future (US Luxury Car Rental 2025), CarRentalList.com 2026 Market Report, Startup Model Hub, Fisher Luxury Rental, ZenBusiness',
   },
   'conversionjet': {
@@ -257,7 +257,7 @@ const MARKET_STATS = {
       { k: 'Cost per lead',  v: '$300–$600', s: 'Paid search CPL, private aviation vertical' },
       { k: 'Median shop',    v: '~$12M rev', s: 'Average US charter operator annual revenue (IBISWorld)' },
     ],
-    why: 'Why it matters: a single recovered charter booking is $15K–$75K in revenue. Quote-flow friction drops high-intent buyers — every fix to the booking funnel puts a full-fare charter back on the operator’s calendar.',
+    why: 'A single recovered charter booking is $15K–$75K in revenue. Quote-flow friction drops high-intent buyers — every fix to the booking funnel puts a full-fare charter back on the operator’s calendar.',
     cite: 'GlobeNewswire Private Jet Charter 2026, IBISWorld US Private Jet Charters, Future Market Report, Profitable Venture Magazine, AdShot Media',
   },
   'rme-roofing': {
@@ -270,7 +270,7 @@ const MARKET_STATS = {
       { k: 'Cost per lead',  v: '$80–$220', s: 'Google Ads CPL, roofing contractors 2026' },
       { k: 'Median shop',    v: '~$1.5M rev', s: 'Typical small roofing contractor annual revenue' },
     ],
-    why: 'Why it matters: a homeowner with hail damage hires the first contractor they can reach. Every lead-flow fix puts a $12K–$18K insurance job back on the operator’s calendar — and a 30–40% close rate means even modest traffic gains move real revenue.',
+    why: 'A homeowner with hail damage hires the first contractor they can reach. Every lead-flow fix puts a $12K–$18K insurance job back on the operator’s calendar — and a 30–40% close rate means even modest traffic gains move real revenue.',
     cite: 'Market Data Forecast US Roofing 2025, Mordor Intelligence, Verisk 2026 Roof Report, RoofPredict CPL Benchmark, BizBite.io, Pipeline On Roofing Revenue',
   },
 };
@@ -304,6 +304,131 @@ function renderMarketStats(slug) {
   `;
 }
 window.renderMarketStats = renderMarketStats;
+
+// ============================================================================
+// v3.14 — Per-brand Follow-Up Email templates (Jeremy Miner / NEPQ style)
+// 3 emails per brand: Day-1 recap, Day-3 value nudge, Day-5 breakup/revival.
+// NO "just following up / checking in / circling back". Miner revival +
+// "did you give up on…" breakup. Each tailored to the brand's dollar anchor.
+// ============================================================================
+const FOLLOWUP_EMAILS = {
+  critterclick: {
+    accent: 'wildlife removal',
+    emails: [
+      {
+        when: 'Day 1 — Recap',
+        subj: 'The booking leak on your wildlife site',
+        body: `Hey [first name],\n\nThanks for the few minutes earlier. Quick recap of what I flagged on your site: when a panicked homeowner with something in the attic lands on your page, the booking step is losing them before they ever reach the phone.\n\nI mapped it to roughly $2,000–$6,000 a week in jobs that should be hitting your calendar — that's 5–10 recoverable jobs at your average ticket.\n\nWant me to send the 90-second sample audit so you can see exactly where it leaks? Just reply "send it."` ,
+      },
+      {
+        when: 'Day 3 — Value nudge',
+        subj: 'The one fix most wildlife shops miss',
+        body: `Hey [first name],\n\nOne thing I didn't get to: the shops that win the emergency caller aren't the cheapest — they're the easiest to reach in the first 3 seconds. Your competitors who fixed their booking path are pulling the after-dark "there's a bat in my house" calls you're currently splitting with them.\n\nI'll show you the exact spot it breaks on your page. Worth a 10-minute look this week?` ,
+      },
+      {
+        when: 'Day 5 — Breakup / revival',
+        subj: 'Where should we go from here?',
+        body: `Hey [first name],\n\nTried to reach you a couple times and left a message or two this week, but didn't hear back from you...\n\nWhere should we go from here?\n\n— or —\n\nDid you give up on capturing those after-hours jobs, or did something else come up?` ,
+      },
+    ],
+  },
+  'conversion-exotics': {
+    accent: 'exotic & luxury car rental',
+    emails: [
+      {
+        when: 'Day 1 — Recap',
+        subj: 'The booking leak on your rental site',
+        body: `Hey [first name],\n\nThanks for the time earlier. Recap: a high-end renter taps your ad, decides in ~3 seconds, and your booking flow is dropping a chunk of them before they ever reserve.\n\nI tied that to roughly $5,000–$15,000 a week in bookings that should be landing on your calendar at your $500–$3,500/day rates.\n\nWant the sample audit that shows exactly where it leaks? Reply "send it" and it's yours.` ,
+      },
+      {
+        when: 'Day 3 — Value nudge',
+        subj: 'Why luxury renters bounce in 3 seconds',
+        body: `Hey [first name],\n\nOne piece I didn't cover: luxury renters don't read — they scan and decide instantly. The operators booking the Ferrari/Lambo weekends aren't the cheapest, they're the frictionless ones.\n\nThere's one spot on your page doing most of the damage. Ten minutes and I'll show you. Good this week?` ,
+      },
+      {
+        when: 'Day 5 — Breakup / revival',
+        subj: 'Where should we go from here?',
+        body: `Hey [first name],\n\nTried to reach you a couple times and left a message or two this week, but didn't hear back...\n\nWhere should we go from here?\n\n— or —\n\nDid you give up on capturing those higher-ticket bookings, or did something else come up?` ,
+      },
+    ],
+  },
+  'conversionjet': {
+    accent: 'private charter',
+    emails: [
+      {
+        when: 'Day 1 — Recap',
+        subj: 'The quote-flow leak on your site',
+        body: `Hello [first name],\n\nThank you for the time earlier. To recap what I flagged: high-intent buyers reaching your quote page are dropping before they complete a request — the friction sits in the first screen they see.\n\nI mapped it to a meaningful share of $15,000–$75,000 trips that should be reaching your team.\n\nIf useful, I can send a brief sample audit showing exactly where it occurs. A reply of "please send" is all I need.` ,
+      },
+      {
+        when: 'Day 3 — Value nudge',
+        subj: 'One detail on your quote page',
+        body: `Hello [first name],\n\nOne point I didn't reach: the operators capturing the most direct charter requests aren't the largest — they're the ones whose quote path is effortless for a serious buyer.\n\nThere is a single element on your page responsible for most of the drop. I can walk you through it in ten minutes this week if that's convenient.` ,
+      },
+      {
+        when: 'Day 5 — Breakup / revival',
+        subj: 'Where should we go from here?',
+        body: `Hello [first name],\n\nI've tried to reach you a couple of times and left a message or two this week, but haven't heard back...\n\nWhere should we go from here?\n\n— or —\n\nDid you set aside recovering those direct charter requests, or did the timing simply shift?` ,
+      },
+    ],
+  },
+  'rme-roofing': {
+    accent: 'roofing',
+    emails: [
+      {
+        when: 'Day 1 — Recap',
+        subj: 'The lead leak on your roofing site',
+        body: `Hey [first name],\n\nThanks for the few minutes earlier. Recap: you're paying $40–$75 a click in this market, but the lead form / phone placement is letting paid traffic slip away before it becomes a job.\n\nThat's roughly $15,000–$30,000 a week in roofing jobs — 1–3 recoverable jobs at $12K–$18K each — that should be on your calendar.\n\nWant the sample audit that shows exactly where it leaks? Reply "send it."` ,
+      },
+      {
+        when: 'Day 3 — Value nudge',
+        subj: 'Buying clicks that never become jobs',
+        body: `Hey [first name],\n\nOne thing I didn't get to: when a homeowner with hail damage hits your page, they hire the first contractor easy to reach. If the form fights them or the phone is buried, you paid for that click and handed the job to the next roofer.\n\nThere's one fix that moves real money. Ten minutes this week and I'll show you the spot.` ,
+      },
+      {
+        when: 'Day 5 — Breakup / revival',
+        subj: 'Where should we go from here?',
+        body: `Hey [first name],\n\nTried to reach you a couple times and left a message or two this week, but didn't hear back...\n\nWhere should we go from here?\n\n— or —\n\nDid you give up on turning that paid traffic into booked jobs, or did something else come up?` ,
+      },
+    ],
+  },
+};
+
+function renderFollowupEmails(slug) {
+  const e = FOLLOWUP_EMAILS[slug];
+  if (!e) return '';
+  let collapsed = true;
+  try {
+    const v = localStorage.getItem('cc_emails_collapsed_' + slug);
+    if (v === '0') collapsed = false;
+  } catch (err) {}
+
+  const cards = e.emails.map((m, i) => `
+    <div class="dash-email">
+      <div class="de-head">
+        <span class="de-when">${escapeHtml(m.when)}</span>
+        <button class="de-copy" data-action="copy-email" data-brand="${slug}" data-idx="${i}">Copy</button>
+      </div>
+      <div class="de-subj"><span class="de-subj-k">Subject:</span> ${escapeHtml(m.subj)}</div>
+      <pre class="de-body" data-email-body>${escapeHtml(m.body)}</pre>
+    </div>
+  `).join('');
+
+  return `
+    <div class="dash-emails ${collapsed ? 'collapsed' : ''}" data-emails-panel data-brand="${slug}">
+      <div class="dash-emails-head" data-action="toggle-emails" data-brand="${slug}">
+        <span class="dash-emails-title">✉️ Follow-Up Emails — ${escapeHtml(e.accent)} (Miner / NEPQ)</span>
+        <span class="dash-emails-toggle">${collapsed ? 'Show ▾' : 'Hide ▴'}</span>
+      </div>
+      <div class="dash-emails-body">
+        <div class="dash-emails-note">Swap <strong>[first name]</strong> for the contact. No "just following up." Day 5 is Miner's revival + breakup.</div>
+        ${cards}
+      </div>
+    </div>
+  `;
+}
+window.renderFollowupEmails = renderFollowupEmails;
+window.FOLLOWUP_EMAILS = FOLLOWUP_EMAILS;
 
 function renderBrandCard(slug, brand, intel, mode) {
   const { prospects = [], scripts = {}, callIntel, hotList, marketCpc, validation } = intel || {};
@@ -538,6 +663,7 @@ function renderBrandCard(slug, brand, intel, mode) {
   // ---- v3.11 — Key Tips & Cadence panel (top of every brand card) ----
   const tipsBlock = window.renderTipsPanel ? window.renderTipsPanel() : '';
   const marketBlock = window.renderMarketStats ? window.renderMarketStats(slug) : '';
+  const emailsBlock = window.renderFollowupEmails ? window.renderFollowupEmails(slug) : '';
 
   return `
     <article class="dash-card" data-brand="${slug}" style="--ink:${theme.ink};--gold:${theme.gold};--cream:${theme.cream};--highlight:${theme.highlight};">
@@ -559,6 +685,9 @@ function renderBrandCard(slug, brand, intel, mode) {
 
         <!-- Per-brand market snapshot -->
         ${marketBlock}
+
+        <!-- Per-brand follow-up email templates -->
+        ${emailsBlock}
 
         <!-- Live status banner -->
         <div class="dash-live">
@@ -710,6 +839,40 @@ async function renderDashboard(mode = 'now') {
       const tog = panel.querySelector('.dash-market-toggle');
       if (tog) tog.textContent = nowCollapsed ? 'Show ▾' : 'Hide ▴';
       try { localStorage.setItem('cc_market_collapsed_' + slug, nowCollapsed ? '1' : '0'); } catch (e) {}
+    });
+  });
+
+  // Follow-up emails: collapse toggle
+  root.querySelectorAll('[data-action="toggle-emails"]').forEach(head => {
+    head.addEventListener('click', () => {
+      const panel = head.closest('[data-emails-panel]');
+      if (!panel) return;
+      const slug = panel.getAttribute('data-brand') || '';
+      const nowCollapsed = !panel.classList.contains('collapsed');
+      panel.classList.toggle('collapsed', nowCollapsed);
+      const tog = panel.querySelector('.dash-emails-toggle');
+      if (tog) tog.textContent = nowCollapsed ? 'Show \u25be' : 'Hide \u25b4';
+      try { localStorage.setItem('cc_emails_collapsed_' + slug, nowCollapsed ? '1' : '0'); } catch (e) {}
+    });
+  });
+
+  // Follow-up emails: copy a single email (subject + body) to clipboard
+  root.querySelectorAll('[data-action="copy-email"]').forEach(btn => {
+    btn.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      const slug = btn.getAttribute('data-brand');
+      const idx = parseInt(btn.getAttribute('data-idx'), 10);
+      const e = (window.FOLLOWUP_EMAILS || {})[slug];
+      if (!e || !e.emails[idx]) return;
+      const m = e.emails[idx];
+      const text = 'Subject: ' + m.subj + '\n\n' + m.body;
+      const done = () => { const o = btn.textContent; btn.textContent = 'Copied \u2713'; btn.classList.add('copied'); setTimeout(() => { btn.textContent = o; btn.classList.remove('copied'); }, 1400); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(() => {});
+      } else {
+        const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); } catch (e2) {} document.body.removeChild(ta);
+      }
     });
   });
 }
