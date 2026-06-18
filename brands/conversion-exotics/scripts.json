@@ -11,10 +11,10 @@
           "t": 10,
           "phase": "OPEN",
           "title": "Booking Process Leak",
-          "line": "Hi, my name is {caller} with Conversion Exotics — I review exotic and luxury car rental sites for a living. I pulled up your site, and your <em>booking process</em> is costing you roughly <em>$5,000 to $15,000 a week in booked rentals</em>. Do you know who I can talk to about this?",
-          "responses": ["That'd be me", "What do you mean costing me?", "Who is this again?"],
-          "followup": "Got it — here's what's going on, then I'll show you exactly where the money's going.",
-          "note": "Calling the business, not a person. No name tokens. No apology hedges."
+          "line": "Hi, my name is {caller} with Conversion Exotics — I review exotic and luxury car rental sites for a living. I pulled up your site, and there's a <em>fix to your booking process that would put roughly $5,000 to $15,000 a week in new bookings back on your calendar</em>. Do you know who I can talk to about this?",
+          "responses": ["That'd be me", "How would that work?", "Who is this again?"],
+          "followup": "Got it — here's what I'm seeing, then I'll show you exactly where that extra revenue comes from.",
+          "note": "GAIN-led open: lead with what they can MAKE, not lose. Calling the business, not a person. No name tokens. Anchor = recoverable bookings × $500–$3,500 avg exotic rental day rate."
         },
         {
           "t": 22,
@@ -71,10 +71,10 @@
           "t": 10,
           "phase": "OPEN",
           "title": "Next Listing Steal",
-          "line": "Hi, my name is {caller} with Conversion Exotics — I review exotic and luxury car rental sites for a living. Quick question — <em>do you know how many renters tap your ad, count to three, and book the next listing instead?</em> Because on your site right now, that's costing you <em>$5,000 to $15,000 a week</em>. Who's the right person to talk to about this?",
-          "responses": ["That'd be me", "What do you mean costing me?", "Who is this again?"],
-          "followup": "Got it — here's what's going on, then I'll show you exactly where the money's going.",
-          "note": "Calling the business, not a person. Question-first hook lands the steal frame immediately."
+          "line": "Hi, my name is {caller} with Conversion Exotics — I review exotic and luxury car rental sites for a living. Quick question — <em>do you know how many renters tap your ad, count to three, and are ready to book — but end up on the next listing?</em> If we capture even half of those on your site, that's <em>$5,000 to $15,000 a week in new bookings for you</em>. Who's the right person to talk to about this?",
+          "responses": ["That'd be me", "How would you capture them?", "Who is this again?"],
+          "followup": "Got it — here's what I'm seeing, then I'll show you exactly where that extra revenue comes from.",
+          "note": "GAIN-led: frame the renters as new bookings to CAPTURE, not bookings lost. Question-first hook. No name tokens."
         },
         {
           "t": 22,
@@ -131,10 +131,10 @@
           "t": 10,
           "phase": "OPEN",
           "title": "Three Issues Frame",
-          "line": "Hi, my name is {caller} with Conversion Exotics — I review exotic and luxury car rental sites for a living. I pulled up your site and I'm seeing <em>three specific issues on your booking process</em> that together are costing you roughly <em>$5,000 to $15,000 a week in booked rentals</em>. Do you know who I can talk to about this?",
-          "responses": ["That'd be me", "What three issues?", "Who is this again?"],
-          "followup": "Got it — quick run-through of what I'm seeing, then I'll show you exactly where the money's going.",
-          "note": "Calling the business, not a person. Three-issues hook sets up the reveal."
+          "line": "Hi, my name is {caller} with Conversion Exotics — I review exotic and luxury car rental sites for a living. I pulled up your site and I'm seeing <em>three specific fixes to your booking process</em> that together would put roughly <em>$5,000 to $15,000 a week in new bookings on your calendar</em>. Do you know who I can talk to about this?",
+          "responses": ["That'd be me", "What three fixes?", "Who is this again?"],
+          "followup": "Got it — here's what I'm seeing, then I'll show you exactly where that extra revenue comes from.",
+          "note": "GAIN-led: three FIXES/WINS that add bookings, not three problems costing money. Sets up the reveal."
         },
         {
           "t": 22,

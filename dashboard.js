@@ -234,6 +234,45 @@ const MARKET_STATS = {
     why: 'Emergency buying: a panicked homeowner hires the first shop that\u2019s easy to reach. Every captured call is a $200\u2013$1,500 job at a 50\u201360% close rate \u2014 that\u2019s the revenue you\u2019re putting back on their calendar.',
     cite: 'Clicks Geek/NWCOA, Persistence Market Research, HomeGuide, Angi, Iron-Chess SEO, Pest Hound, BizBite',
   },
+  'conversion-exotics': {
+    label: 'US Exotic & Luxury Car Rental Market',
+    stats: [
+      { k: 'Market size',    v: '~$6.3B/yr', s: 'US luxury car rental market 2025 revenue' },
+      { k: 'Growth',         v: '8.3% CAGR', s: 'Projected growth 2025–2035' },
+      { k: 'Avg booking',    v: '$500–$3,500/day', s: 'Exotic car daily rental rate (Ferrari, Lambo, Rolls)' },
+      { k: 'Close rate',     v: '20–35%', s: 'Inbound/paid digital booking inquiries' },
+      { k: 'Cost per lead',  v: '$75–$200', s: 'Paid search CPL, luxury auto rental vertical' },
+      { k: 'Median shop',    v: '$400K–$1M rev', s: 'Independent exotic rental operator annual revenue' },
+    ],
+    why: 'Why it matters: luxury renters decide in 3 seconds — a fast, frictionless booking flow turns a browsing high-net-worth renter into a $500–$3,500/day booking. Every captured rental your fix puts back on their calendar is immediate top-line revenue.',
+    cite: 'Market Research Future (US Luxury Car Rental 2025), CarRentalList.com 2026 Market Report, Startup Model Hub, Fisher Luxury Rental, ZenBusiness',
+  },
+  'conversionjet': {
+    label: 'US Private Jet Charter Market',
+    stats: [
+      { k: 'Market size',    v: '~$16.4B/yr', s: 'US private jet charter services revenue 2025' },
+      { k: 'Growth',         v: '7.9% CAGR', s: 'Projected growth 2026–2031' },
+      { k: 'Avg charter',    v: '$15K–$75K/trip', s: 'Domestic on-demand charter, light to heavy jet' },
+      { k: 'Close rate',     v: '3–8%', s: 'Click-to-inquiry; qualified inquiry-to-book ≈25–40%' },
+      { k: 'Cost per lead',  v: '$300–$600', s: 'Paid search CPL, private aviation vertical' },
+      { k: 'Median shop',    v: '~$12M rev', s: 'Average US charter operator annual revenue (IBISWorld)' },
+    ],
+    why: 'Why it matters: a single recovered charter booking is $15K–$75K in revenue. Quote-flow friction drops high-intent buyers — every fix to the booking funnel puts a full-fare charter back on the operator’s calendar.',
+    cite: 'GlobeNewswire Private Jet Charter 2026, IBISWorld US Private Jet Charters, Future Market Report, Profitable Venture Magazine, AdShot Media',
+  },
+  'rme-roofing': {
+    label: 'US Residential Roofing Market',
+    stats: [
+      { k: 'Market size',    v: '~$31.5B/yr', s: 'US roofing contractor market 2025 revenue' },
+      { k: 'Growth',         v: '6.0% CAGR', s: 'Projected growth 2026–2031 (residential segment)' },
+      { k: 'Avg job',        v: '$12K–$18K', s: 'Residential reroof / insurance replacement job' },
+      { k: 'Close rate',     v: '20–35%', s: 'Inbound / exclusive paid leads' },
+      { k: 'Cost per lead',  v: '$80–$220', s: 'Google Ads CPL, roofing contractors 2026' },
+      { k: 'Median shop',    v: '~$1.5M rev', s: 'Typical small roofing contractor annual revenue' },
+    ],
+    why: 'Why it matters: a homeowner with hail damage hires the first contractor they can reach. Every lead-flow fix puts a $12K–$18K insurance job back on the operator’s calendar — and a 30–40% close rate means even modest traffic gains move real revenue.',
+    cite: 'Market Data Forecast US Roofing 2025, Mordor Intelligence, Verisk 2026 Roof Report, RoofPredict CPL Benchmark, BizBite.io, Pipeline On Roofing Revenue',
+  },
 };
 
 function renderMarketStats(slug) {

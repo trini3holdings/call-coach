@@ -11,10 +11,10 @@
           "t": 10,
           "phase": "OPEN",
           "title": "Lead Flow Leak",
-          "line": "Hi, my name is {caller} with RME Roofing — I review roofing company sites for a living. I pulled up your site, and your <em>lead flow</em> is costing you roughly <em>$15,000 to $30,000 a week in roofing jobs</em>. Do you know who I can talk to about this?",
-          "responses": ["That'd be me", "What do you mean costing me?", "Who is this again?"],
-          "followup": "Got it — here's what I'm seeing, then I'll show you exactly where the jobs are going.",
-          "note": "Calling the roofing owner, not a homeowner. No name tokens. No apology hedges. Dollar anchor = 1-3 missed jobs/wk × $10-18K each."
+          "line": "Hi, my name is {caller} with RME Roofing — I review roofing company sites for a living. I pulled up your site, and there's a <em>fix to your lead flow that would put roughly $15,000 to $30,000 a week in new roofing jobs back on your calendar</em>. Do you know who I can talk to about this?",
+          "responses": ["That'd be me", "How would that work?", "Who is this again?"],
+          "followup": "Got it — here's what I'm seeing, then I'll show you exactly where that extra revenue comes from.",
+          "note": "GAIN-led open: lead with what they can MAKE, not lose. Calling the roofing owner, not a homeowner. No name tokens. No apology hedges. Dollar anchor = 1-3 recoverable jobs/wk × $10-18K each."
         },
         {
           "t": 22,
@@ -71,10 +71,10 @@
           "t": 10,
           "phase": "OPEN",
           "title": "Next Contractor Steal",
-          "line": "Hi, my name is {caller} with RME Roofing — I review roofing company sites for a living. Quick question — <em>do you know how many homeowners with hail damage tap your ad, count to three, and call the next contractor instead?</em> Because on your site right now, that's costing you <em>$15,000 to $30,000 a week in lost insurance jobs</em>. Who's the right person to talk to about this?",
-          "responses": ["That'd be me", "What do you mean costing me?", "Who is this again?"],
-          "followup": "Got it — here's what I'm seeing, then I'll show you exactly where those jobs are going.",
-          "note": "Question-first hook lands the steal frame immediately. Insurance jobs framing is specific to roofing-owner language."
+          "line": "Hi, my name is {caller} with RME Roofing — I review roofing company sites for a living. Quick question — <em>do you know how many homeowners with hail damage tap your ad, count to three, and are ready to hire — but end up calling the next contractor?</em> If we capture even half of those on your site, that's <em>$15,000 to $30,000 a week in new roofing jobs for you</em>. Who's the right person to talk to about this?",
+          "responses": ["That'd be me", "How would you capture them?", "Who is this again?"],
+          "followup": "Got it — here's what I'm seeing, then I'll show you exactly where that extra revenue comes from.",
+          "note": "GAIN-led: frame the hail-damage homeowners as new jobs to CAPTURE, not jobs lost. Question-first hook. Insurance jobs framing specific to roofing-owner language."
         },
         {
           "t": 22,
@@ -131,10 +131,10 @@
           "t": 10,
           "phase": "OPEN",
           "title": "Three Issues Frame",
-          "line": "Hi, my name is {caller} with RME Roofing — I review roofing company sites for a living. I pulled up your site and I'm seeing <em>three specific issues on your lead flow</em> that together are costing you roughly <em>$15,000 to $30,000 a week in roofing jobs</em>. Do you know who I can talk to about this?",
-          "responses": ["That'd be me", "What three issues?", "Who is this again?"],
-          "followup": "Got it — quick run-through of what I'm seeing, then I'll show you exactly where the jobs are going.",
-          "note": "Calling the roofing owner. Three-issues hook sets up the reveal. 'Jobs' not 'bookings'."
+          "line": "Hi, my name is {caller} with RME Roofing — I review roofing company sites for a living. I pulled up your site and I'm seeing <em>three specific fixes to your lead flow</em> that together would put roughly <em>$15,000 to $30,000 a week in new roofing jobs on your calendar</em>. Do you know who I can talk to about this?",
+          "responses": ["That'd be me", "What three fixes?", "Who is this again?"],
+          "followup": "Got it — here's what I'm seeing, then I'll show you exactly where that extra revenue comes from.",
+          "note": "GAIN-led: three FIXES/WINS that add jobs, not three problems costing money. Calling the roofing owner. Sets up the reveal. 'Jobs' not 'bookings'."
         },
         {
           "t": 22,
