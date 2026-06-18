@@ -107,6 +107,79 @@ function getBrandPerf(slug) {
   }
 }
 
+// ============================================================================
+// v3.11 — Key Tips & Cadence panel
+// Shows the follow-up playbook at the very top of every brand card:
+//   - Attempts per company size (small / mid / enterprise)
+//   - 5-day-a-week follow-up rhythm
+//   - Quick best-practice reminders before dialing
+// Collapsible so it doesn't crowd the card on every glance (state in localStorage).
+// ============================================================================
+function renderTipsPanel() {
+  let collapsed = false;
+  try { collapsed = localStorage.getItem('cc_tips_collapsed') === '1'; } catch (e) {}
+
+  const cadence = [
+    { size: 'Small',      who: '1–50 employees',     attempts: '6–8 attempts',   note: 'Owner-led — fewer touches, move fast' },
+    { size: 'Mid',        who: '51–500 employees',   attempts: '10–12 attempts', note: 'Gatekeepers — vary times & channels' },
+    { size: 'Enterprise', who: '500+ employees',      attempts: '12–15 attempts', note: 'Multi-threaded — stay persistent' },
+  ];
+
+  const cadenceRows = cadence.map(c => `
+    <div class="dash-cadence-row">
+      <div class="dcr-size">
+        <span class="dcr-size-name">${c.size}</span>
+        <span class="dcr-size-who">${c.who}</span>
+      </div>
+      <div class="dcr-attempts">${c.attempts}</div>
+      <div class="dcr-note">${c.note}</div>
+    </div>
+  `).join('');
+
+  // 5-day-a-week follow-up rhythm — spread touches, never two same-time hits in a row
+  const week = [
+    { d: 'Mon', t: 'AM call + voicemail',          tag: 'call' },
+    { d: 'Tue', t: 'Late-PM call (different time)', tag: 'call' },
+    { d: 'Wed', t: 'Email / LinkedIn touch',        tag: 'soft' },
+    { d: 'Thu', t: 'Mid-day call',                  tag: 'call' },
+    { d: 'Fri', t: 'AM call + breakup note if cold', tag: 'soft' },
+  ];
+  const weekRow = week.map(w => `
+    <div class="dash-week-day ${w.tag}">
+      <span class="dwd-day">${w.d}</span>
+      <span class="dwd-task">${w.t}</span>
+    </div>
+  `).join('');
+
+  const tips = [
+    'Log every attempt — the count only works if it’s tracked.',
+    'Rotate call times across the week so you catch them when they pick up.',
+    'After the last attempt, send a polite “breakup” message — it often revives replies.',
+    'Lead with the free Website Conversion Audit, not a pitch.',
+  ];
+  const tipsList = tips.map(t => `<li>${t}</li>`).join('');
+
+  return `
+    <div class="dash-tips ${collapsed ? 'collapsed' : ''}" data-tips-panel>
+      <div class="dash-tips-head" data-action="toggle-tips">
+        <span class="dash-tips-title">📌 Key Tips &amp; Follow-Up Cadence</span>
+        <span class="dash-tips-toggle">${collapsed ? 'Show ▾' : 'Hide ▴'}</span>
+      </div>
+      <div class="dash-tips-body">
+        <div class="dash-tips-sub">Attempts before you stop — by company size</div>
+        <div class="dash-cadence">${cadenceRows}</div>
+
+        <div class="dash-tips-sub">5-day-a-week follow-up rhythm</div>
+        <div class="dash-week">${weekRow}</div>
+
+        <div class="dash-tips-sub">Before you dial</div>
+        <ul class="dash-tips-list">${tipsList}</ul>
+      </div>
+    </div>
+  `;
+}
+window.renderTipsPanel = renderTipsPanel;
+
 function renderBrandCard(slug, brand, intel, mode) {
   const { prospects = [], scripts = {}, callIntel, hotList, marketCpc, validation } = intel || {};
   const theme = brand.theme || { ink: '#1a1a1a', gold: '#888', cream: '#f4f0e8', highlight: '#fff8e8' };
@@ -337,6 +410,9 @@ function renderBrandCard(slug, brand, intel, mode) {
       return `<div class="dash-market-row"><span class="dmr-name">${escapeHtml(m)}</span><span class="dmr-count">${n}</span><span class="dmr-cpc">${cpcStr}</span></div>`;
     }).join('');
 
+  // ---- v3.11 — Key Tips & Cadence panel (top of every brand card) ----
+  const tipsBlock = window.renderTipsPanel ? window.renderTipsPanel() : '';
+
   return `
     <article class="dash-card" data-brand="${slug}" style="--ink:${theme.ink};--gold:${theme.gold};--cream:${theme.cream};--highlight:${theme.highlight};">
       <header class="dash-card-head">
@@ -351,6 +427,9 @@ function renderBrandCard(slug, brand, intel, mode) {
       </header>
 
       <div class="dash-card-body">
+
+        <!-- Key tips & cadence (top of card) -->
+        ${tipsBlock}
 
         <!-- Live status banner -->
         <div class="dash-live">
@@ -474,6 +553,20 @@ async function renderDashboard(mode = 'now') {
       const slug = row.dataset.brand;
       const id = row.dataset.id;
       window.enterBrand && window.enterBrand(slug, id);
+    });
+  });
+
+  // v3.11 — wire Key Tips collapse toggle (syncs all cards + persists)
+  root.querySelectorAll('[data-action="toggle-tips"]').forEach(head => {
+    head.addEventListener('click', () => {
+      const panel = head.closest('[data-tips-panel]');
+      const nowCollapsed = !panel.classList.contains('collapsed');
+      root.querySelectorAll('[data-tips-panel]').forEach(p => {
+        p.classList.toggle('collapsed', nowCollapsed);
+        const tog = p.querySelector('.dash-tips-toggle');
+        if (tog) tog.textContent = nowCollapsed ? 'Show ▾' : 'Hide ▴';
+      });
+      try { localStorage.setItem('cc_tips_collapsed', nowCollapsed ? '1' : '0'); } catch (e) {}
     });
   });
 }
