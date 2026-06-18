@@ -23,15 +23,15 @@
         {
           "t": 22,
           "phase": "PROBLEM",
-          "title": "Emergency Caller, 3-Second Window",
-          "line": "Here's the deal — when a homeowner hears something in the attic at night, they Google, tap the first ad, and decide in about <em>3 seconds</em> whether they're calling you or moving on. <em>Wildlife removal is emergency-service buying</em> — that caller will hire the first shop that makes it easy to reach them. When was the last time someone on your team pulled up your site on a phone and tried to call or book right from it?",
+          "title": "The 3-Second Window",
+          "line": "Here's the thing. When someone hears scratching in the attic at night, they grab their phone and decide in about 3 seconds who they're calling. If your number's not right there, they tap the next guy — and that's a <em>$400 to $600 job, gone</em>. When's the last time anyone there pulled up your site on a phone and tried to book?",
           "responses": [
             "Honestly, not recently",
-            "It's fine, we get calls",
-            "We just updated the site"
+            "We get plenty of calls",
+            "I can't help with that"
           ],
-          "followup": "Yeah — that's the most common answer. The booking button is just the first leak. The bigger ones come after.",
-          "note": "Plain English. Emergency-service mindset. Ends with a question they can't confidently answer."
+          "followup": "Yeah — that's the most common answer. And the missed number is just the first leak. The bigger ones come after.",
+          "note": "PROBLEM beat, cold + cost-led (NEPQ situation->consequence). Make them FEEL the 3-second emergency window before asking for anything; end on the soft 'when's the last time anyone pulled up your site on a phone' question to keep it two-way. Calm Miner tonality, short breath-lines, slow the last question. CritterClick register: friendly authority, no fear-mongering, no kill-talk. GATEKEEPER RESISTANCE: if they say 'I can't help with that' -> 'Totally fair, you don't have to. I just need 30 seconds with whoever owns the site, because every day this sits it's a few jobs walking. Who's that?' Reframe the block as the reason to route. Never argue."
         },
         {
           "t": 36,
