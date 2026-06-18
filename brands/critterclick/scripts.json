@@ -10,11 +10,11 @@
         {
           "t": 10,
           "phase": "OPEN",
-          "title": "Booking Process Leak",
-          "line": "Hi, my name is {caller} with CritterClick — I review wildlife removal sites for a living. I pulled up your site, and your <em>booking process</em> is costing you roughly <em>$2,000 to $6,000 a week in missed jobs</em>. Do you know who I can talk to about this?",
-          "responses": ["That'd be me", "What do you mean costing me?", "Who is this again?"],
-          "followup": "Got it — here's what I'm seeing, then I'll show you exactly where the jobs are going.",
-          "note": "Calling the business, not a person. No name tokens. No apology hedges. Dollar anchor = 5-10 missed jobs/wk × $400-$600 avg wildlife removal job."
+          "title": "Booking Process Upside",
+          "line": "Hi, my name is {caller} with CritterClick — I review wildlife removal sites for a living. I pulled up your site, and there's a <em>fix to your booking process that would put roughly $2,000 to $6,000 a week in new jobs back on your calendar</em>. Do you know who I can talk to about this?",
+          "responses": ["That'd be me", "How would that work?", "Who is this again?"],
+          "followup": "Got it — here's what I'm seeing, then I'll show you exactly where that extra revenue comes from.",
+          "note": "GAIN-led open: lead with what they can MAKE, not lose. Calling the business, not a person. No name tokens. Anchor = 5-10 recoverable jobs/wk × $400-$600 avg wildlife removal job."
         },
         {
           "t": 22,
@@ -70,11 +70,11 @@
         {
           "t": 10,
           "phase": "OPEN",
-          "title": "Midnight Steal Frame",
-          "line": "Hi, my name is {caller} with CritterClick — I review wildlife removal sites for a living. Quick question — <em>do you know how many homeowners hear something scratching in their attic at night, tap your ad, and book the next shop instead?</em> Because on your site right now, that's costing you <em>$2,000 to $6,000 a week</em>. Who's the right person to talk to about this?",
-          "responses": ["That'd be me", "What do you mean costing me?", "Who is this again?"],
-          "followup": "Got it — here's what I'm seeing, then I'll show you exactly where those jobs are going.",
-          "note": "Question-first hook lands the steal frame immediately. No name tokens. No apology hedges."
+          "title": "Midnight Capture Frame",
+          "line": "Hi, my name is {caller} with CritterClick — I review wildlife removal sites for a living. Quick question — <em>do you know how many homeowners hear something scratching in their attic at night, tap your ad, and end up booking the next shop?</em> If we capture even half of those on your site, that's <em>$2,000 to $6,000 a week in new jobs for you</em>. Who's the right person to talk to about this?",
+          "responses": ["That'd be me", "How would you capture them?", "Who is this again?"],
+          "followup": "Got it — here's what I'm seeing, then I'll show you exactly where that extra revenue comes from.",
+          "note": "GAIN-led: frame the midnight callers as new jobs to CAPTURE, not jobs lost. Question-first hook. No name tokens."
         },
         {
           "t": 22,
@@ -130,11 +130,11 @@
         {
           "t": 10,
           "phase": "OPEN",
-          "title": "Three Issues Frame",
-          "line": "Hi, my name is {caller} with CritterClick — I review wildlife removal sites for a living. I pulled up your site and I'm seeing <em>three specific issues on your booking process</em> that together are costing you roughly <em>$2,000 to $6,000 a week in missed jobs</em>. Do you know who I can talk to about this?",
-          "responses": ["That'd be me", "What three issues?", "Who is this again?"],
-          "followup": "Got it — here's what I'm seeing, then I'll show you exactly where the jobs are going.",
-          "note": "Calling the business, not a person. Three-issues hook sets up the reveal."
+          "title": "Three Wins Frame",
+          "line": "Hi, my name is {caller} with CritterClick — I review wildlife removal sites for a living. I pulled up your site and I'm seeing <em>three specific fixes to your booking process</em> that together would put roughly <em>$2,000 to $6,000 a week in new jobs on your calendar</em>. Do you know who I can talk to about this?",
+          "responses": ["That'd be me", "What three fixes?", "Who is this again?"],
+          "followup": "Got it — here's what I'm seeing, then I'll show you exactly where that extra revenue comes from.",
+          "note": "GAIN-led: three FIXES/WINS that add revenue, not three problems costing money. Sets up the reveal."
         },
         {
           "t": 22,

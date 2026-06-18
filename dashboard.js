@@ -119,10 +119,13 @@ function renderTipsPanel() {
   let collapsed = false;
   try { collapsed = localStorage.getItem('cc_tips_collapsed') === '1'; } catch (e) {}
 
+  // Touch targets by company size — grounded in real cold-outreach data.
+  // 95% of converted leads are reached by the 6th attempt; 80% of sales need 5+
+  // follow-ups, yet most reps quit after 1–2. (LeadResponse, FreJun)
   const cadence = [
-    { size: 'Small',      who: '1–50 employees',     attempts: '6–8 attempts',   note: 'Owner-led — fewer touches, move fast' },
-    { size: 'Mid',        who: '51–500 employees',   attempts: '10–12 attempts', note: 'Gatekeepers — vary times & channels' },
-    { size: 'Enterprise', who: '500+ employees',      attempts: '12–15 attempts', note: 'Multi-threaded — stay persistent' },
+    { size: 'Small',      who: '1–50 employees',    attempts: '6–8 touches',   note: 'Owner answers — fewer touches, move fast' },
+    { size: 'Mid',        who: '51–500 employees',  attempts: '10–12 touches', note: 'Gatekeepers — vary times, multi-thread' },
+    { size: 'Enterprise', who: '500+ employees',    attempts: '12–15 touches', note: 'Email a 2nd contact while you keep dialing' },
   ];
 
   const cadenceRows = cadence.map(c => `
@@ -136,26 +139,51 @@ function renderTipsPanel() {
     </div>
   `).join('');
 
-  // 5-day-a-week follow-up rhythm — spread touches, never two same-time hits in a row
+  // Best call windows — Tue–Thu, 10–11 AM is the #1 connect window, 4–5 PM is #2.
+  // (HubSpot, Close.com). Avoid Mon AM, the 12–2 lunch dead zone, and Fri afternoon.
+  const windows = [
+    { label: '10–11 AM, Tue–Thu',  sub: '#1 connect window — call first',  tag: 'best' },
+    { label: '4–5 PM, Tue–Thu',    sub: '#2 window — decision-makers free', tag: 'good' },
+    { label: 'Mon AM · 12–2 · Fri PM', sub: 'Dead zones — skip live calls', tag: 'avoid' },
+  ];
+  const windowRow = windows.map(w => `
+    <div class="dash-window ${w.tag}">
+      <span class="dw-label">${w.label}</span>
+      <span class="dw-sub">${w.sub}</span>
+    </div>
+  `).join('');
+
+  // 5-day rhythm — EVERY day is a call + an email touch. Email goes to a DIFFERENT
+  // contact than you're dialing (multi-thread). Multi-channel lifts conversion ~28%.
+  // (GreetNow). Email copy follows Jeremy Miner / NEPQ: no "just following up".
   const week = [
-    { d: 'Mon', t: 'AM call + voicemail',          tag: 'call' },
-    { d: 'Tue', t: 'Late-PM call (different time)', tag: 'call' },
-    { d: 'Wed', t: 'Email / LinkedIn touch',        tag: 'soft' },
-    { d: 'Thu', t: 'Mid-day call',                  tag: 'call' },
-    { d: 'Fri', t: 'AM call + breakup note if cold', tag: 'soft' },
+    { d: 'Mon', call: 'Call DM — 10–11 AM. No voicemail words like “checking in.”',
+                mail: 'Email a 2nd contact (ops/owner): “Tried reaching [name] — does this land on your desk?”' },
+    { d: 'Tue', call: 'Call DM — 4–5 PM (new time of day).',
+                mail: 'Email the DM, Miner pattern-interrupt: “Reached out a couple times, didn’t hear back… where should we go from here?”' },
+    { d: 'Wed', call: 'Call DM — 10–11 AM. Reference the missed jobs, not the audit.',
+                mail: 'Email 2nd contact: forward the 1-line revenue-gain number for their site.' },
+    { d: 'Thu', call: 'Call DM — 4–5 PM. Offer Thu/Fri audit slots.',
+                mail: 'Email DM: “Did you give up on getting those missed jobs back?” (their words, no pitch).' },
+    { d: 'Fri', call: 'Call DM — 10–11 AM, last live attempt of the week.',
+                mail: 'Breakup email to DM + cc 2nd contact: “Assuming the timing’s off — want me to close the file?”' },
   ];
   const weekRow = week.map(w => `
-    <div class="dash-week-day ${w.tag}">
+    <div class="dash-week-day">
       <span class="dwd-day">${w.d}</span>
-      <span class="dwd-task">${w.t}</span>
+      <div class="dwd-tasks">
+        <span class="dwd-task call"><span class="dwd-chan">📞 Call</span> ${w.call}</span>
+        <span class="dwd-task mail"><span class="dwd-chan">✉️ Email</span> ${w.mail}</span>
+      </div>
     </div>
   `).join('');
 
   const tips = [
+    'Every weekday = a call AND an email — the email goes to a <strong>different person</strong> (owner, ops, office mgr) so you’re multi-threaded.',
+    'Banned words (Jeremy Miner / NEPQ): <strong>“just following up,” “checking in,” “circling back.”</strong> They trigger sales resistance — use a pattern interrupt instead.',
+    'Miner’s revival email, word-for-word: <em>“Tried to reach you a few times the last couple weeks, didn’t hear back… where should we go from here?”</em>',
+    'Lead every touch with what they can <strong>make</strong> (jobs/revenue gained), not what they’re losing.',
     'Log every attempt — the count only works if it’s tracked.',
-    'Rotate call times across the week so you catch them when they pick up.',
-    'After the last attempt, send a polite “breakup” message — it often revives replies.',
-    'Lead with the free Website Conversion Audit, not a pitch.',
   ];
   const tipsList = tips.map(t => `<li>${t}</li>`).join('');
 
@@ -166,19 +194,77 @@ function renderTipsPanel() {
         <span class="dash-tips-toggle">${collapsed ? 'Show ▾' : 'Hide ▴'}</span>
       </div>
       <div class="dash-tips-body">
-        <div class="dash-tips-sub">Attempts before you stop — by company size</div>
+        <div class="dash-tips-sub">Touches before you stop — by company size</div>
         <div class="dash-cadence">${cadenceRows}</div>
 
-        <div class="dash-tips-sub">5-day-a-week follow-up rhythm</div>
+        <div class="dash-tips-sub">Best call windows</div>
+        <div class="dash-windows">${windowRow}</div>
+
+        <div class="dash-tips-sub">5-day rhythm — every day is a call <em>and</em> an email (different contact)</div>
         <div class="dash-week">${weekRow}</div>
 
         <div class="dash-tips-sub">Before you dial</div>
         <ul class="dash-tips-list">${tipsList}</ul>
+
+        <div class="dash-tips-cite">Cadence &amp; windows: LeadResponse, FreJun, HubSpot, Close.com, GreetNow · Follow-up language: Jeremy Miner (NEPQ)</div>
       </div>
     </div>
   `;
 }
 window.renderTipsPanel = renderTipsPanel;
+
+// ============================================================================
+// v3.12 — Per-brand Market Stats block
+// A quick "know your prospect's world" snapshot per brand: market size, growth,
+// typical job/ticket value, lead economics, and close rate. Gives the caller
+// real numbers to anchor the revenue-gain pitch. Sourced data, per brand.
+// CritterClick (wildlife removal) is built out first; others fall back gracefully.
+// ============================================================================
+const MARKET_STATS = {
+  critterclick: {
+    label: 'US Wildlife Removal Market',
+    stats: [
+      { k: 'Market size',    v: '~$2.8B/yr', s: 'US wildlife control industry revenue' },
+      { k: 'Growth',         v: '6.9% CAGR', s: 'Fastest-growing pest segment' },
+      { k: 'Avg job value',  v: '$200–$1,500', s: 'Raccoon $200–600 · bat/attic $300–1,500' },
+      { k: 'Close rate',     v: '50–60%', s: 'Exclusive wildlife leads' },
+      { k: 'Cost per lead',  v: '$60–$95', s: 'Typical paid wildlife CPL' },
+      { k: 'Median shop',    v: '$263K rev', s: '~$124K owner earnings/yr' },
+    ],
+    why: 'Emergency buying: a panicked homeowner hires the first shop that\u2019s easy to reach. Every captured call is a $200\u2013$1,500 job at a 50\u201360% close rate \u2014 that\u2019s the revenue you\u2019re putting back on their calendar.',
+    cite: 'Clicks Geek/NWCOA, Persistence Market Research, HomeGuide, Angi, Iron-Chess SEO, Pest Hound, BizBite',
+  },
+};
+
+function renderMarketStats(slug) {
+  const m = MARKET_STATS[slug];
+  if (!m) return '';
+  let collapsed = false;
+  try { collapsed = localStorage.getItem('cc_market_collapsed_' + slug) === '1'; } catch (e) {}
+
+  const cells = m.stats.map(st => `
+    <div class="dash-mkt-cell">
+      <div class="dmk-v">${st.v}</div>
+      <div class="dmk-k">${st.k}</div>
+      <div class="dmk-s">${st.s}</div>
+    </div>
+  `).join('');
+
+  return `
+    <div class="dash-market ${collapsed ? 'collapsed' : ''}" data-market-panel data-brand="${slug}">
+      <div class="dash-market-head" data-action="toggle-market" data-brand="${slug}">
+        <span class="dash-market-title">\ud83d\udcca Market Snapshot \u2014 ${m.label}</span>
+        <span class="dash-market-toggle">${collapsed ? 'Show \u25be' : 'Hide \u25b4'}</span>
+      </div>
+      <div class="dash-market-body">
+        <div class="dash-mkt-grid">${cells}</div>
+        <div class="dash-mkt-why"><strong>Why it matters:</strong> ${m.why}</div>
+        <div class="dash-mkt-cite">Sources: ${m.cite}</div>
+      </div>
+    </div>
+  `;
+}
+window.renderMarketStats = renderMarketStats;
 
 function renderBrandCard(slug, brand, intel, mode) {
   const { prospects = [], scripts = {}, callIntel, hotList, marketCpc, validation } = intel || {};
@@ -412,6 +498,7 @@ function renderBrandCard(slug, brand, intel, mode) {
 
   // ---- v3.11 — Key Tips & Cadence panel (top of every brand card) ----
   const tipsBlock = window.renderTipsPanel ? window.renderTipsPanel() : '';
+  const marketBlock = window.renderMarketStats ? window.renderMarketStats(slug) : '';
 
   return `
     <article class="dash-card" data-brand="${slug}" style="--ink:${theme.ink};--gold:${theme.gold};--cream:${theme.cream};--highlight:${theme.highlight};">
@@ -430,6 +517,9 @@ function renderBrandCard(slug, brand, intel, mode) {
 
         <!-- Key tips & cadence (top of card) -->
         ${tipsBlock}
+
+        <!-- Per-brand market snapshot -->
+        ${marketBlock}
 
         <!-- Live status banner -->
         <div class="dash-live">
@@ -567,6 +657,20 @@ async function renderDashboard(mode = 'now') {
         if (tog) tog.textContent = nowCollapsed ? 'Show ▾' : 'Hide ▴';
       });
       try { localStorage.setItem('cc_tips_collapsed', nowCollapsed ? '1' : '0'); } catch (e) {}
+    });
+  });
+
+  // v3.12 — wire per-brand Market Snapshot collapse toggle (independent per card)
+  root.querySelectorAll('[data-action="toggle-market"]').forEach(head => {
+    head.addEventListener('click', () => {
+      const panel = head.closest('[data-market-panel]');
+      if (!panel) return;
+      const slug = panel.getAttribute('data-brand') || '';
+      const nowCollapsed = !panel.classList.contains('collapsed');
+      panel.classList.toggle('collapsed', nowCollapsed);
+      const tog = panel.querySelector('.dash-market-toggle');
+      if (tog) tog.textContent = nowCollapsed ? 'Show ▾' : 'Hide ▴';
+      try { localStorage.setItem('cc_market_collapsed_' + slug, nowCollapsed ? '1' : '0'); } catch (e) {}
     });
   });
 }
