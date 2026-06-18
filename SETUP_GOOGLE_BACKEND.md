@@ -25,12 +25,13 @@ Replace the entire `Code.gs` file with the contents of `apps-script-backend.gs` 
 3. Paste the URL
 4. Click **Save & Test**
 
-You're done. Every logged call now appends to a Google Sheet automatically, named **Call Coach Master · Conversion Exotics** in your Drive. Each brand gets its own sheet.
+You're done. Every logged call now appends to ONE shared Google Sheet automatically, named **Call Coach Master · ALL BRANDS** in your Drive. All 4 brands write to the same sheet (each row is tagged with its `brand` column), with two tabs: `Calls` and `Prospects`.
 
 ## What this gives you
-- Master sheet per brand, auto-created on first call
+- One unified master sheet for all brands, auto-created on first call (no manual sheet setup needed)
 - Every call = one new row (timestamp, caller, variant, company, market, phone, outcome, structured notes, score, follow-up date/time)
 - New prospects auto-merged into a `Prospects` tab — never overwrites your existing data
+- **Cross-caller Call History** — before you dial, the app shows you every prior call any teammate made on that prospect (their notes, outcome, score, and timestamp), pulled live from the shared `Calls` tab
 - Follow-up reminder emails sent from your Gmail at the scheduled time
 - Mobile-friendly — the master sheet is just a Google Sheet, open it on any device
 
