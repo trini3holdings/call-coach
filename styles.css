@@ -1753,3 +1753,172 @@ body.view-dashboard .dashboard-view {
   white-space: pre-wrap; word-break: break-word; margin: 0;
   background: #f7f3e9; border-radius: 6px; padding: 9px 10px;
 }
+
+/* ============================================================================
+   v3.15 — UX pass: hero metric, progressive disclosure, email dropdown,
+            latest-3 call notes. (Prototype scope: CritterClick card.)
+   ========================================================================== */
+
+/* ---- HERO block ---- */
+.dash-hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+  align-items: center;
+  background: linear-gradient(135deg, var(--highlight) 0%, #fff 100%);
+  border: 1px solid rgba(0,0,0,.07);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+.dash-hero-main { min-width: 0; }
+.dash-hero-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 52px; font-weight: 800; line-height: .95;
+  color: var(--ink);
+  letter-spacing: -.02em;
+}
+.dash-hero-label {
+  font-size: 12.5px; font-weight: 600; color: var(--text-dim);
+  text-transform: uppercase; letter-spacing: .05em;
+  margin-top: 4px;
+}
+.dash-hero-sub {
+  font-size: 11.5px; color: var(--ink); opacity: .75;
+  margin-top: 7px; line-height: 1.4;
+}
+.dash-hero-side {
+  display: flex; flex-direction: column; gap: 8px;
+  border-left: 1px solid rgba(0,0,0,.08);
+  padding-left: 14px;
+}
+.dash-hero-stat { text-align: right; }
+.dhs-num {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px; font-weight: 700; color: var(--ink); line-height: 1;
+}
+.dhs-lbl {
+  display: block;
+  font-size: 10px; color: var(--text-dim);
+  text-transform: uppercase; letter-spacing: .03em;
+  margin-top: 2px;
+}
+
+/* ---- Recent call notes (latest 3) ---- */
+.dash-notes {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.dash-notes-head {
+  font-size: 11px; font-weight: 700; color: var(--text-dim);
+  text-transform: uppercase; letter-spacing: .05em;
+  margin-bottom: 9px;
+}
+.dash-note-row {
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+}
+.dash-note-row:first-of-type { border-top: none; padding-top: 0; }
+.dnr-top {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.dnr-badge {
+  font-size: 10px; font-weight: 700;
+  padding: 2px 7px; border-radius: 999px;
+  text-transform: uppercase; letter-spacing: .03em;
+  white-space: nowrap;
+}
+.dnr-badge.bg-ok   { background: #e3f6ea; color: #1f7a45; }
+.dnr-badge.bg-warn { background: #fdf0d8; color: #9a6b12; }
+.dnr-badge.bg-bad  { background: #fae3e3; color: #a23a3a; }
+.dnr-badge.bg-mut  { background: #ececf0; color: #5a5a66; }
+.dnr-co {
+  font-size: 12.5px; font-weight: 600; color: var(--ink);
+  flex: 1 1 auto; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.dnr-when {
+  font-size: 11px; color: var(--text-dim); white-space: nowrap;
+}
+.dnr-note {
+  font-size: 12px; color: #44444c; line-height: 1.45;
+  margin-top: 5px;
+}
+.dnr-who {
+  font-size: 11px; color: var(--text-dim); margin-top: 4px;
+}
+
+/* ---- Progressive disclosure (<details>) ---- */
+.dash-disc {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.dash-disc-sum {
+  list-style: none;
+  cursor: pointer;
+  padding: 11px 14px;
+  font-size: 12.5px; font-weight: 700; color: var(--ink);
+  display: flex; align-items: center; gap: 8px;
+  user-select: none;
+}
+.dash-disc-sum::-webkit-details-marker { display: none; }
+.dash-disc-sum::after {
+  content: '▾';
+  margin-left: auto;
+  font-size: 11px; color: var(--text-dim);
+  transition: transform .15s ease;
+}
+.dash-disc[open] .dash-disc-sum::after { transform: rotate(180deg); }
+.dash-disc[open] .dash-disc-sum {
+  border-bottom: 1px solid var(--line);
+}
+.dash-disc-sum:hover { background: var(--highlight); }
+.dash-disc-body {
+  padding: 12px 14px 14px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+/* Neutralize nested panel chrome inside disclosure bodies so they sit flush */
+.dash-disc-body > .dash-tips,
+.dash-disc-body > .dash-market { margin: 0; }
+
+/* ---- Email dropdown picker ---- */
+.dash-emails-head-static { cursor: default; }
+.dash-email-picker {
+  display: flex; gap: 8px; align-items: stretch;
+  margin-bottom: 10px;
+}
+.dash-email-select {
+  flex: 1 1 auto; min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  font-size: 12.5px; font-weight: 600; color: var(--ink);
+  font-family: inherit;
+  cursor: pointer;
+}
+.dash-email-select:focus {
+  outline: none;
+  border-color: var(--gold, #c9a24b);
+  box-shadow: 0 0 0 2px rgba(201,162,75,.18);
+}
+.dash-email-preview {
+  background: #fafafa;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+.de-subj { font-size: 12.5px; color: var(--ink); margin-bottom: 7px; }
+.de-subj-k { font-weight: 700; color: var(--text-dim); }
+
+/* v3.15 — prototype stats grid drops to 3 columns (Script variants removed) */
+.dash-card-v315 .dash-stats-grid { grid-template-columns: repeat(3, 1fr); }
+
+/* v3.15: Do-Not-Call secondary link reads as a compliance/danger action */
+.qo-link-dnc { color: #c0392b; font-weight: 600; }
+.qo-link-dnc:hover { color: #e74c3c; }

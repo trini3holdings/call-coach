@@ -385,9 +385,12 @@ function renderCallHistory(p) {
   }
   const outcomeLabel = (o) => {
     const map = {
-      BK: 'Booked', SH: 'Showed', CL: 'Closed',
-      DC: 'Declined', NI: 'Not interested', NL: 'No answer',
-      VM: 'Voicemail', GK: 'Gatekeeper', CB: 'Call back', WN: 'Wrong number'
+      // unified set (v3.15)
+      BK: 'Booked', CB: 'Call back', RE: 'Requested email', GK: 'Gatekeeper',
+      VM: 'Voicemail', NA: 'No answer', NI: 'Not interested', OBJ: 'Objection',
+      CL: 'Closed', WN: 'Wrong number', DNC: 'Do not call',
+      // legacy
+      SH: 'Showed', PP: 'Call back', HU: 'Not interested', DC: 'Not interested', NL: 'No answer'
     };
     return map[o] || o || '—';
   };
@@ -1206,7 +1209,7 @@ function scoreCall(call, durationSec) {
   let score = 0;
   if (['BK', 'SH', 'CL'].includes(call.outcome)) score += 30;
   if (call.outcome === 'RE') score += 15;  // requested email — warm engagement
-  if (call.outcome === 'PP') score += 10;
+  if (call.outcome === 'CB' || call.outcome === 'PP') score += 10;
   if (call.outcome === 'OBJ') score += 5;
   if (durationSec >= 90) score += 15;
   else if (durationSec >= 45) score += 8;
@@ -1219,6 +1222,12 @@ function scoreCall(call, durationSec) {
     if (o.cat && notes.includes(o.cat.toLowerCase())) score += 10;
   });
   return Math.max(0, Math.min(100, score));
+}
+
+// v3.15: progressive disclosure — hide note/follow-up fields until rep picks an outcome
+function revealPostOutcome() {
+  const picked = !!document.getElementById('outcome').value;
+  document.querySelectorAll('.post-outcome').forEach(b => b.classList.toggle('hidden', !picked));
 }
 
 function updateLiveScore() {
@@ -1523,6 +1532,7 @@ function clearForm() {
   document.getElementById('fpDate').value = '';
   document.getElementById('fpMessage').value = '';
   document.getElementById('liveScore').classList.add('hidden');
+  revealPostOutcome(); // v3.15: re-hide note/follow-up blocks after clear
   state.selectedProspectN = null;
   renderReconCard();
   renderBeats();
@@ -2230,6 +2240,8 @@ async function init() {
   document.getElementById('company').addEventListener('input', renderBeats);
   document.getElementById('market').addEventListener('input', renderBeats);
   document.getElementById('outcome').addEventListener('change', updateLiveScore);
+  // v3.15: reveal structured-notes + follow-up only after an outcome is picked
+  document.getElementById('outcome').addEventListener('change', revealPostOutcome);
   document.getElementById('notes').addEventListener('input', updateLiveScore);
   document.getElementById('whatWorked').addEventListener('input', updateLiveScore);
   document.getElementById('nextStep').addEventListener('input', updateLiveScore);
@@ -2573,7 +2585,7 @@ async function init() {
         const oc = b.getAttribute('data-outcome');
         document.getElementById('outcome').value = oc;
         closeModal('quickOutcomeModal');
-        if (['BK', 'PP'].includes(oc)) {
+        if (['BK', 'CB', 'RE'].includes(oc)) {
           document.getElementById('fpEnable').checked = true;
           document.getElementById('fpFields').classList.remove('hidden');
           if (!document.getElementById('fpDate').value) setFollowupDays(oc === 'BK' ? 1 : 3);

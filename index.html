@@ -345,21 +345,27 @@
             <span>Outcome</span>
             <select id="outcome">
               <option value="">— Select —</option>
-              <option value="NA">NA · No Answer</option>
-              <option value="VM">VM · Voicemail</option>
-              <option value="HU">HU · Hung Up</option>
-              <option value="NI">NI · Not Interested</option>
-              <option value="PP">PP · Pitched, Passed</option>
-              <option value="OBJ">OBJ · Objection (no book)</option>
-              <option value="RE">RE · Requested Email</option>
-              <option value="BK">BK · Audit Booked</option>
-              <option value="SH">SH · Audit Showed</option>
-              <option value="CL">CL · Closed</option>
+              <optgroup label="Most common">
+                <option value="BK">BK · Booked</option>
+                <option value="CB">CB · Call Back</option>
+                <option value="RE">RE · Requested Email</option>
+                <option value="GK">GK · Gatekeeper</option>
+                <option value="VM">VM · Voicemail</option>
+                <option value="NA">NA · No Answer</option>
+                <option value="NI">NI · Not Interested</option>
+                <option value="OBJ">OBJ · Objection</option>
+              </optgroup>
+              <optgroup label="Other">
+                <option value="CL">CL · Closed</option>
+                <option value="WN">WN · Wrong Number</option>
+                <option value="DNC">DNC · Do Not Call</option>
+              </optgroup>
             </select>
           </label>
 
+          <!-- v3.15: notes + follow-up stay hidden until an outcome is chosen -->
           <!-- Structured notes section -->
-          <div class="notes-block">
+          <div class="notes-block post-outcome hidden">
             <div class="notes-block-title">Structured Notes</div>
             <label class="form-row">
               <span>Objection raised</span>
@@ -383,7 +389,7 @@
           </div>
 
           <!-- Follow-up section -->
-          <div class="followup-block">
+          <div class="followup-block post-outcome hidden">
             <div class="followup-head">
               <span class="notes-block-title">Schedule Follow-Up</span>
               <label class="followup-toggle"><input type="checkbox" id="fpEnable" /> Enable</label>
@@ -477,17 +483,18 @@
       <p class="modal-help">Tap the result — the rest auto-fills from your script + recon.</p>
       <div class="quick-outcome-grid">
         <button class="qo-btn qo-booked" data-outcome="BK">✅ Booked</button>
-        <button class="qo-btn qo-callback" data-outcome="PP">📅 Callback</button>
+        <button class="qo-btn qo-callback" data-outcome="CB">📅 Call Back</button>
         <button class="qo-btn qo-noanswer" data-outcome="NA">📞 No Answer</button>
-        <button class="qo-btn qo-dead" data-outcome="NI">❌ Dead / Not Interested</button>
+        <button class="qo-btn qo-dead" data-outcome="NI">❌ Not Interested</button>
       </div>
       <div class="qo-secondary">
-        <button class="qo-link" data-outcome="VM">Voicemail</button>
-        <button class="qo-link" data-outcome="HU">Hung Up</button>
-        <button class="qo-link" data-outcome="OBJ">Objection (no book)</button>
         <button class="qo-link" data-outcome="RE">Requested Email</button>
-        <button class="qo-link" data-outcome="SH">Audit Showed</button>
+        <button class="qo-link" data-outcome="GK">Gatekeeper</button>
+        <button class="qo-link" data-outcome="VM">Voicemail</button>
+        <button class="qo-link" data-outcome="OBJ">Objection</button>
         <button class="qo-link" data-outcome="CL">Closed</button>
+        <button class="qo-link" data-outcome="WN">Wrong Number</button>
+        <button class="qo-link qo-link-dnc" data-outcome="DNC">Do Not Call</button>
       </div>
     </div>
   </div>
@@ -520,11 +527,11 @@
   </div>
 </div>
 
-<script src="validators.js?v=3.10.8"></script>
-<script src="market_timezones.js?v=3.10.8"></script>
-<script src="acronyms.js?v=3.10.8"></script>
-<script src="dashboard.js?v=3.10.8"></script>
-<script src="app.js?v=3.10.8"></script>
-<script src="github-sync.js?v=3.10.8"></script>
+<script src="validators.js?v=3.15.0"></script>
+<script src="market_timezones.js?v=3.15.0"></script>
+<script src="acronyms.js?v=3.15.0"></script>
+<script src="dashboard.js?v=3.15.0"></script>
+<script src="app.js?v=3.15.0"></script>
+<script src="github-sync.js?v=3.15.0"></script>
 </body>
 </html>

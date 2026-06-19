@@ -318,7 +318,7 @@ const FOLLOWUP_EMAILS = {
       {
         when: 'Day 1 — Recap',
         subj: 'The booking leak on your wildlife site',
-        body: `Hey [first name],\n\nThanks for the few minutes earlier. Quick recap of what I flagged on your site: when a panicked homeowner with something in the attic lands on your page, the booking step is losing them before they ever reach the phone.\n\nI mapped it to roughly $2,000–$6,000 a week in jobs that should be hitting your calendar — that's 5–10 recoverable jobs at your average ticket.\n\nWant me to send the 90-second sample audit so you can see exactly where it leaks? Just reply "send it."` ,
+        body: `Hey [first name],\n\nThanks for the few minutes earlier. Quick recap of what I flagged on your site: when a panicked homeowner with something in the attic lands on your page, the booking step is losing them before they ever reach the phone.\n\nI mapped it to roughly $8K to $24K a month in jobs that should be hitting your calendar — that's a stack of recoverable jobs at your average ticket.\n\nWant me to send the 90-second sample audit so you can see exactly where it leaks? Just reply "send it."` ,
       },
       {
         when: 'Day 3 — Value nudge',
@@ -338,7 +338,7 @@ const FOLLOWUP_EMAILS = {
       {
         when: 'Day 1 — Recap',
         subj: 'The booking leak on your rental site',
-        body: `Hey [first name],\n\nThanks for the time earlier. Recap: a high-end renter taps your ad, decides in ~3 seconds, and your booking flow is dropping a chunk of them before they ever reserve.\n\nI tied that to roughly $5,000–$15,000 a week in bookings that should be landing on your calendar at your $500–$3,500/day rates.\n\nWant the sample audit that shows exactly where it leaks? Reply "send it" and it's yours.` ,
+        body: `Hey [first name],\n\nThanks for the time earlier. Recap: a high-end renter taps your ad, decides in ~3 seconds, and your booking flow is dropping a chunk of them before they ever reserve.\n\nI tied that to roughly $20K to $60K a month in bookings that should be landing on your calendar at your $500 to $3,500 a day rates.\n\nWant the sample audit that shows exactly where it leaks? Reply "send it" and it's yours.` ,
       },
       {
         when: 'Day 3 — Value nudge',
@@ -358,7 +358,7 @@ const FOLLOWUP_EMAILS = {
       {
         when: 'Day 1 — Recap',
         subj: 'The quote-flow leak on your site',
-        body: `Hello [first name],\n\nThank you for the time earlier. To recap what I flagged: high-intent buyers reaching your quote page are dropping before they complete a request — the friction sits in the first screen they see.\n\nI mapped it to a meaningful share of $15,000–$75,000 trips that should be reaching your team.\n\nIf useful, I can send a brief sample audit showing exactly where it occurs. A reply of "please send" is all I need.` ,
+        body: `Hello [first name],\n\nThank you for the time earlier. To recap what I flagged: high-intent buyers reaching your quote page are dropping before they complete a request — the friction sits in the first screen they see.\n\nI mapped it to roughly $100K to $300K a month in charter revenue that should be reaching your team.\n\nIf useful, I can send a brief sample audit showing exactly where it occurs. A reply of "please send" is all I need.` ,
       },
       {
         when: 'Day 3 — Value nudge',
@@ -378,7 +378,7 @@ const FOLLOWUP_EMAILS = {
       {
         when: 'Day 1 — Recap',
         subj: 'The lead leak on your roofing site',
-        body: `Hey [first name],\n\nThanks for the few minutes earlier. Recap: you're paying $40–$75 a click in this market, but the lead form / phone placement is letting paid traffic slip away before it becomes a job.\n\nThat's roughly $15,000–$30,000 a week in roofing jobs — 1–3 recoverable jobs at $12K–$18K each — that should be on your calendar.\n\nWant the sample audit that shows exactly where it leaks? Reply "send it."` ,
+        body: `Hey [first name],\n\nThanks for the few minutes earlier. Recap: you're paying $40 to $75 a click in this market, but the lead form / phone placement is letting paid traffic slip away before it becomes a job.\n\nThat's roughly $60K to $120K a month in roofing jobs — several recoverable jobs at $12K to $18K each — that should be on your calendar.\n\nWant the sample audit that shows exactly where it leaks? Reply "send it."` ,
       },
       {
         when: 'Day 3 — Value nudge',
@@ -429,6 +429,122 @@ function renderFollowupEmails(slug) {
 }
 window.renderFollowupEmails = renderFollowupEmails;
 window.FOLLOWUP_EMAILS = FOLLOWUP_EMAILS;
+
+// ============================================================================
+// v3.15 — UX pass helpers: hero metric, latest-3 notes, email dropdown picker.
+// (Prototype wired for CritterClick only; rolls to all brands once approved.)
+// ============================================================================
+function dashRelTime(ts) {
+  if (!ts) return '';
+  const then = new Date(ts).getTime();
+  if (isNaN(then)) return '';
+  const s = Math.max(0, Math.floor((Date.now() - then) / 1000));
+  if (s < 60) return 'just now';
+  const m = Math.floor(s / 60); if (m < 60) return m + 'm ago';
+  const h = Math.floor(m / 60); if (h < 24) return h + 'h ago';
+  const d = Math.floor(h / 24); if (d < 7) return d + 'd ago';
+  const w = Math.floor(d / 7); if (w < 5) return w + 'w ago';
+  const mo = Math.floor(d / 30); if (mo < 12) return mo + 'mo ago';
+  return Math.floor(d / 365) + 'y ago';
+}
+
+// Unified disposition set (v3.15) — single source of truth, matches form + quick modal.
+// 8 primary: BK CB RE GK VM NA NI OBJ | 3 secondary: CL WN DNC | SH legacy (meeting-stage)
+const DASH_OUTCOME = {
+  BK:  { label: 'Booked',         cls: 'ok'   },
+  CL:  { label: 'Closed',         cls: 'ok'   },
+  CB:  { label: 'Call Back',      cls: 'warn' },
+  RE:  { label: 'Requested Email',cls: 'warn' },
+  GK:  { label: 'Gatekeeper',     cls: 'mut'  },
+  VM:  { label: 'Voicemail',      cls: 'mut'  },
+  NA:  { label: 'No Answer',      cls: 'mut'  },
+  NI:  { label: 'Not Interested', cls: 'bad'  },
+  OBJ: { label: 'Objection',      cls: 'bad'  },
+  WN:  { label: 'Wrong Number',   cls: 'bad'  },
+  DNC: { label: 'Do Not Call',    cls: 'bad'  },
+  // legacy codes kept so old saved calls still render:
+  SH:  { label: 'Showed',         cls: 'ok'   },
+  PP:  { label: 'Call Back',      cls: 'warn' },
+  HU:  { label: 'Not Interested', cls: 'bad'  },
+  DC:  { label: 'Not Interested', cls: 'bad'  },
+  NL:  { label: 'No Answer',      cls: 'mut'  },
+};
+
+// HERO block: one big number (Callable Now) + 2 supporting stats
+function renderHeroBlock({ liveCount, liveLabel, soonCount, nextWindow, mode, totalProspects, pipelineVal }) {
+  const sub = [];
+  if (mode === 'now' && soonCount > 0) sub.push(`+${soonCount} more within 2h`);
+  if (nextWindow) sub.push(`Next prime ${nextWindow.weekday} ${nextWindow.hhmm12 || window.to12h(nextWindow.hhmm)}`);
+  return `
+    <div class="dash-hero">
+      <div class="dash-hero-main">
+        <div class="dash-hero-num">${liveCount}</div>
+        <div class="dash-hero-label">${liveLabel}</div>
+        ${sub.length ? `<div class="dash-hero-sub">${sub.join(' \u00b7 ')}</div>` : ''}
+      </div>
+      <div class="dash-hero-side">
+        <div class="dash-hero-stat"><span class="dhs-num">${totalProspects}</span><span class="dhs-lbl">Total prospects</span></div>
+        <div class="dash-hero-stat"><span class="dhs-num">$${Math.round(pipelineVal/1000)}K</span><span class="dhs-lbl">Pipeline value</span></div>
+      </div>
+    </div>
+  `;
+}
+
+// Latest-3 call notes on the card
+function renderCardNotes(slug) {
+  const calls = (typeof getBrandPerf === 'function' ? getBrandPerf(slug) : [])
+    .filter(c => c && c.ts)
+    .sort((a, b) => new Date(b.ts) - new Date(a.ts))
+    .slice(0, 3);
+  if (!calls.length) {
+    return `<div class="dash-notes"><div class="dash-notes-head">Recent call notes</div><div class="dash-empty">No calls logged yet \u2014 Enter Call Coach to start.</div></div>`;
+  }
+  const rows = calls.map(c => {
+    const o = DASH_OUTCOME[c.outcome] || { label: c.outcome || '\u2014', cls: 'mut' };
+    const who = c.caller ? `\ud83d\udc64 ${escapeHtml(c.caller)}` : '';
+    const note = c.notes || c.next_step || c.what_worked || c.objection_raised || '';
+    return `
+      <div class="dash-note-row">
+        <div class="dnr-top">
+          <span class="dnr-badge bg-${o.cls}">${escapeHtml(o.label)}</span>
+          <span class="dnr-co">${escapeHtml(c.company || c.domain || c.prospect_id || '')}</span>
+          <span class="dnr-when">${dashRelTime(c.ts)}</span>
+        </div>
+        ${note ? `<div class="dnr-note">${escapeHtml(String(note).slice(0, 160))}</div>` : ''}
+        ${who ? `<div class="dnr-who">${who}</div>` : ''}
+      </div>`;
+  }).join('');
+  return `<div class="dash-notes"><div class="dash-notes-head">Recent call notes</div>${rows}</div>`;
+}
+
+// Email dropdown picker (replaces the always-open 3-email stack)
+function renderEmailDropdown(slug) {
+  const e = (window.FOLLOWUP_EMAILS || {})[slug];
+  if (!e) return '';
+  const opts = e.emails.map((m, i) => `<option value="${i}">${escapeHtml(m.when)} \u2014 ${escapeHtml(m.subj)}</option>`).join('');
+  const first = e.emails[0];
+  return `
+    <div class="dash-emails" data-emails-panel data-brand="${slug}">
+      <div class="dash-emails-head dash-emails-head-static">
+        <span class="dash-emails-title">\u2709\ufe0f Follow-Up Emails \u2014 ${escapeHtml(e.accent)}</span>
+      </div>
+      <div class="dash-emails-body">
+        <div class="dash-email-picker">
+          <select class="dash-email-select" data-action="pick-email" data-brand="${slug}">${opts}</select>
+          <button class="de-copy" data-action="copy-email-dd" data-brand="${slug}">Copy</button>
+        </div>
+        <div class="dash-email-preview" data-email-preview data-brand="${slug}">
+          <div class="de-subj"><span class="de-subj-k">Subject:</span> <span data-prev-subj>${escapeHtml(first.subj)}</span></div>
+          <pre class="de-body" data-prev-body>${escapeHtml(first.body)}</pre>
+        </div>
+        <div class="dash-emails-note">Swap <strong>[first name]</strong> for the contact, then send from your own inbox.</div>
+      </div>
+    </div>
+  `;
+}
+window.renderHeroBlock = renderHeroBlock;
+window.renderCardNotes = renderCardNotes;
+window.renderEmailDropdown = renderEmailDropdown;
 
 function renderBrandCard(slug, brand, intel, mode) {
   const { prospects = [], scripts = {}, callIntel, hotList, marketCpc, validation } = intel || {};
@@ -665,6 +781,87 @@ function renderBrandCard(slug, brand, intel, mode) {
   const marketBlock = window.renderMarketStats ? window.renderMarketStats(slug) : '';
   const emailsBlock = window.renderFollowupEmails ? window.renderFollowupEmails(slug) : '';
 
+  // ======================================================================
+  // v3.15 - DEFAULT layout for ALL brands. Hero metric + progressive
+  // disclosure + email dropdown + latest-3 notes. (Old layout below is
+  // kept as dead-code fallback; never reached.)
+  // ======================================================================
+  if (true) {
+    const heroBlock = window.renderHeroBlock({ liveCount, liveLabel, soonCount, nextWindow, mode, totalProspects, pipelineVal });
+    const notesBlock = window.renderCardNotes(slug);
+    const emailDropdown = window.renderEmailDropdown(slug);
+    return `
+      <article class="dash-card dash-card-v315" data-brand="${slug}" style="--ink:${theme.ink};--gold:${theme.gold};--cream:${theme.cream};--highlight:${theme.highlight};">
+        <header class="dash-card-head">
+          <div class="dch-left">
+            <div class="dch-logo">${escapeHtml(brand.short || slug.slice(0,2).toUpperCase())}</div>
+            <div class="dch-meta">
+              <h3 class="dch-name">${escapeHtml(brand.name)}${warnBadge}</h3>
+              <div class="dch-sub">${escapeHtml(brand.sub || '')}</div>
+            </div>
+          </div>
+          <button class="dash-enter-btn" data-action="enter" data-brand="${slug}">Enter Call Coach \u2192</button>
+        </header>
+        <div class="dash-card-body">
+          ${heroBlock}
+          ${notesBlock}
+          ${emailDropdown}
+          <details class="dash-disc">
+            <summary class="dash-disc-sum">\ud83d\udca1 Tips and cadence</summary>
+            <div class="dash-disc-body">${tipsBlock}</div>
+          </details>
+          <details class="dash-disc">
+            <summary class="dash-disc-sum">\ud83d\udcca Market snapshot</summary>
+            <div class="dash-disc-body">${marketBlock}</div>
+          </details>
+          <details class="dash-disc">
+            <summary class="dash-disc-sum">\ud83d\udcc8 Performance and pipeline</summary>
+            <div class="dash-disc-body">
+              <div class="dash-stats-grid">
+                <div class="dash-stat"><div class="ds-num">${withPhone}</div><div class="ds-label">\ud83d\udcde Callable now</div></div>
+                <div class="dash-stat"><div class="ds-num" style="color:#f59e0b">${withoutPhone}</div><div class="ds-label">No phone yet</div></div>
+                <div class="dash-stat"><div class="ds-num">$${auditValue.toLocaleString()}</div><div class="ds-label">Audit value</div></div>
+              </div>
+              ${perfBlock}
+              ${lastCallBlock}
+              ${activityBlock}
+            </div>
+          </details>
+          <details class="dash-disc">
+            <summary class="dash-disc-sum">\ud83c\udfaf Prospects and call windows</summary>
+            <div class="dash-disc-body">
+              <div class="dash-section">
+                <h4 class="dash-section-title">Hot list tiers</h4>
+                <div class="dash-tiers">
+                  <div class="dash-tier tier-1"><span class="dt-num">${t1}</span><span class="dt-label">T1 \u00b7 top</span></div>
+                  <div class="dash-tier tier-2"><span class="dt-num">${t2}</span><span class="dt-label">T2 \u00b7 caution</span></div>
+                  <div class="dash-tier tier-3"><span class="dt-num">${t3}</span><span class="dt-label">T3 \u00b7 solid</span></div>
+                  <div class="dash-tier tier-4"><span class="dt-num">${t4}</span><span class="dt-label">T4 \u00b7 warm</span></div>
+                  <div class="dash-tier tier-x"><span class="dt-num">${noPhone}</span><span class="dt-label">No phone</span></div>
+                </div>
+              </div>
+              <div class="dash-section">
+                <h4 class="dash-section-title">Top callable ${mode === 'soon' ? 'soon' : 'now'}</h4>
+                <div class="dash-samples">${sample}</div>
+              </div>
+              <div class="dash-section">
+                <h4 class="dash-section-title">Top markets \u00b7 CPC band</h4>
+                <div class="dash-markets">${topMarkets || '<div class="dash-empty">No market data.</div>'}</div>
+              </div>
+              <div class="dash-section">
+                <h4 class="dash-section-title">Primary call blocks (prospect local time)</h4>
+                <div class="dash-blocks">${primaryBlocks || '<div class="dash-empty">No call intel loaded.</div>'}</div>
+              </div>
+            </div>
+          </details>
+          <footer class="dash-card-foot">
+            <button class="dash-train-btn" data-action="train" data-brand="${slug}">Train me on this brand \u2192</button>
+          </footer>
+        </div>
+      </article>
+    `;
+  }
+
   return `
     <article class="dash-card" data-brand="${slug}" style="--ink:${theme.ink};--gold:${theme.gold};--cream:${theme.cream};--highlight:${theme.highlight};">
       <header class="dash-card-head">
@@ -703,7 +900,6 @@ function renderBrandCard(slug, brand, intel, mode) {
           <div class="dash-stat"><div class="ds-num">${withPhone}</div><div class="ds-label">📞 Callable now</div></div>
           <div class="dash-stat"><div class="ds-num" style="color:#f59e0b">${withoutPhone}</div><div class="ds-label">No phone yet</div></div>
           <div class="dash-stat"><div class="ds-num">$${auditValue.toLocaleString()}</div><div class="ds-label">Audit value</div></div>
-          <div class="dash-stat"><div class="ds-num">${Object.keys(scripts).filter(k => !k.startsWith('_')).length}</div><div class="ds-label">Script variants</div></div>
         </div>
 
         <!-- Performance KPI row -->
@@ -862,6 +1058,45 @@ async function renderDashboard(mode = 'now') {
       ev.stopPropagation();
       const slug = btn.getAttribute('data-brand');
       const idx = parseInt(btn.getAttribute('data-idx'), 10);
+      const e = (window.FOLLOWUP_EMAILS || {})[slug];
+      if (!e || !e.emails[idx]) return;
+      const m = e.emails[idx];
+      const text = 'Subject: ' + m.subj + '\n\n' + m.body;
+      const done = () => { const o = btn.textContent; btn.textContent = 'Copied \u2713'; btn.classList.add('copied'); setTimeout(() => { btn.textContent = o; btn.classList.remove('copied'); }, 1400); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(() => {});
+      } else {
+        const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); } catch (e2) {} document.body.removeChild(ta);
+      }
+    });
+  });
+
+  // v3.15 — email dropdown picker: swap preview when selection changes
+  root.querySelectorAll('[data-action="pick-email"]').forEach(sel => {
+    sel.addEventListener('change', () => {
+      const slug = sel.getAttribute('data-brand');
+      const idx = parseInt(sel.value, 10);
+      const e = (window.FOLLOWUP_EMAILS || {})[slug];
+      if (!e || !e.emails[idx]) return;
+      const m = e.emails[idx];
+      const panel = sel.closest('[data-emails-panel]');
+      if (!panel) return;
+      const subjEl = panel.querySelector('[data-prev-subj]');
+      const bodyEl = panel.querySelector('[data-prev-body]');
+      if (subjEl) subjEl.textContent = m.subj;
+      if (bodyEl) bodyEl.textContent = m.body;
+    });
+  });
+
+  // v3.15 — copy the currently selected email from the dropdown
+  root.querySelectorAll('[data-action="copy-email-dd"]').forEach(btn => {
+    btn.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      const slug = btn.getAttribute('data-brand');
+      const panel = btn.closest('[data-emails-panel]');
+      const sel = panel ? panel.querySelector('[data-action="pick-email"]') : null;
+      const idx = sel ? parseInt(sel.value, 10) : 0;
       const e = (window.FOLLOWUP_EMAILS || {})[slug];
       if (!e || !e.emails[idx]) return;
       const m = e.emails[idx];
