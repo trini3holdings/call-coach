@@ -525,9 +525,6 @@ function renderEmailDropdown(slug) {
   const first = e.emails[0];
   return `
     <div class="dash-emails" data-emails-panel data-brand="${slug}">
-      <div class="dash-emails-head dash-emails-head-static">
-        <span class="dash-emails-title">\u2709\ufe0f Follow-Up Emails \u2014 ${escapeHtml(e.accent)}</span>
-      </div>
       <div class="dash-emails-body">
         <div class="dash-email-picker">
           <select class="dash-email-select" data-action="pick-email" data-brand="${slug}">${opts}</select>
@@ -805,7 +802,10 @@ function renderBrandCard(slug, brand, intel, mode) {
         <div class="dash-card-body">
           ${heroBlock}
           ${notesBlock}
-          ${emailDropdown}
+          <details class="dash-disc">
+            <summary class="dash-disc-sum">\u2709\ufe0f Follow-up emails</summary>
+            <div class="dash-disc-body">${emailDropdown}</div>
+          </details>
           <details class="dash-disc">
             <summary class="dash-disc-sum">\ud83d\udca1 Tips and cadence</summary>
             <div class="dash-disc-body">${tipsBlock}</div>
