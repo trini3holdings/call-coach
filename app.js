@@ -262,6 +262,10 @@ async function drainSyncQueue() {
           state.sheetUrlByBrand[job.brand] = r.sheetUrl;  // back-compat
         }
         successCount++;
+      } else if (job.kind === 'deleteCall') {
+        // v3.21 — remove a call from the backend SQLite store
+        await backendCall({ action: 'deleteCall', brand: job.brand, call_id: job.call_id });
+        successCount++;
       }
     } catch (e) {
       console.warn('Sync job failed, will retry:', e);
@@ -1526,21 +1530,140 @@ function renderProgressBar(calledToday, totalProspects) {
 function renderCallLog() {
   const log = document.getElementById('callLog');
   if (!log) return;
-  const recent = state.calls.slice(-12).reverse();
+  const recent = state.calls.slice(-12).reverse();  // newest first
+  const nav = document.getElementById('logNav');
   if (!recent.length) {
     log.innerHTML = '<div style="color:#888;font-size:12px;padding:6px;">No calls logged yet.</div>';
+    if (nav) nav.classList.add('hidden');
+    state.logCursor = null;
     return;
   }
-  log.innerHTML = recent.map(c => `
-    <div class="log-row">
+  // Clamp cursor into range (null = nothing selected)
+  if (state.logCursor != null) {
+    if (state.logCursor < 0) state.logCursor = 0;
+    if (state.logCursor > recent.length - 1) state.logCursor = recent.length - 1;
+  }
+  log.innerHTML = recent.map((c, i) => `
+    <div class="log-row ${state.logCursor === i ? 'log-row-sel' : ''}" data-cid="${c.call_id || ''}" data-i="${i}">
       <span class="log-outcome ${c.outcome.toLowerCase()}">${c.outcome}</span>
-      <span style="flex:1;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHTML(c.company || '—')}</span>
-      ${c.followup && c.followup.date ? `<span class="log-followup" title="Follow-up ${c.followup.date}">📅</span>` : ''}
+      <span class="log-company" style="flex:1;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHTML(c.company || '\u2014')}</span>
+      ${c.followup && c.followup.date ? `<span class="log-followup" title="Follow-up ${c.followup.date}">\ud83d\udcc5</span>` : ''}
       <span class="log-score" title="Auto-score">${c.score || 0}</span>
-      <span style="color:#888;">${c.variant}·${(c.caller || 'Z').slice(0, 1)}</span>
+      <span style="color:#888;">${c.variant || '\u2013'}\u00b7${(c.caller || 'Z').slice(0, 1)}</span>
       <span class="log-time">${new Date(c.ts).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}</span>
+      <button class="log-edit" data-cid="${c.call_id || ''}" title="Reopen to edit">\u270e</button>
+      <button class="log-del" data-cid="${c.call_id || ''}" title="Delete this call">\ud83d\uddd1</button>
     </div>
   `).join('');
+  // Update the nav readout
+  if (nav) {
+    nav.classList.remove('hidden');
+    const readout = document.getElementById('logNavReadout');
+    if (readout) {
+      readout.textContent = state.logCursor == null
+        ? `${recent.length} recent`
+        : `${state.logCursor + 1} / ${recent.length}`;
+    }
+  }
+  // Scroll the selected row into view
+  if (state.logCursor != null) {
+    const sel = log.querySelector('.log-row-sel');
+    if (sel && sel.scrollIntoView) sel.scrollIntoView({ block: 'nearest' });
+  }
+}
+
+// v3.21 — step back/forward through the recent-call list
+function logNavStep(dir) {
+  const recent = state.calls.slice(-12).reverse();
+  if (!recent.length) return;
+  if (state.logCursor == null) {
+    state.logCursor = 0;  // first press selects newest
+  } else {
+    state.logCursor += dir;  // dir +1 = older, -1 = newer
+    if (state.logCursor < 0) state.logCursor = 0;
+    if (state.logCursor > recent.length - 1) state.logCursor = recent.length - 1;
+  }
+  renderCallLog();
+}
+
+// v3.21 — reopen a logged call into the form for editing (re-save upserts by call_id)
+function editCall(callId) {
+  if (!callId) return;
+  const call = (state.calls || []).find(c => c.call_id === callId);
+  if (!call) { showToast('Call not found'); return; }
+  state.editingCallId = callId;
+  state.selectedProspectN = call.prospectN || null;
+  const setVal = (id, v) => { const el = document.getElementById(id); if (el != null) el.value = (v == null ? '' : v); };
+  setVal('prospectSelect', call.prospectN || '');
+  setVal('company', call.company);
+  setVal('market', call.market);
+  setVal('phone', call.phone);
+  setVal('prospectEmail', call.email);
+  setVal('outcome', call.outcome);
+  setVal('objectionRaised', call.objectionRaised);
+  setVal('whatWorked', call.whatWorked);
+  setVal('nextStep', call.nextStep);
+  setVal('notes', call.notes);
+  const fpEnable = document.getElementById('fpEnable');
+  if (fpEnable) {
+    if (call.followup && call.followup.date) {
+      fpEnable.checked = true;
+      const ff = document.getElementById('fpFields'); if (ff) ff.classList.remove('hidden');
+      setVal('fpDate', call.followup.date);
+      setVal('fpTime', call.followup.time);
+      setVal('fpChannel', call.followup.channel);
+      setVal('fpMessage', call.followup.message);
+    } else {
+      fpEnable.checked = false;
+      const ff = document.getElementById('fpFields'); if (ff) ff.classList.add('hidden');
+    }
+  }
+  if (typeof revealPostOutcome === 'function') revealPostOutcome();
+  if (typeof renderReconCard === 'function') renderReconCard();
+  if (typeof renderBeats === 'function') renderBeats();
+  const banner = document.getElementById('editBanner');
+  if (banner) {
+    banner.classList.remove('hidden');
+    const lbl = document.getElementById('editBannerLabel');
+    if (lbl) lbl.textContent = `Editing: ${call.company || call.outcome} \u00b7 re-save to update`;
+  }
+  showToast('Call reopened — edit and re-save to update');
+  const form = document.getElementById('company');
+  if (form && form.scrollIntoView) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// v3.21 — cancel an in-progress edit (revert to fresh-log mode)
+function cancelEditCall() {
+  state.editingCallId = null;
+  const banner = document.getElementById('editBanner');
+  if (banner) banner.classList.add('hidden');
+  if (typeof clearForm === 'function') clearForm();
+}
+
+// v3.21 — delete a logged call locally + on the backend
+function deleteCallById(callId) {
+  if (!callId) return;
+  const idx = (state.calls || []).findIndex(c => c.call_id === callId);
+  if (idx < 0) { showToast('Call not found'); return; }
+  const removed = state.calls[idx];
+  if (!confirm(`Delete this call?\n\n${removed.outcome} \u00b7 ${removed.company || '\u2014'} \u00b7 score ${removed.score || 0}\n\nThis cannot be undone.`)) return;
+  state.calls.splice(idx, 1);
+  if (state.cloudCalls && state.cloudCalls[removed.brand]) {
+    state.cloudCalls[removed.brand] = state.cloudCalls[removed.brand].filter(c => c.ts !== removed.ts);
+  }
+  if (state.editingCallId === callId) cancelEditCall();
+  state.logCursor = null;
+  saveState();
+  renderStats();
+  renderCallLog();
+  if (typeof renderReconCard === 'function') renderReconCard();
+  if (typeof renderProspectPicker === 'function') renderProspectPicker();
+  if (state.backendUrl) {
+    state.syncQueue.push({ kind: 'deleteCall', brand: removed.brand, call_id: callId, queuedAt: Date.now() });
+    saveState();
+    drainSyncQueue();
+  }
+  showToast('Call deleted');
 }
 
 function logCall() {
@@ -1570,10 +1693,14 @@ function logCall() {
     ((state.selectedProspectN && c.prospectN === state.selectedProspectN) ||
      (!state.selectedProspectN && c.company === document.getElementById('company').value.trim() && c.company))
   ).length;
+  // v3.21 — if reopened for editing, reuse the existing identity so the backend
+  // upserts (no duplicate) and the original timestamp/created_at are preserved.
+  const _editing = state.editingCallId || null;
+  const _existing = _editing ? (state.calls || []).find(c => c.call_id === _editing) : null;
   const call = {
-    ts: _ts,
-    call_id: `${_ts}-${(state.caller || 'x').replace(/\s+/g,'').slice(0,8)}-${Math.random().toString(36).slice(2,7)}`,
-    created_at: new Date(_ts).toISOString(),
+    ts: _existing ? _existing.ts : _ts,
+    call_id: _existing ? _existing.call_id : `${_ts}-${(state.caller || 'x').replace(/\s+/g,'').slice(0,8)}-${Math.random().toString(36).slice(2,7)}`,
+    created_at: _existing ? (_existing.created_at || new Date(_ts).toISOString()) : new Date(_ts).toISOString(),
     updated_at: new Date(_ts).toISOString(),
     brand: state.brand,
     caller: state.caller,
@@ -1602,7 +1729,16 @@ function logCall() {
   }
 
   call.score = scoreCall(call, duration);
-  state.calls.push(call);
+  if (_existing) {
+    // v3.21 — replace the edited call in place (no duplicate)
+    const _ix = state.calls.findIndex(c => c.call_id === _existing.call_id);
+    if (_ix >= 0) state.calls[_ix] = call; else state.calls.push(call);
+    state.editingCallId = null;
+    const _banner = document.getElementById('editBanner');
+    if (_banner) _banner.classList.add('hidden');
+  } else {
+    state.calls.push(call);
+  }
   // v3.16 — audit trail: record the call as a funnel event
   logEvent('call_logged', {
     call_id: call.call_id,
@@ -1615,15 +1751,19 @@ function logCall() {
   // v3.7.2 — mirror into cloudCalls[brand] immediately so the picker
   // reflects the new dial even before sync completes.
   if (!state.cloudCalls[state.brand]) state.cloudCalls[state.brand] = [];
-  state.cloudCalls[state.brand].push({
+  // v3.21 — on edit, replace the matching cloud mirror row instead of adding a dup
+  const _cloudArr = state.cloudCalls[state.brand];
+  const _cloudRow = {
     ts: call.ts,
     prospect_id: call.prospectN,
     domain: call.domain || (PROSPECTS.find(x => x.n === call.prospectN) || {}).domain || '',
     caller: call.caller,
     outcome: call.outcome,
     market: call.market
-  });
-  state.lastSavedCallIdx = state.calls.length - 1;
+  };
+  const _cloudIx = _existing ? _cloudArr.findIndex(c => c.ts === call.ts) : -1;
+  if (_cloudIx >= 0) _cloudArr[_cloudIx] = _cloudRow; else _cloudArr.push(_cloudRow);
+  state.lastSavedCallIdx = _existing ? null : (state.calls.length - 1);
   state.manualVariant = false;
   saveState();
   renderStats();
@@ -1642,8 +1782,15 @@ function logCall() {
     window.GitHubSync.maybeAutoCommit();
   }
 
-  // Show undo toast (8s)
-  showUndoToast();
+  // Show undo toast (8s) — only for fresh logs, not edits
+  if (!_existing) showUndoToast();
+
+  // v3.21 — after an edit, stay put: clear the form but don't auto-advance prospects
+  if (_existing) {
+    showToast('Call updated');
+    setTimeout(() => { clearForm(); resetTimer(); }, 600);
+    return;
+  }
 
   // v3.9.2 — capture index BEFORE clearForm wipes selectedProspectN, so nextProspect advances correctly
   const advanceFromN = state.selectedProspectN;
@@ -2385,6 +2532,32 @@ async function init() {
   document.getElementById('logCall').addEventListener('click', logCall);
   document.getElementById('clearForm').addEventListener('click', clearForm);
   document.getElementById('prospectSelect').addEventListener('change', e => selectProspect(e.target.value));
+
+  // v3.21 — call-log: delegated edit/delete buttons + back/forward nav
+  const callLogEl = document.getElementById('callLog');
+  if (callLogEl) {
+    callLogEl.addEventListener('click', e => {
+      const delBtn = e.target.closest('.log-del');
+      if (delBtn) { e.stopPropagation(); deleteCallById(delBtn.getAttribute('data-cid')); return; }
+      const editBtn = e.target.closest('.log-edit');
+      if (editBtn) { e.stopPropagation(); editCall(editBtn.getAttribute('data-cid')); return; }
+      // Click anywhere else on a row selects it (and updates the nav cursor)
+      const row = e.target.closest('.log-row');
+      if (row && row.dataset.i != null) { state.logCursor = parseInt(row.dataset.i, 10); renderCallLog(); }
+    });
+  }
+  const logNavBack = document.getElementById('logNavBack');
+  if (logNavBack) logNavBack.addEventListener('click', () => logNavStep(1));   // older
+  const logNavFwd = document.getElementById('logNavFwd');
+  if (logNavFwd) logNavFwd.addEventListener('click', () => logNavStep(-1));    // newer
+  const logNavEdit = document.getElementById('logNavEdit');
+  if (logNavEdit) logNavEdit.addEventListener('click', () => {
+    const recent = state.calls.slice(-12).reverse();
+    if (state.logCursor == null || !recent[state.logCursor]) { showToast('Pick a call first — use ◀ ▶'); return; }
+    editCall(recent[state.logCursor].call_id);
+  });
+  const editBannerCancel = document.getElementById('editBannerCancel');
+  if (editBannerCancel) editBannerCancel.addEventListener('click', cancelEditCall);
 
   // v3.7.2: TZ gate + dedup controls
   const tzGateEl = document.getElementById('tzGateMode');
