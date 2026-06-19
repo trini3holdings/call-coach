@@ -2724,6 +2724,29 @@ async function init() {
       if (typeof renderProspectPicker === 'function') renderProspectPicker();
     });
   }
+  // v3.24 — topbar "refresh now" button: pull teammates' latest calls on demand from anywhere.
+  const refreshNowBtn = document.getElementById('refreshNowBtn');
+  if (refreshNowBtn) {
+    refreshNowBtn.addEventListener('click', async () => {
+      if (!state.backendUrl) { showToast('Connect backend first to refresh'); return; }
+      if (refreshNowBtn.disabled) return;
+      refreshNowBtn.disabled = true;
+      refreshNowBtn.classList.add('spinning');
+      setSyncBadge('syncing');
+      try {
+        if (state.syncQueue.length) await drainSyncQueue();  // push any pending first
+        await loadCloudCalls();                               // then pull teammates' latest
+        showToast('Refreshed — latest calls pulled');
+      } catch (e) {
+        showToast('Refresh failed: ' + (e.message || 'unknown'));
+      } finally {
+        refreshNowBtn.classList.remove('spinning');
+        refreshNowBtn.disabled = false;
+        setSyncBadge(state.syncQueue.length ? 'queued' : 'online');
+      }
+    });
+  }
+
   const refreshPickerBtn = document.getElementById('refreshPickerBtn');
   if (refreshPickerBtn) {
     refreshPickerBtn.addEventListener('click', () => {
