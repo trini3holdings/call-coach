@@ -264,25 +264,25 @@
           "t": 22,
           "phase": "EURO VM",
           "title": "EURO — Empathy · Urgency · Reason · Offer",
-          "line": "Good afternoon, this is {caller} with ConversionJet. I'll be brief. I work with a small number of operators who don't compete on price, and I noticed your page <em>is quietly leaving caliber on the table</em>. I went ahead and prepared <em>a private, rebuilt version of your page</em> — quietly, just so you can see the difference. If it's of interest, a short reply to this number is all it takes and I'll send it across.",
-          "followup": "Text follow-up (send right after): “Hey it’s {caller} — just left you a quick VM. Here’s that 60-sec sample of your page I mentioned: [link]. No rush, take a look.”",
-          "note": "EURO = Empathy (you’re busy) → Urgency (why today) → Reason (it’s a fast fix) → Offer (the sample). Leave under ~22 seconds. Discreet register: unhurried, low volume, zero hype or exclamation — price/poise signals quality. Say the number slowly, twice. End on the OFFER, not a goodbye."
+          "line": "Good afternoon, this is {caller} with ConversionJet. I work with a small number of operators who don't compete on price, and I noticed your page <em>is quietly leaving caliber on the table</em>. So I prepared <em>a private, rebuilt version of it</em> — just so you can see the difference for yourself. If it's of interest, a short reply to this number is all it takes.",
+          "followup": "Text follow-up (send right after): “{caller}, ConversionJet — the rebuilt version of your page I mentioned: [link]. Have a look when it suits you.”",
+          "note": "EURO = Empathy (respect their time by being spare, not by announcing it) → Urgency (understated — 'so I prepared it') → Reason (see it for yourself) → Offer (the rebuilt page). Under ~20 seconds. Discreet register: unhurried, low volume, zero hype or exclamation — restraint signals caliber. Never say 'I'll be brief' or 'quick one' — busy-talk reads low-status. Say the number slowly, twice. End on the offer."
         },
         {
           "t": 24,
           "phase": "PAS VM",
           "title": "PAS — Problem · Agitate · Solve",
-          "line": "Hello, {caller} with ConversionJet again. When the right buyer finds you, they decide in seconds whether you're the caliber they expect — and a slow, ordinary page quietly tells them you're not, even when you are. So you lose the buyer who looked, hesitated, and left, and you never hear about it. I've prepared <em>a quietly faster, cleaner page that signals the caliber you actually are</em>. A brief reply and I'll send it over for your eyes only.",
-          "followup": "Text follow-up: “{caller} here — that leak I mentioned on your VM — here’s a sample of the fix on your own page: [link]. Reply STOP if you’d rather I didn’t.”",
-          "note": "PAS = name the Problem → Agitate the hidden cost → Solve with the sample. The agitation is the dollar leak they can’t see, not fear. Understate the agitation — imply the loss, never push it. Pause a half-beat before the dollar figure."
+          "line": "{caller} with ConversionJet again. When the right buyer finds you, they decide in seconds whether you're the caliber they expect — and a slow, ordinary page quietly tells them you're not, even when you are. So you lose the one who looked, hesitated, and moved on — and you never hear about it. I've rebuilt your page to <em>signal the caliber you actually are</em>. A brief reply and I'll send it across privately.",
+          "followup": "Text follow-up: “{caller}, ConversionJet — the rebuilt version that closes the gap I mentioned: [link]. No reply needed unless it's of interest.”",
+          "note": "PAS = name the Problem (the page undersells you) → Agitate the hidden cost (the buyer you never hear from) → Solve (the rebuild). Understate the agitation — imply the loss, never push it. No 'leak,' no dollar figure for this register; the loss is status, not spend. Let a half-beat of silence sit before 'and you never hear about it.'"
         },
         {
           "t": 24,
           "phase": "NEPQ VM",
           "title": "NEPQ — Curiosity Question",
-          "line": "Good afternoon, {caller} with ConversionJet. A single question, then I'll step back. If your page were quietly costing you the buyers you most want — the ones who never call to complain — when would you want to know? I looked, and I’ve prepared <em>a private, rebuilt version of your page</em> so the difference speaks for itself. A short reply to this number and it's yours to review.",
-          "followup": "Text follow-up: “That question I left you — here’s the answer: [link]. It’s a 60-sec look at your page rebuilt. Curious what you think.”",
-          "note": "NEPQ = a neutral, status-quo-disrupting question (‘how would you even know?’) that opens a curiosity loop the callback closes. Do NOT answer the question on the VM — the unanswered loop is what earns the call back. Tone: quietly assured, almost rhetorical — let the silence do the work. The self-effacing close (‘maybe it’s already perfect’) disarms resistance."
+          "line": "{caller} with ConversionJet. One question, then I'll leave you to your day. If your page were quietly costing you the buyers you most want — the ones who simply move on without a word — when would you want to know? I've already rebuilt it, so the difference speaks for itself. A short reply to this number and it's yours to review.",
+          "followup": "Text follow-up: “{caller}, ConversionJet — the answer to the question I left you: [link]. A quiet look at your page, rebuilt.”",
+          "note": "NEPQ = a neutral, status-quo-disrupting question ('when would you want to know?') that opens a loop the callback closes. Do NOT answer it on the VM — the unanswered loop earns the call back. Tone: quietly assured, almost rhetorical — let the silence do the work. No self-deprecation, no 'curious what you think' — assurance, not eagerness."
         }
       ]
     }
