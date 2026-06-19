@@ -256,60 +256,32 @@
       ]
     },
     "D": {
-      "name": "Rapid Fire — Sell Now",
-      "desc": "Decision-maker only. No audit, no calendar. Flash the offer, drop the price ($1,500 flat, or $750 + $99/mo), and close on a one-tap YES to an emailed sample or a live preview of a mobile-first high-CRO page. ~75-90s. Friendly authority, no fear-talk.",
+      "name": "Voicemails — EURO / PAS / NEPQ",
+      "desc": "Three ready-to-leave voicemails, one per framework: <b>EURO</b> (Empathy·Urgency·Reason·Offer), <b>PAS</b> (Problem·Agitate·Solve), and <b>NEPQ</b> (a curiosity question that leaves an open loop). Each is ~20-25s and drives ONE low-friction CTA: text back and I’ll send a 60-second sample of your own page. Pick one per prospect; pair with the text follow-up shown under each.",
       "beats": [
         {
-          "t": 12,
-          "phase": "HOOK",
-          "title": "Decision-Maker Flash Open",
-          "line": "Hey, it's {caller} with CritterClick. Quick one for the person who runs the website — is that you? I build <em>mobile-first pages for wildlife removal shops that get the phone ringing</em>, and yours is leaving jobs on the table. Thirty seconds and I'll show you the easy version.",
-          "responses": [
-            "Yeah that's me",
-            "What's this about?",
-            "We're good on the site"
-          ],
-          "followup": "Perfect — here's the easy version.",
-          "note": "RAPID FIRE. No 'leak audit' framing. Confirm decision-maker in the first breath. If gatekeeper: 'No worries — who runs the site? I'll make this quick for them.' Friendly authority, fast pace."
-        },
-        {
-          "t": 18,
-          "phase": "VALUE-FLASH",
-          "title": "What the Page Does",
-          "line": "Here's what I do. <em>One page, built for the phone first</em> — your number right at the top, one tap to call, built to load fast and turn that 11pm scratching-in-the-attic search into a booked job instead of a missed call. Same page that's pulling <em>$8K to $24K a month</em> in jobs back for the shops I've done it for.",
-          "responses": [
-            "Okay…",
-            "How's it different from what I have?",
-            "Sounds expensive"
-          ],
-          "followup": "And that's the part that surprises people — it's not.",
-          "note": "Flash the outcome (booked jobs) tied to the monthly anchor. Keep it concrete: number at top, one-tap, fast. Tee up the price reveal."
-        },
-        {
-          "t": 16,
-          "phase": "PRICE-DROP",
-          "title": "The Easy Number",
-          "line": "The whole thing is <em>$1,500, flat</em> — built, written, and live. Or if you'd rather keep cash easy, <em>$750 to start and $99 a month</em> and I handle the updates. One saved job pays for it. Most shops make that back the first week it's up.",
-          "responses": [
-            "That's it?",
-            "Let me think about it",
-            "What's the catch?"
-          ],
-          "followup": "No catch — and you don't have to decide anything right now.",
-          "note": "Say the price plainly and STOP. $1,500 flat, or $750 + $99/mo. Anchor against ONE saved job ($400-$600) and the monthly recoup. Do not negotiate up front. The price is low on purpose — the real ask is the email/preview yes."
-        },
-        {
           "t": 22,
-          "phase": "EASY-YES CLOSE",
-          "title": "Email or Live Preview",
-          "line": "So here's all I need from you today — nothing to sign. Either I shoot you a <em>quick email with a sample page I built for another wildlife shop</em> so you can see it on your own phone, or — even better — give me two minutes and I'll <em>pull up a live preview of what yours would look like</em> right now. Which is easier, email or the live look?",
-          "responses": [
-            "Send the email",
-            "Show me the live one",
-            "Not right now"
-          ],
-          "followup": "Easy. What's the best email — and I'll have it to you in five minutes.",
-          "note": "DUAL one-tap close: emailed sample OR live preview. Both are tiny yeses. 'Not right now' -> 'Totally fair — want me to just send the sample so it's in your inbox when you've got a sec?' Always fall back to capturing the email."
+          "phase": "EURO VM",
+          "title": "EURO — Empathy · Urgency · Reason · Offer",
+          "line": "Hey, it's {caller} with CritterClick — I know you're slammed, so I'll keep this to twenty seconds. I build <em>mobile-first pages for wildlife removal shops</em>, and I looked at yours — it <em>is quietly costing you jobs</em>, around <em>$8K to $24K a month</em>. The reason I'm calling today and not next week is it's a fast fix, and I already put together <em>a 60-second sample of your own page rebuilt for the phone</em> so you can just <em>see</em> it. Text me back at this number and I'll send it over — no pitch, just the sample!",
+          "followup": "Text follow-up (send right after): “Hey it’s {caller} — just left you a quick VM. Here’s that 60-sec sample of your page I mentioned: [link]. No rush, take a look.”",
+          "note": "EURO = Empathy (you’re busy) → Urgency (why today) → Reason (it’s a fast fix) → Offer (the sample). Leave under ~22 seconds. Warm, fast, friendly authority — smile while you talk, no fear-talk. Say the number slowly, twice. End on the OFFER, not a goodbye."
+        },
+        {
+          "t": 24,
+          "phase": "PAS VM",
+          "title": "PAS — Problem · Agitate · Solve",
+          "line": "Hi, {caller} again with CritterClick. Quick one. Right now, when someone hits your site from that 11pm scratching-in-the-attic search, they're ready to book — but the page makes them work for it, so they bounce and call the next name on the list. That's not a traffic problem, that's a <em>$8K to $24K a month</em> leak hiding in plain sight. Good news is it's the easiest thing in the world to fix — I've got <em>a phone-first page where one tap calls you</em> ready to show you. Shoot me a text back and I'll send the sample!",
+          "followup": "Text follow-up: “{caller} here — that leak I mentioned on your VM — here’s a sample of the fix on your own page: [link]. Reply STOP if you’d rather I didn’t.”",
+          "note": "PAS = name the Problem → Agitate the hidden cost → Solve with the sample. The agitation is the dollar leak they can’t see, not fear. Keep it upbeat — ‘easiest fix in the world’ lands better than doom. Pause a half-beat before the dollar figure."
+        },
+        {
+          "t": 24,
+          "phase": "NEPQ VM",
+          "title": "NEPQ — Curiosity Question",
+          "line": "Hey, it's {caller} with CritterClick — one honest question and I'll let you go. If your website was quietly losing <em>$8K to $24K a month</em> in jobs, how would you even know? Most owners never see it — the calls just don't come, and you assume it's a slow week. I actually put together <em>a 60-second sample of your own page rebuilt for the phone</em> and the gap surprised me. Text this number back and I'll send it — worst case, you learn your page is already perfect!",
+          "followup": "Text follow-up: “That question I left you — here’s the answer: [link]. It’s a 60-sec look at your page rebuilt. Curious what you think.”",
+          "note": "NEPQ = a neutral, status-quo-disrupting question (‘how would you even know?’) that opens a curiosity loop the callback closes. Do NOT answer the question on the VM — the unanswered loop is what earns the call back. Tone: genuinely curious, never gotcha. The self-effacing close (‘maybe it’s already perfect’) disarms resistance."
         }
       ]
     }

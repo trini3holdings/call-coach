@@ -257,60 +257,32 @@
       ]
     },
     "D": {
-      "name": "Rapid Fire — Sell Now",
-      "desc": "Decision-maker only. DISCREET register — no hype, no urgency, no exclamation. State the offer, state the figure ($5,000, by application), close on an emailed sample or a quiet live preview. Premium positioning: price signals quality. ~80-95s.",
+      "name": "Voicemails — EURO / PAS / NEPQ",
+      "desc": "Three ready-to-leave voicemails, one per framework: <b>EURO</b> (Empathy·Urgency·Reason·Offer), <b>PAS</b> (Problem·Agitate·Solve), and <b>NEPQ</b> (a curiosity question that leaves an open loop). Each is ~20-25s and drives ONE low-friction CTA: text back and I’ll send a 60-second sample of your own page. Pick one per prospect; pair with the text follow-up shown under each.",
       "beats": [
         {
-          "t": 13,
-          "phase": "HOOK",
-          "title": "Decision-Maker Open",
-          "line": "Good afternoon — this is {caller} with ConversionJet. I'm looking for whoever oversees the website. I build <em>mobile-first pages for private charter operators</em>, and yours is losing inquiries before the phone rings. May I take thirty seconds to show you what I mean?",
-          "responses": [
-            "That would be me",
-            "What is this regarding?",
-            "We're set, thank you"
-          ],
-          "followup": "Thank you — briefly, then.",
-          "note": "DISCREET register. Composed, neutral, no slang, no exclamation, no urgency. Banned: Part 135, ARGUS, Wyvern, jet card, empty-leg, FBO, HNW, fractional. 'I' for the work, ConversionJet as brand. Ask permission, don't push."
+          "t": 22,
+          "phase": "EURO VM",
+          "title": "EURO — Empathy · Urgency · Reason · Offer",
+          "line": "Good afternoon, this is {caller} with ConversionJet. I'll be brief. I work with a small number of operators who don't compete on price, and I noticed your page <em>is quietly leaving caliber on the table</em>. I went ahead and prepared <em>a private, rebuilt version of your page</em> — quietly, just so you can see the difference. If it's of interest, a short reply to this number is all it takes and I'll send it across.",
+          "followup": "Text follow-up (send right after): “Hey it’s {caller} — just left you a quick VM. Here’s that 60-sec sample of your page I mentioned: [link]. No rush, take a look.”",
+          "note": "EURO = Empathy (you’re busy) → Urgency (why today) → Reason (it’s a fast fix) → Offer (the sample). Leave under ~22 seconds. Discreet register: unhurried, low volume, zero hype or exclamation — price/poise signals quality. Say the number slowly, twice. End on the OFFER, not a goodbye."
         },
         {
-          "t": 20,
-          "phase": "VALUE-FLASH",
-          "title": "What the Page Does",
-          "line": "What I do is straightforward. <em>One page, built for the phone first</em> — the inquiry path clear and immediate, loading quickly, so the operator's first contact lands with you rather than the next listing. The operators I've built these for have recovered in the range of <em>$100K to $300K a month</em> in charter revenue.",
-          "responses": [
-            "I see…",
-            "How is that measured?",
-            "Understood"
-          ],
-          "followup": "Quite measurable, in fact — I can show you.",
-          "note": "State the outcome calmly with the monthly figure. No hype words. Surgical, factual. Tee up the figure."
+          "t": 24,
+          "phase": "PAS VM",
+          "title": "PAS — Problem · Agitate · Solve",
+          "line": "Hello, {caller} with ConversionJet again. When the right buyer finds you, they decide in seconds whether you're the caliber they expect — and a slow, ordinary page quietly tells them you're not, even when you are. So you lose the buyer who looked, hesitated, and left, and you never hear about it. I've prepared <em>a quietly faster, cleaner page that signals the caliber you actually are</em>. A brief reply and I'll send it over for your eyes only.",
+          "followup": "Text follow-up: “{caller} here — that leak I mentioned on your VM — here’s a sample of the fix on your own page: [link]. Reply STOP if you’d rather I didn’t.”",
+          "note": "PAS = name the Problem → Agitate the hidden cost → Solve with the sample. The agitation is the dollar leak they can’t see, not fear. Understate the agitation — imply the loss, never push it. Pause a half-beat before the dollar figure."
         },
         {
-          "t": 17,
-          "phase": "PRICE-DROP",
-          "title": "The Figure",
-          "line": "The engagement is <em>$5,000</em> — designed, written, and live, handled end to end. I take a limited number of these by application so each one is done properly. Against what a single recovered charter is worth, it tends to pay for itself almost immediately.",
-          "responses": [
-            "That's reasonable",
-            "I'd want to see it first",
-            "Send details"
-          ],
-          "followup": "Of course — I'd expect you to see it first.",
-          "note": "Price SIGNALS quality here — say $5,000 plainly, frame as selective ('by application'). No discounting, no monthly. Anchor against one recovered charter. Composed."
-        },
-        {
-          "t": 23,
-          "phase": "EASY-YES CLOSE",
-          "title": "Sample or Quiet Preview",
-          "line": "There's nothing to commit to today. I can <em>send you a sample page I built for another charter operator</em> to review at your convenience, or, if you have two minutes, I can <em>show you a quiet live preview of how yours would look</em> right now. Whichever is easier — the email, or the preview?",
-          "responses": [
-            "Send the sample",
-            "Show me now",
-            "Email me, I'll review"
-          ],
-          "followup": "Certainly. The best address to send it to?",
-          "note": "Discreet dual close. 'At your convenience' not 'right now!'. Always capture the email. No pressure language."
+          "t": 24,
+          "phase": "NEPQ VM",
+          "title": "NEPQ — Curiosity Question",
+          "line": "Good afternoon, {caller} with ConversionJet. A single question, then I'll step back. If your page were quietly costing you the buyers you most want — the ones who never call to complain — when would you want to know? I looked, and I’ve prepared <em>a private, rebuilt version of your page</em> so the difference speaks for itself. A short reply to this number and it's yours to review.",
+          "followup": "Text follow-up: “That question I left you — here’s the answer: [link]. It’s a 60-sec look at your page rebuilt. Curious what you think.”",
+          "note": "NEPQ = a neutral, status-quo-disrupting question (‘how would you even know?’) that opens a curiosity loop the callback closes. Do NOT answer the question on the VM — the unanswered loop is what earns the call back. Tone: quietly assured, almost rhetorical — let the silence do the work. The self-effacing close (‘maybe it’s already perfect’) disarms resistance."
         }
       ]
     }
