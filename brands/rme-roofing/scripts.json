@@ -263,25 +263,25 @@
           "t": 22,
           "phase": "EURO VM",
           "title": "EURO — Empathy · Urgency · Reason · Offer",
-          "line": "Hey, it's {caller} with RME Roofing — I know you're slammed, so I'll keep this to twenty seconds. I build <em>high-converting roofing pages in DFW</em>, and I looked at yours — it <em>is burning the ad spend you’re already paying</em>, around <em>$40 to $75 a click</em>. The reason I'm calling today and not next week is it's a fast fix, and I already put together <em>a 60-second sample of your own page rebuilt to turn clicks into booked roofs</em> so you can just <em>see</em> it. Text me back at this number and I'll send it over — no pitch, just the sample!",
-          "followup": "Text follow-up (send right after): “Hey it’s {caller} — just left you a quick VM. Here’s that 60-sec sample of your page I mentioned: [link]. No rush, take a look.”",
-          "note": "EURO = Empathy (you’re busy) → Urgency (why today) → Reason (it’s a fast fix) → Offer (the sample). Leave under ~22 seconds. Warm, fast, friendly authority — smile while you talk, no fear-talk. Say the number slowly, twice. End on the OFFER, not a goodbye."
+          "line": "Hey, it’s {caller} with RME Roofing. Thirty seconds. You’re paying <em>$40 to $75 a click</em> for roofing leads here in DFW — I pulled up your page, and a chunk of that money is getting wasted. Folks click your ad, the page is slow or the quote button’s buried, and they bounce before they ever call. It’s a quick fix — I already rebuilt <em>a 60-second sample of your own page</em> so you can see it. Text me back at this number — no pitch, just the sample.",
+          "followup": "Text follow-up (send right after): “{caller} from RME Roofing — that 60-sec sample of your page I left a VM about: [link]. Take a look when you’re off the roof.”",
+          "note": "EURO for a roofer: lead with the money they’re already spending. Plain English, no jargon, no fluff. — Urgency = wasted ad spend, Reason = quick fix, Offer = the sample. Say the number slowly, twice."
         },
         {
           "t": 24,
           "phase": "PAS VM",
           "title": "PAS — Problem · Agitate · Solve",
-          "line": "Hi, {caller} again with RME Roofing. Quick one. Right now, when someone hits your site from that storm-damage search you paid for, they're ready to book — but the page makes them work for it, so they bounce and call the next name on the list. That's not a traffic problem, that's a <em>$40 to $75 a click</em> leak hiding in plain sight. Good news is it's the easiest thing in the world to fix — I've got <em>a mobile-first page where the quote button actually works</em> ready to show you. Shoot me a text back and I'll send the sample!",
-          "followup": "Text follow-up: “{caller} here — that leak I mentioned on your VM — here’s a sample of the fix on your own page: [link]. Reply STOP if you’d rather I didn’t.”",
-          "note": "PAS = name the Problem → Agitate the hidden cost → Solve with the sample. The agitation is the dollar leak they can’t see, not fear. Keep it upbeat — ‘easiest fix in the world’ lands better than doom. Pause a half-beat before the dollar figure."
+          "line": "{caller} again with RME Roofing. Think about it — someone’s got storm damage, they search, they click your ad that you <em>paid</em> for. Page takes too long or they can’t find the quote button, so they back out and call the next roofer on the list. You bought that lead and handed it to your competition. That’s real money — <em>$40 to $75</em> every time it happens. I’ve got <em>a mobile-first page where the quote button actually works</em> ready to show you. Text me back and I’ll send the sample.",
+          "followup": "Text follow-up: “{caller}, RME Roofing — the fix so you stop handing paid leads to the next roofer: [link]. 60-sec look at your own page.”",
+          "note": "PAS for roofers: the agitation is wasted ad spend handed to competitors — that stings a roofer more than vague “conversion” talk. Blue-collar direct. Pause before “you bought that lead and handed it to your competition.”"
         },
         {
           "t": 24,
           "phase": "NEPQ VM",
           "title": "NEPQ — Curiosity Question",
-          "line": "Hey, it's {caller} with RME Roofing — one honest question and I'll let you go. If your website was quietly losing <em>$40 to $75 a click</em> in jobs, how would you even know? Most owners never see it — the calls just don't come, and you assume it's a slow week. I actually put together <em>a 60-second sample of your own page rebuilt to turn clicks into booked roofs</em> and the gap surprised me. Text this number back and I'll send it — worst case, you learn your page is already perfect!",
-          "followup": "Text follow-up: “That question I left you — here’s the answer: [link]. It’s a 60-sec look at your page rebuilt. Curious what you think.”",
-          "note": "NEPQ = a neutral, status-quo-disrupting question (‘how would you even know?’) that opens a curiosity loop the callback closes. Do NOT answer the question on the VM — the unanswered loop is what earns the call back. Tone: genuinely curious, never gotcha. The self-effacing close (‘maybe it’s already perfect’) disarms resistance."
+          "line": "Hey, {caller} with RME Roofing — one straight question, then I’ll let you get back to it. If your website was quietly wasting <em>$40 to $75 on every click</em> you pay for, would you even know? Most roofers don’t — the calls just don’t come in, and you figure it’s a slow stretch. I rebuilt <em>a 60-second sample of your own page</em>, and the gap surprised me. Text this number back and I’ll send it — worst case, you find out your page is already solid.",
+          "followup": "Text follow-up: “That question I left you — here’s the answer: [link]. 60-sec look at your page, rebuilt. Tell me what you think.”",
+          "note": "NEPQ for roofers: “would you even know?” opens the loop. Do NOT answer on the VM. Straight-shooter tone, no hype. Fixed the old grammar bug (“$X a click in jobs”) — now “wasting $X on every click you pay for.”"
         }
       ]
     }

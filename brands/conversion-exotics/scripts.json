@@ -263,25 +263,25 @@
           "t": 22,
           "phase": "EURO VM",
           "title": "EURO — Empathy · Urgency · Reason · Offer",
-          "line": "Hey, it's {caller} with Conversion Exotics — I know you're slammed, so I'll keep this to twenty seconds. I build <em>high-CRO booking pages for exotic & specialty operators</em>, and I looked at yours — it <em>is losing bookings at the last step</em>, around <em>$5K to $15K a week</em>. The reason I'm calling today and not next week is it's a fast fix, and I already put together <em>a 60-second sample of your own booking page rebuilt to stop the leak</em> so you can just <em>see</em> it. Text me back at this number and I'll send it over — no pitch, just the sample!",
-          "followup": "Text follow-up (send right after): “Hey it’s {caller} — just left you a quick VM. Here’s that 60-sec sample of your page I mentioned: [link]. No rush, take a look.”",
-          "note": "EURO = Empathy (you’re busy) → Urgency (why today) → Reason (it’s a fast fix) → Offer (the sample). Leave under ~22 seconds. Warm, fast, friendly authority — smile while you talk, no fear-talk. Say the number slowly, twice. End on the OFFER, not a goodbye."
+          "line": "Hey, it’s {caller} with Conversion Exotics. Thirty seconds. I build <em>high-converting booking pages for specialty and exotic operators</em>, and I looked at yours — it’s losing bookings right at the final step, somewhere around <em>$5K to $15K a week</em>. It’s a fast fix, and I already rebuilt <em>a 60-second sample of your own booking page</em> so you can just see it. Text me back at this number — no pitch, just the sample.",
+          "followup": "Text follow-up (send right after): “{caller} from Conversion Exotics — that 60-sec sample of your booking page I left a VM about: [link]. Have a look when you can.”",
+          "note": "EURO for a specialty operator: a touch more polished than the trades, still direct. Lead with the weekly booking loss. Short breath-lines. Say the number slowly, twice. End on the offer."
         },
         {
           "t": 24,
           "phase": "PAS VM",
           "title": "PAS — Problem · Agitate · Solve",
-          "line": "Hi, {caller} again with Conversion Exotics. Quick one. Right now, when someone hits your site from the booking they started and never finished, they're ready to book — but the page makes them work for it, so they bounce and call the next name on the list. That's not a traffic problem, that's a <em>$5K to $15K a week</em> leak hiding in plain sight. Good news is it's the easiest thing in the world to fix — I've got <em>a mobile-first booking page built to capture the booking, not lose it</em> ready to show you. Shoot me a text back and I'll send the sample!",
-          "followup": "Text follow-up: “{caller} here — that leak I mentioned on your VM — here’s a sample of the fix on your own page: [link]. Reply STOP if you’d rather I didn’t.”",
-          "note": "PAS = name the Problem → Agitate the hidden cost → Solve with the sample. The agitation is the dollar leak they can’t see, not fear. Keep it upbeat — ‘easiest fix in the world’ lands better than doom. Pause a half-beat before the dollar figure."
+          "line": "{caller} again with Conversion Exotics. Here’s what’s happening: someone finds you, they’re ready to book, they start filling it out — then the page makes them work for it, and they abandon it halfway and go book somewhere else. Every one of those is a customer who <em>wanted</em> to pay you. That’s <em>$5K to $15K a week</em> slipping through the booking form. I’ve got <em>a mobile-first booking page built to capture the booking, not lose it</em> ready to show you. Text me back and I’ll send the sample.",
+          "followup": "Text follow-up: “{caller}, Conversion Exotics — the fix for those abandoned bookings, on your own page: [link]. Quick 60-sec look.”",
+          "note": "PAS: the agitation is the abandoned booking — a customer who wanted to pay and couldn’t. Fixed the old broken sentence. Pause before the dollar figure. Keep it confident, not desperate."
         },
         {
           "t": 24,
           "phase": "NEPQ VM",
           "title": "NEPQ — Curiosity Question",
-          "line": "Hey, it's {caller} with Conversion Exotics — one honest question and I'll let you go. If your website was quietly losing <em>$5K to $15K a week</em> in jobs, how would you even know? Most owners never see it — the calls just don't come, and you assume it's a slow week. I actually put together <em>a 60-second sample of your own booking page rebuilt to stop the leak</em> and the gap surprised me. Text this number back and I'll send it — worst case, you learn your page is already perfect!",
-          "followup": "Text follow-up: “That question I left you — here’s the answer: [link]. It’s a 60-sec look at your page rebuilt. Curious what you think.”",
-          "note": "NEPQ = a neutral, status-quo-disrupting question (‘how would you even know?’) that opens a curiosity loop the callback closes. Do NOT answer the question on the VM — the unanswered loop is what earns the call back. Tone: genuinely curious, never gotcha. The self-effacing close (‘maybe it’s already perfect’) disarms resistance."
+          "line": "Hey, {caller} with Conversion Exotics — one honest question, then I’ll let you go. If your booking page was quietly costing you <em>$5K to $15K a week</em> in customers who give up at checkout, would you even know? Most operators don’t — the bookings just don’t land, and you assume it’s a slow week. I rebuilt <em>a 60-second sample of your own booking page</em>, and the gap surprised me. Text this number back and I’ll send it — worst case, you find out your page is already dialed in.",
+          "followup": "Text follow-up: “That question I left you — here’s the answer: [link]. 60-sec look at your booking page, rebuilt. Curious what you think.”",
+          "note": "NEPQ: “would you even know?” opens the loop. Do NOT answer on the VM. Fixed the old grammar bug. Confident-curious tone; the self-effacing close disarms resistance."
         }
       ]
     }

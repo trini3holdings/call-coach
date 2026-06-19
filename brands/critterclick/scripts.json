@@ -263,25 +263,25 @@
           "t": 22,
           "phase": "EURO VM",
           "title": "EURO — Empathy · Urgency · Reason · Offer",
-          "line": "Hey, it's {caller} with CritterClick — I know you're slammed, so I'll keep this to twenty seconds. I build <em>mobile-first pages for wildlife removal shops</em>, and I looked at yours — it <em>is quietly costing you jobs</em>, around <em>$8K to $24K a month</em>. The reason I'm calling today and not next week is it's a fast fix, and I already put together <em>a 60-second sample of your own page rebuilt for the phone</em> so you can just <em>see</em> it. Text me back at this number and I'll send it over — no pitch, just the sample!",
-          "followup": "Text follow-up (send right after): “Hey it’s {caller} — just left you a quick VM. Here’s that 60-sec sample of your page I mentioned: [link]. No rush, take a look.”",
-          "note": "EURO = Empathy (you’re busy) → Urgency (why today) → Reason (it’s a fast fix) → Offer (the sample). Leave under ~22 seconds. Warm, fast, friendly authority — smile while you talk, no fear-talk. Say the number slowly, twice. End on the OFFER, not a goodbye."
+          "line": "Hey, it’s {caller} with CritterClick. Thirty seconds, I promise. I build <em>phone-first pages for wildlife removal shops</em>, and I pulled up yours — it’s quietly costing you around <em>$8K to $24K a month</em> in jobs you never see. Here’s the good part: it’s a fast fix, and I already rebuilt <em>a 60-second sample of your own page</em> so you can just look at it. Text me back at this number — no pitch, just the sample.",
+          "followup": "Text follow-up (send right after): “{caller} from CritterClick — here’s that 60-sec sample of your page I left you a VM about: [link]. Take a look when you get a sec.”",
+          "note": "EURO = Empathy (30 sec, I promise) → Urgency (fast fix) → Reason (jobs you never see) → Offer (the sample). Punchy and warm — smile while you talk, keep the energy up. Short breath-lines. Say the number slowly, twice. End on the offer."
         },
         {
           "t": 24,
           "phase": "PAS VM",
           "title": "PAS — Problem · Agitate · Solve",
-          "line": "Hi, {caller} again with CritterClick. Quick one. Right now, when someone hits your site from that 11pm scratching-in-the-attic search, they're ready to book — but the page makes them work for it, so they bounce and call the next name on the list. That's not a traffic problem, that's a <em>$8K to $24K a month</em> leak hiding in plain sight. Good news is it's the easiest thing in the world to fix — I've got <em>a phone-first page where one tap calls you</em> ready to show you. Shoot me a text back and I'll send the sample!",
-          "followup": "Text follow-up: “{caller} here — that leak I mentioned on your VM — here’s a sample of the fix on your own page: [link]. Reply STOP if you’d rather I didn’t.”",
-          "note": "PAS = name the Problem → Agitate the hidden cost → Solve with the sample. The agitation is the dollar leak they can’t see, not fear. Keep it upbeat — ‘easiest fix in the world’ lands better than doom. Pause a half-beat before the dollar figure."
+          "line": "{caller} again with CritterClick. Picture it: 11pm, someone’s got something scratching in the attic, they find your site, they’re ready to book right now. But the page makes them dig for your number — so they bail and call the next guy. That’s not a traffic problem. That’s <em>$8K to $24K a month</em> walking out the door. Easiest fix there is — I’ve got <em>a phone-first page where one tap calls you</em> ready to show you. Text me back and I’ll send the sample.",
+          "followup": "Text follow-up: “{caller}, CritterClick — the fix for that 11pm caller problem, built on your own page: [link]. Worth a 60-sec look.”",
+          "note": "PAS = paint the Problem (the panicked 11pm caller) → Agitate (they call the next guy) → Solve (one-tap page). Lead with the vivid scene, not the dollar figure. Half-beat pause before the dollar number. Keep it upbeat, never doom."
         },
         {
           "t": 24,
           "phase": "NEPQ VM",
           "title": "NEPQ — Curiosity Question",
-          "line": "Hey, it's {caller} with CritterClick — one honest question and I'll let you go. If your website was quietly losing <em>$8K to $24K a month</em> in jobs, how would you even know? Most owners never see it — the calls just don't come, and you assume it's a slow week. I actually put together <em>a 60-second sample of your own page rebuilt for the phone</em> and the gap surprised me. Text this number back and I'll send it — worst case, you learn your page is already perfect!",
-          "followup": "Text follow-up: “That question I left you — here’s the answer: [link]. It’s a 60-sec look at your page rebuilt. Curious what you think.”",
-          "note": "NEPQ = a neutral, status-quo-disrupting question (‘how would you even know?’) that opens a curiosity loop the callback closes. Do NOT answer the question on the VM — the unanswered loop is what earns the call back. Tone: genuinely curious, never gotcha. The self-effacing close (‘maybe it’s already perfect’) disarms resistance."
+          "line": "Hey, {caller} with CritterClick — one honest question, then I’m gone. If your site was quietly costing you <em>$8K to $24K a month</em> in booked jobs, would you even know? Most owners don’t — the calls just don’t come, and you chalk it up to a slow month. I rebuilt <em>a 60-second sample of your own page</em>, and honestly, the gap surprised me. Text this number back and I’ll send it — worst case, you find out your page is already dialed in.",
+          "followup": "Text follow-up: “That question I left you — here’s the answer: [link]. 60-sec look at your page, rebuilt. Let me know what you think.”",
+          "note": "NEPQ = the status-quo question (would you even know?) opens a loop the callback closes. Do NOT answer it on the VM. Tone: genuinely curious, never gotcha. The self-effacing close (maybe it’s already dialed in) disarms resistance."
         }
       ]
     }
