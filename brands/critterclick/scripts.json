@@ -11,14 +11,14 @@
           "t": 10,
           "phase": "OPEN",
           "title": "Cost-Led Leak Open",
-          "line": "Hey, my name is {caller} with CritterClick. I audit wildlife removal websites all day. Yours has a <em>leak that's costing about $2K to $6K a week in lost jobs</em>. Who's the best person to talk to about that?",
+          "line": "Hey, my name is {caller} with CritterClick. I audit wildlife removal websites all day. Yours has a <em>leak that's costing about $8K to $24K a month in lost jobs</em>. Who's the best person to talk to about that?",
           "responses": [
             "That'd be me",
             "Why? / What's this about?",
             "Who is this again?"
           ],
           "followup": "Got it — give me 30 seconds and I'll show you exactly where the leak is.",
-          "note": "COLD open, cost-led + gatekeeper-aware. Lead with the LEAK and the $ cost (reason to route), then ask 'who's the best person' — works whether you hit the gatekeeper (they transfer) or the owner (they say 'that's me'). Say it calm and neutral (Miner tonality), short breath-lines, slow the last line. CritterClick register: friendly authority, no fear-mongering, no kill-talk. Anchor = 5-10 lost jobs/wk x $400-$600 avg wildlife removal job."
+          "note": "COLD open, cost-led + gatekeeper-aware. Lead with the LEAK and the $ MONTHLY cost (reason to route), then ask 'who's the best person' — works whether you hit the gatekeeper (transfer) or owner ('that's me'). Calm Miner tonality, short breath-lines, slow the last line. CritterClick register: friendly authority, no fear-mongering, no kill-talk. Anchor = ~5-10 lost jobs/wk x $400-$600 = roughly $8K-$24K/mo."
         },
         {
           "t": 22,

@@ -10,18 +10,26 @@
         {
           "t": 10,
           "phase": "OPEN",
-          "title": "Booking Process Leak",
-          "line": "Hi, my name is {caller} with Conversion Exotics — I review exotic and luxury car rental sites for a living. I pulled up your site, and there's a <em>fix to your booking process that would put roughly $5,000 to $15,000 a week in new bookings back on your calendar</em>. Do you know who I can talk to about this?",
-          "responses": ["That'd be me", "How would that work?", "Who is this again?"],
-          "followup": "Got it — here's what I'm seeing, then I'll show you exactly where that extra revenue comes from.",
-          "note": "GAIN-led open: lead with what they can MAKE, not lose. Calling the business, not a person. No name tokens. Anchor = recoverable bookings × $500–$3,500 avg exotic rental day rate."
+          "title": "Cost-Led Leak Open",
+          "line": "Hey, my name is {caller} with Conversion Exotics. I audit exotic and luxury car rental websites all day. Yours has a <em>leak that's costing about $20K to $60K a month in lost bookings</em>. Who's the best person to talk to about that?",
+          "responses": [
+            "That'd be me",
+            "Why? / What's this about?",
+            "Who is this again?"
+          ],
+          "followup": "Got it — give me 30 seconds and I'll show you exactly where the leak is.",
+          "note": "COLD open, cost-led + gatekeeper-aware. Lead with the LEAK and the $ MONTHLY cost, then ask 'who's the best person' (transfer or 'that's me'). Calm Miner tonality, short breath-lines, slow the last line. Register: confident, premium but plain. Anchor = recoverable bookings x $500-$3,500/day = roughly $20K-$60K/mo."
         },
         {
           "t": 22,
           "phase": "PROBLEM",
           "title": "3-Second Decision",
           "line": "Here's the deal — when a luxury renter taps your ad from their phone, they decide in about <em>3 seconds</em> whether you're worth waiting on. <em>Every one-second delay cuts conversions roughly 32 percent</em>. Most exotic rental sites load in 5 to 8 seconds on mobile. When was the last time someone on your team pulled your site up on a phone and booked a rental end-to-end?",
-          "responses": ["Honestly, not recently", "It's fine, we get bookings", "We just redid the site"],
+          "responses": [
+            "Honestly, not recently",
+            "It's fine, we get bookings",
+            "We just redid the site"
+          ],
           "followup": "Yeah — that's what most owners say. The site loading is just the first leak. The bigger ones come after.",
           "note": "Plain English. Mobile speed as door-opener, not the main point."
         },
@@ -30,7 +38,11 @@
           "phase": "AGITATION",
           "title": "The Three Leaks",
           "line": "Here's what's actually happening. <em>A renter taps your ad, counts to three, and opens the next one</em> — they never even see your fleet. The ones who wait it out land on a page that doesn't show a price, doesn't show the car they came for, and asks them to fill out a form before they've decided anything. By the time they figure out how to book, they've already opened two competitors in other tabs. That's the <em>$5,000 to $15,000 a week</em>. Cleaning up the top of the page and making the booking obvious — those are <em>week-one quick wins</em>. But there's a <em>third issue on your booking process that costs more than both combined</em>. I'd rather show you that one with your page open.",
-          "responses": ["What's the third issue?", "Show me", "How much would this cost to fix?"],
+          "responses": [
+            "What's the third issue?",
+            "Show me",
+            "How much would this cost to fix?"
+          ],
           "followup": "Fair — and that's exactly what the audit answers. Pricing comes after.",
           "note": "Tease the third issue. Do NOT reveal it on the call. The reveal is the audit."
         },
@@ -39,7 +51,11 @@
           "phase": "SOLUTION",
           "title": "100+ Sites, Same 3 Leaks",
           "line": "I've done this on <em>over 100 exotic and luxury car rental sites</em> — same 10-point checklist, same booking process, same three leaks every time. The shops that fix the top two see bookings climb in the first week. The ones that fix all three usually <em>double their weekend bookings inside 30 days</em>.",
-          "responses": ["Okay…", "How long does the fix take?", "Sounds like a sales pitch"],
+          "responses": [
+            "Okay…",
+            "How long does the fix take?",
+            "Sounds like a sales pitch"
+          ],
           "followup": "Fair — and that's exactly why I lead with the audit, not the pitch.",
           "note": "Credibility frame. 100+ sites. Same checklist. Pattern recognition."
         },
@@ -48,7 +64,11 @@
           "phase": "AUDIT OFFER",
           "title": "Free $3,000 Audit",
           "line": "Here's what I want to do. I run a <em>$3,000 conversion audit</em> — and I'd like to do yours free. <em>Thirty minutes. Your live site on screen.</em> Every leak named in plain English no agency would dare use, with <em>dollar-anchored estimates per leak</em>. You walk away with a <em>sequenced one-week plan — every fix shipped at once</em>, ranked by booking impact. <em>Yours to keep whether you hire me to ship it or not.</em> Not vibes — math.",
-          "responses": ["Yeah I'd look at that", "Send it over first", "What's the catch?"],
+          "responses": [
+            "Yeah I'd look at that",
+            "Send it over first",
+            "What's the catch?"
+          ],
           "followup": "No catch — I'm running a handful of these personally this quarter for case studies. That's the only ask.",
           "note": "Verbatim site language. $3K free. One-week plan. All fixes shipped at once."
         },
@@ -57,7 +77,11 @@
           "phase": "CLOSE",
           "title": "Calendar or Sample",
           "line": "Two ways we can do this. I've got <em>Thursday at 10</em> or <em>Friday at 2</em> open — pick one and I'll send the calendar invite. Or, if you'd rather see what this looks like first, give me your email and I'll send over a <em>sample audit I did for another exotic rental shop</em> — full plan, dollar numbers, the whole thing. Which one would you prefer?",
-          "responses": ["Thursday at 10", "Friday at 2", "Send me the sample first"],
+          "responses": [
+            "Thursday at 10",
+            "Friday at 2",
+            "Send me the sample first"
+          ],
           "followup": "Done — calendar invite or sample audit hits your inbox in 60 seconds.",
           "note": "Dual-path close. Booked call OR sample audit. Either is a win."
         }
@@ -72,7 +96,11 @@
           "phase": "OPEN",
           "title": "Next Listing Steal",
           "line": "Hi, my name is {caller} with Conversion Exotics — I review exotic and luxury car rental sites for a living. Quick question — <em>do you know how many renters tap your ad, count to three, and are ready to book — but end up on the next listing?</em> If we capture even half of those on your site, that's <em>$5,000 to $15,000 a week in new bookings for you</em>. Who's the right person to talk to about this?",
-          "responses": ["That'd be me", "How would you capture them?", "Who is this again?"],
+          "responses": [
+            "That'd be me",
+            "How would you capture them?",
+            "Who is this again?"
+          ],
           "followup": "Got it — here's what I'm seeing, then I'll show you exactly where that extra revenue comes from.",
           "note": "GAIN-led: frame the renters as new bookings to CAPTURE, not bookings lost. Question-first hook. No name tokens."
         },
@@ -81,7 +109,11 @@
           "phase": "PROBLEM",
           "title": "Side-By-Side Speed Gap",
           "line": "Here's what I did — I pulled up your site next to two other exotic shops in your market on my phone. <em>Theirs loaded in about 2 or 3 seconds. Yours took closer to 6.</em> That's the gap. Most renters give a site about <em>3 seconds</em> before they back out and tap the next one — <em>every extra second costs you about a third of your bookings</em>. When's the last time someone on your team actually opened your site on a phone next to a competitor's?",
-          "responses": ["Honestly, not recently", "It's fine, we get bookings", "We just redid the site"],
+          "responses": [
+            "Honestly, not recently",
+            "It's fine, we get bookings",
+            "We just redid the site"
+          ],
           "followup": "Yeah — that's what most owners say. The site loading is just the first leak. The bigger ones come after.",
           "note": "Side-by-side reframe makes the speed gap concrete. The 32% stat does the agitation lift."
         },
@@ -90,7 +122,11 @@
           "phase": "AGITATION",
           "title": "Competitor Gets The Weekend",
           "line": "Here's what's actually happening. <em>The renter taps your ad, counts to three, and the next shop's site is already loading.</em> They tap it. They book. <em>Your competitor gets the $3,500 weekend — you never even showed up on their screen.</em> The ones who do wait land on a page that doesn't show a price, doesn't show the car they came for, and asks them to fill out a form before they've decided anything. So they open two more tabs and forget you. That's the <em>$5,000 to $15,000 a week</em>. Fixing the load and making the booking obvious — those are <em>week-one quick wins</em>. But there's a <em>third issue on your booking process that costs more than both combined</em>. I'd rather show you that one with your page open.",
-          "responses": ["What's the third issue?", "Show me", "How much would this cost to fix?"],
+          "responses": [
+            "What's the third issue?",
+            "Show me",
+            "How much would this cost to fix?"
+          ],
           "followup": "Fair — and that's exactly what the audit answers. Pricing comes after.",
           "note": "Tease the third issue. Do NOT reveal it on the call. The reveal is the audit."
         },
@@ -99,7 +135,11 @@
           "phase": "SOLUTION",
           "title": "100+ Sites Audited",
           "line": "I've audited <em>over 100 exotic and luxury car rental sites</em> — same 10-point checklist, same booking process, same three leaks every time. The shops that fix the top two see bookings climb in the first week. The ones that fix all three usually <em>double their weekend bookings inside 30 days</em>.",
-          "responses": ["Okay…", "How long does the fix take?", "Sounds like a sales pitch"],
+          "responses": [
+            "Okay…",
+            "How long does the fix take?",
+            "Sounds like a sales pitch"
+          ],
           "followup": "Fair — and that's exactly why I lead with the audit, not the pitch.",
           "note": "Credibility frame. 100+ sites. Same checklist. Pattern recognition."
         },
@@ -108,7 +148,11 @@
           "phase": "AUDIT OFFER",
           "title": "Flip The Steal — Free $3,000 Audit",
           "line": "Here's what I want to do. I run a <em>$3,000 conversion audit</em> — and I'd like to do yours free. <em>Thirty minutes. Your live site on screen.</em> I show you every leak, attach a dollar number to each one, and hand you a <em>one-week plan to flip the steal</em> — so the next time both your ads load side-by-side, <em>yours is the one closing the booking</em>. <em>Yours to keep whether you hire me to ship it or not.</em> Not vibes — math.",
-          "responses": ["Yeah I'd look at that", "Send it over first", "What's the catch?"],
+          "responses": [
+            "Yeah I'd look at that",
+            "Send it over first",
+            "What's the catch?"
+          ],
           "followup": "No catch — I'm running a handful of these personally this quarter for case studies. That's the only ask.",
           "note": "Steal-frame hook ties audit back to Beat 3 imagery. One-week plan, all fixes shipped at once."
         },
@@ -117,7 +161,11 @@
           "phase": "CLOSE",
           "title": "Calendar or Sample",
           "line": "Two ways we can do this. I've got <em>Thursday at 10</em> or <em>Friday at 2</em> open — pick one and I'll send the calendar invite, and we'll get your site flipped from <em>the one losing the click to the one closing it</em>. Or, if you'd rather see what this looks like first, give me your email and I'll send over a <em>sample audit I did for another exotic rental shop</em>.",
-          "responses": ["Thursday at 10", "Friday at 2", "Send me the sample first"],
+          "responses": [
+            "Thursday at 10",
+            "Friday at 2",
+            "Send me the sample first"
+          ],
           "followup": "Done — calendar invite or sample audit hits your inbox in 60 seconds.",
           "note": "Dual-path close. Steal-frame tilt on calendar path. Either choice is a win."
         }
@@ -132,7 +180,11 @@
           "phase": "OPEN",
           "title": "Three Issues Frame",
           "line": "Hi, my name is {caller} with Conversion Exotics — I review exotic and luxury car rental sites for a living. I pulled up your site and I'm seeing <em>three specific fixes to your booking process</em> that together would put roughly <em>$5,000 to $15,000 a week in new bookings on your calendar</em>. Do you know who I can talk to about this?",
-          "responses": ["That'd be me", "What three fixes?", "Who is this again?"],
+          "responses": [
+            "That'd be me",
+            "What three fixes?",
+            "Who is this again?"
+          ],
           "followup": "Got it — here's what I'm seeing, then I'll show you exactly where that extra revenue comes from.",
           "note": "GAIN-led: three FIXES/WINS that add bookings, not three problems costing money. Sets up the reveal."
         },
@@ -141,7 +193,11 @@
           "phase": "PROBLEM",
           "title": "Three Stuck Spots",
           "line": "Here's the deal — every exotic rental site I look at has <em>three spots where renters get stuck</em> between tapping the ad and actually booking the car: <em>the top of the page</em>, <em>the part where they fill out their info</em>, and <em>one more spot most owners never notice</em>. On your site, all three are losing you money. <em>For every extra second your site takes to load, you lose about a third of your bookings</em> — and that's just the first one.",
-          "responses": ["What's the third one?", "How would you know?", "We just redid the site"],
+          "responses": [
+            "What's the third one?",
+            "How would you know?",
+            "We just redid the site"
+          ],
           "followup": "Yeah — that's the most common reaction. The reveal is in the audit.",
           "note": "Plain-English version of CRO failure stack. No jargon. Tee up the reveal in Beat 3."
         },
@@ -150,7 +206,11 @@
           "phase": "AGITATION",
           "title": "Walk Through Two Of Three",
           "line": "So here's what's actually happening. <em>The top of your page</em> doesn't show a price and doesn't show the car they came for — so they back out and tap the next shop. The ones who scroll down hit your <em>booking form</em> — you're asking them to fill out their info before they've even decided to book. That's a wall. They open two more tabs and forget you. That's the <em>$5,000 to $15,000 a week</em>. Those two are <em>week-one quick wins</em>. But there's a <em>third spot on your booking process that costs more than both of those combined</em>. I'd rather show you that one with your page open.",
-          "responses": ["What's the third one?", "Show me", "How much would this cost to fix?"],
+          "responses": [
+            "What's the third one?",
+            "Show me",
+            "How much would this cost to fix?"
+          ],
           "followup": "Fair — and that's exactly what the audit answers. Pricing comes after.",
           "note": "Reveal two issues plain. Tease third. Do NOT name the third on the call — the reveal is the audit."
         },
@@ -159,7 +219,11 @@
           "phase": "SOLUTION",
           "title": "100+ Sites Audited",
           "line": "I've audited <em>over 100 exotic and luxury car rental sites</em> — same 10-point checklist, same booking process, same three leaks every time. The shops that fix the top two see bookings climb in the first week. The ones that fix all three usually <em>double their weekend bookings inside 30 days</em>.",
-          "responses": ["Okay…", "How long does the fix take?", "Sounds like a sales pitch"],
+          "responses": [
+            "Okay…",
+            "How long does the fix take?",
+            "Sounds like a sales pitch"
+          ],
           "followup": "Fair — and that's exactly why I lead with the audit, not the pitch.",
           "note": "Credibility frame. 100+ sites. Same checklist. Pattern recognition."
         },
@@ -168,7 +232,11 @@
           "phase": "AUDIT OFFER",
           "title": "Free $3,000 Audit",
           "line": "Here's what I want to do. I run a <em>$3,000 conversion audit</em> — and I'd like to do yours free. <em>Thirty minutes. Your live site on screen.</em> Every leak named in plain English no agency would dare use, with <em>dollar-anchored estimates per leak</em>. You walk away with a <em>sequenced one-week plan — every fix shipped at once</em>, ranked by booking impact. <em>Yours to keep whether you hire me to ship it or not.</em> Not vibes — math.",
-          "responses": ["Yeah I'd look at that", "Send it over first", "What's the catch?"],
+          "responses": [
+            "Yeah I'd look at that",
+            "Send it over first",
+            "What's the catch?"
+          ],
           "followup": "No catch — I'm running a handful of these personally this quarter for case studies. That's the only ask.",
           "note": "Verbatim site language. $3K free. One-week plan. All fixes shipped at once."
         },
@@ -177,7 +245,11 @@
           "phase": "CLOSE",
           "title": "Calendar or Sample",
           "line": "Two ways we can do this. I've got <em>Thursday at 10</em> or <em>Friday at 2</em> open — pick one and I'll send the calendar invite. Or, if you'd rather see what this looks like first, give me your email and I'll send over a <em>sample audit I did for another exotic rental shop</em> — full plan, dollar numbers, the whole thing. Which one would you prefer?",
-          "responses": ["Thursday at 10", "Friday at 2", "Send me the sample first"],
+          "responses": [
+            "Thursday at 10",
+            "Friday at 2",
+            "Send me the sample first"
+          ],
           "followup": "Done — calendar invite or sample audit hits your inbox in 60 seconds.",
           "note": "Dual-path close. Booked call OR sample audit. Either is a win."
         }

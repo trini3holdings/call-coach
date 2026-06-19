@@ -11,15 +11,15 @@
         {
           "t": 9,
           "phase": "OPEN",
-          "title": "Dollar-Anchored Leak",
-          "line": "Hi, my name is {caller} calling from ConversionJet — I review private charter sites for a living. I pulled up your site, and there's <em>a fix to your quote page that would put roughly $25,000 to $75,000 a week in new charter revenue back on your calendar</em>. Do you know who I can talk to about this?",
+          "title": "Cost-Led Leak Open",
+          "line": "Hello, my name is {caller} with ConversionJet. I audit private charter websites for a living. Yours has a <em>leak that's costing roughly $100K to $300K a month in lost charter revenue</em>. Who would be the right person to speak with about that?",
           "responses": [
-            "That's me / I handle the site",
-            "Let me transfer you",
-            "How would that work?"
+            "That would be me",
+            "May I ask what this is regarding?",
+            "Who is this, again?"
           ],
-          "followup": "Quick context — I found a fix on your quote page that would likely recover $25K to $75K a week in charter bookings. Worth 60 seconds to hear it?",
-          "note": "GAIN-led open: lead with revenue they can CAPTURE, not lose. Pause AFTER the dollar number — let it land. If transferred, restart from Beat 1. If asked 'how?', use the followup verbatim. Never apologize for calling."
+          "followup": "Understood — give me thirty seconds and I'll show you exactly where the revenue is leaking.",
+          "note": "COLD open, cost-led + gatekeeper-aware, HNW DISCREET register. Lead with the LEAK and the $ MONTHLY figure, pause, then ask who to speak with. Composed, neutral, NO exclamation, NO urgency tropes, NO jargon (no Part 135 / FBO / empty-leg / jet card / HNW). First-name-only variant. Anchor = recoverable charter requests x $15K-$75K/trip = roughly $100K-$300K/mo."
         },
         {
           "t": 24,
