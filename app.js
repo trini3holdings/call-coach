@@ -94,7 +94,9 @@ let state = {
   lockedVariant: null,
   manualVariant: false,
   // v3.2 backend
-  backendUrl: '',
+  // v3.20 — live SQLite backend baked in so reps need zero setup.
+  // Stored override (⚙ Backend panel) still wins via loadState().
+  backendUrl: 'https://call-coach-api.pplx.app/port/5000/',
   syncQueue: [],
   lastSyncTs: 0,
   sheetUrlByBrand: {},        // brand → master sheet URL (LEGACY — kept for back-compat)
