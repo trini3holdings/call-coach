@@ -3,3 +3,5 @@ node_modules/
 *.log
 .vscode/
 .idea/
+add_rapidfire.py
+_test_*.png

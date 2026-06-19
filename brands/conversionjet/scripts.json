@@ -96,7 +96,7 @@
           "t": 9,
           "phase": "OPEN",
           "title": "Peer Comparison",
-          "line": "Hi, my name is {caller} calling from ConversionJet — I review private charter sites for a living. I just finished comparing your site against three other operators in your market — and there's a clear opportunity to pull ahead on the one thing that decides who gets the booking. Do you know who I can talk to about this?",
+          "line": "Hi, my name is {caller} calling from ConversionJet — I audit private charter sites for a living. I just finished comparing your site against three other operators in your market — and there's a clear opportunity to pull ahead on the one thing that decides who gets the booking. Do you know who I can talk to about this?",
           "responses": [
             "That's me / I handle marketing",
             "Let me transfer you",
@@ -180,7 +180,7 @@
           "t": 11,
           "phase": "OPEN",
           "title": "Hidden Quote-Flow Issue",
-          "line": "Hi, my name is {caller} calling from ConversionJet — I review private charter sites for a living. I saw your company is running ads for <em>private charter flights</em>, I pulled up your site this morning, and found <em>a fix on your quote request flow</em> — it would recover <em>more revenue than every other improvement on the page combined</em>. Do you know who I can talk to about this?",
+          "line": "Hi, my name is {caller} calling from ConversionJet — I audit private charter sites for a living. I saw your company is running ads for <em>private charter flights</em>, I pulled up your site this morning, and found <em>a fix on your quote request flow</em> — it would recover <em>more revenue than every other improvement on the page combined</em>. Do you know who I can talk to about this?",
           "responses": [
             "That's me / I handle the site",
             "Let me transfer you",
@@ -253,6 +253,64 @@
           ],
           "followup": "Perfect — what's the best email for the calendar invite (or the sample)?",
           "note": "Identical to A/B. Email is the soft fallback, NOT the goal."
+        }
+      ]
+    },
+    "D": {
+      "name": "Rapid Fire — Sell Now",
+      "desc": "Decision-maker only. DISCREET register — no hype, no urgency, no exclamation. State the offer, state the figure ($5,000, by application), close on an emailed sample or a quiet live preview. Premium positioning: price signals quality. ~80-95s.",
+      "beats": [
+        {
+          "t": 13,
+          "phase": "HOOK",
+          "title": "Decision-Maker Open",
+          "line": "Good afternoon — this is {caller} with ConversionJet. I'm looking for whoever oversees the website. I build <em>mobile-first pages for private charter operators</em>, and yours is losing inquiries before the phone rings. May I take thirty seconds to show you what I mean?",
+          "responses": [
+            "That would be me",
+            "What is this regarding?",
+            "We're set, thank you"
+          ],
+          "followup": "Thank you — briefly, then.",
+          "note": "DISCREET register. Composed, neutral, no slang, no exclamation, no urgency. Banned: Part 135, ARGUS, Wyvern, jet card, empty-leg, FBO, HNW, fractional. 'I' for the work, ConversionJet as brand. Ask permission, don't push."
+        },
+        {
+          "t": 20,
+          "phase": "VALUE-FLASH",
+          "title": "What the Page Does",
+          "line": "What I do is straightforward. <em>One page, built for the phone first</em> — the inquiry path clear and immediate, loading quickly, so the operator's first contact lands with you rather than the next listing. The operators I've built these for have recovered in the range of <em>$100K to $300K a month</em> in charter revenue.",
+          "responses": [
+            "I see…",
+            "How is that measured?",
+            "Understood"
+          ],
+          "followup": "Quite measurable, in fact — I can show you.",
+          "note": "State the outcome calmly with the monthly figure. No hype words. Surgical, factual. Tee up the figure."
+        },
+        {
+          "t": 17,
+          "phase": "PRICE-DROP",
+          "title": "The Figure",
+          "line": "The engagement is <em>$5,000</em> — designed, written, and live, handled end to end. I take a limited number of these by application so each one is done properly. Against what a single recovered charter is worth, it tends to pay for itself almost immediately.",
+          "responses": [
+            "That's reasonable",
+            "I'd want to see it first",
+            "Send details"
+          ],
+          "followup": "Of course — I'd expect you to see it first.",
+          "note": "Price SIGNALS quality here — say $5,000 plainly, frame as selective ('by application'). No discounting, no monthly. Anchor against one recovered charter. Composed."
+        },
+        {
+          "t": 23,
+          "phase": "EASY-YES CLOSE",
+          "title": "Sample or Quiet Preview",
+          "line": "There's nothing to commit to today. I can <em>send you a sample page I built for another charter operator</em> to review at your convenience, or, if you have two minutes, I can <em>show you a quiet live preview of how yours would look</em> right now. Whichever is easier — the email, or the preview?",
+          "responses": [
+            "Send the sample",
+            "Show me now",
+            "Email me, I'll review"
+          ],
+          "followup": "Certainly. The best address to send it to?",
+          "note": "Discreet dual close. 'At your convenience' not 'right now!'. Always capture the email. No pressure language."
         }
       ]
     }

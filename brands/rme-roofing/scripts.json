@@ -95,7 +95,7 @@
           "t": 10,
           "phase": "OPEN",
           "title": "Next Contractor Steal",
-          "line": "Hi, my name is {caller} with RME Roofing — I review roofing company sites for a living. Quick question — <em>do you know how many homeowners with hail damage tap your ad, count to three, and are ready to hire — but end up calling the next contractor?</em> If we capture even half of those on your site, that's <em>$15,000 to $30,000 a week in new roofing jobs for you</em>. Who's the right person to talk to about this?",
+          "line": "Hi, my name is {caller} with RME Roofing — I audit roofing company sites for a living. Quick question — <em>do you know how many homeowners with hail damage tap your ad, count to three, and are ready to hire — but end up calling the next contractor?</em> If we capture even half of those on your site, that's <em>$15,000 to $30,000 a week in new roofing jobs for you</em>. Who's the right person to talk to about this?",
           "responses": [
             "That'd be me",
             "How would you capture them?",
@@ -179,7 +179,7 @@
           "t": 10,
           "phase": "OPEN",
           "title": "Three Issues Frame",
-          "line": "Hi, my name is {caller} with RME Roofing — I review roofing company sites for a living. I pulled up your site and I'm seeing <em>three specific fixes to your lead flow</em> that together would put roughly <em>$15,000 to $30,000 a week in new roofing jobs on your calendar</em>. Do you know who I can talk to about this?",
+          "line": "Hi, my name is {caller} with RME Roofing — I audit roofing company sites for a living. I pulled up your site and I'm seeing <em>three specific fixes to your lead flow</em> that together would put roughly <em>$15,000 to $30,000 a week in new roofing jobs on your calendar</em>. Do you know who I can talk to about this?",
           "responses": [
             "That'd be me",
             "What three fixes?",
@@ -252,6 +252,64 @@
           ],
           "followup": "Done — calendar invite or sample audit hits your inbox in 60 seconds.",
           "note": "Dual-path close. Booked call OR sample audit. Either is a win."
+        }
+      ]
+    },
+    "D": {
+      "name": "Rapid Fire — Sell Now",
+      "desc": "Decision-maker only. Flash the offer, drop the price ($2,500 flat, or $1,250 + $149/mo), close on an emailed sample or live preview of a mobile-first high-CRO page. ~75-90s.",
+      "beats": [
+        {
+          "t": 12,
+          "phase": "HOOK",
+          "title": "Decision-Maker Flash Open",
+          "line": "Hey, it's {caller} with RME Roofing. Quick one for whoever runs the website — is that you? I build <em>mobile-first pages for roofing companies that get the phone ringing</em>, and yours is losing jobs before the call comes in. Thirty seconds and I'll show you the easy version.",
+          "responses": [
+            "Yeah that's me",
+            "What's this about?",
+            "Site's fine"
+          ],
+          "followup": "Perfect — here's the easy version.",
+          "note": "RAPID FIRE. Confirm decision-maker fast. Banned: name tokens, Miner apologies, slang permission, 'CTA' (use 'the button to call'/'phone number they tap'), 'hero' (use 'top of your page'). I not we — RME Roofing as brand."
+        },
+        {
+          "t": 18,
+          "phase": "VALUE-FLASH",
+          "title": "What the Page Does",
+          "line": "Here's what I do. <em>One page, built for the phone first</em> — your number right at the top, one tap to call, built to load fast so the homeowner with a leak after a storm calls you instead of the next listing. Same page that's pulling <em>$60K to $120K a month</em> in jobs back for the roofers I've done it for.",
+          "responses": [
+            "Okay…",
+            "How's it different?",
+            "Sounds expensive"
+          ],
+          "followup": "And that's the part that surprises people — it's not.",
+          "note": "Outcome tied to monthly anchor ($60K-$120K). Concrete: number at top, one-tap call, fast load. Tee up price."
+        },
+        {
+          "t": 16,
+          "phase": "PRICE-DROP",
+          "title": "The Easy Number",
+          "line": "The whole thing is <em>$2,500, flat</em> — built, written, and live. Or if you'd rather keep cash easy, <em>$1,250 to start and $149 a month</em> and I handle the updates. One roof job covers it many times over. Most roofers make it back the first week it's live.",
+          "responses": [
+            "That's it?",
+            "Let me think",
+            "What's the catch?"
+          ],
+          "followup": "No catch — and you don't have to decide anything right now.",
+          "note": "$2,500 flat or $1,250 + $149/mo. Anchor against ONE roof job. Say it and STOP."
+        },
+        {
+          "t": 22,
+          "phase": "EASY-YES CLOSE",
+          "title": "Email or Live Preview",
+          "line": "So here's all I need today — nothing to sign. Either I shoot you a <em>quick email with a sample page I built for another roofer</em> so you can see it on your phone, or give me two minutes and I'll <em>pull up a live preview of what yours would look like</em> right now. Which is easier, email or the live look?",
+          "responses": [
+            "Send the email",
+            "Show me live",
+            "Not right now"
+          ],
+          "followup": "Easy. Best email — and I'll have it to you in five minutes.",
+          "note": "Dual one-tap close. Fall back to capturing email on 'not right now'."
         }
       ]
     }

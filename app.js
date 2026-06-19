@@ -75,6 +75,8 @@ let state = {
   variant: 'A',
   sidePane: 'stats',
   timer: { running: false, startedAt: 0, accumulated: 0, intervalId: null },
+  // v3.17 — 10-minute work cycle: 7-min research window then 3-min call window.
+  cycle: { active: false, phase: null, endsAt: 0, intervalId: null },
   calls: [],
   events: [],                 // v3.16 — append-only audit trail {id, ts, call_id, brand, type, from, to, by, prospect_id, company}
   selectedProspectN: null,
@@ -1225,6 +1227,125 @@ function resetTimer() {
   renderBeats();
 }
 
+// ============== 10-MINUTE WORK CYCLE (v3.17) ==============
+// One full cycle = 7 min research window + 3 min call window.
+// RESEARCH: pull up the prospect, read the script, prep notes.
+// CALL: dial + run the script (auto-starts the call-recording timer so
+//       call length is captured). WRAP: log the call with notes.
+const CYCLE_RESEARCH_SEC = 7 * 60;
+const CYCLE_CALL_SEC = 3 * 60;
+
+function cycleChime() {
+  // Short audible beep so reps don't have to watch the clock.
+  try {
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if (!Ctx) return;
+    const ctx = new Ctx();
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.connect(g); g.connect(ctx.destination);
+    o.type = 'sine'; o.frequency.value = 880;
+    g.gain.setValueAtTime(0.18, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.45);
+    o.start(); o.stop(ctx.currentTime + 0.45);
+  } catch (e) { /* audio not available — silent fallback */ }
+}
+
+function startCycle() {
+  // Begin (or restart) a full 10-minute cycle at the RESEARCH phase.
+  clearInterval(state.cycle.intervalId);
+  state.cycle.active = true;
+  state.cycle.phase = 'research';
+  state.cycle.endsAt = Date.now() + CYCLE_RESEARCH_SEC * 1000;
+  state.cycle.intervalId = setInterval(tickCycle, 250);
+  cycleChime();
+  renderCycle();
+}
+
+function enterCallPhase() {
+  state.cycle.phase = 'call';
+  state.cycle.endsAt = Date.now() + CYCLE_CALL_SEC * 1000;
+  cycleChime();
+  // Auto-start the call-recording timer so call duration is captured.
+  if (!state.timer.running) { resetTimer(); startTimer(); }
+  showToast('\ud83d\udcde Call window \u2014 dial now (3:00)');
+  renderCycle();
+}
+
+function enterWrapPhase() {
+  state.cycle.phase = 'wrap';
+  state.cycle.endsAt = 0;
+  clearInterval(state.cycle.intervalId);
+  // Pause the call timer so the duration is locked while notes are written.
+  if (state.timer.running) pauseTimer();
+  cycleChime();
+  showToast('\u270d\ufe0f Wrap \u2014 log the call with your notes');
+  // Surface the notes form for fast capture.
+  if (typeof revealPostOutcome === 'function') revealPostOutcome();
+  const notes = document.getElementById('notes'); if (notes) notes.focus();
+  renderCycle();
+}
+
+function tickCycle() {
+  if (!state.cycle.active) return;
+  const remain = Math.max(0, Math.round((state.cycle.endsAt - Date.now()) / 1000));
+  if (remain <= 0) {
+    if (state.cycle.phase === 'research') { enterCallPhase(); return; }
+    if (state.cycle.phase === 'call') { enterWrapPhase(); return; }
+  }
+  renderCycle(remain);
+}
+
+function stopCycle() {
+  clearInterval(state.cycle.intervalId);
+  state.cycle = { active: false, phase: null, endsAt: 0, intervalId: null };
+  renderCycle();
+}
+
+function toggleCycle() {
+  if (state.cycle.active && state.cycle.phase !== 'wrap') stopCycle();
+  else startCycle();
+}
+
+function renderCycle(remainOverride) {
+  const wrap = document.getElementById('cycleBox');
+  const phaseEl = document.getElementById('cyclePhase');
+  const timeEl = document.getElementById('cycleTime');
+  const fill = document.getElementById('cycleFill');
+  const btn = document.getElementById('cycleBtn');
+  if (!wrap) return;
+  if (!state.cycle.active) {
+    wrap.className = 'cycle-box';
+    if (phaseEl) phaseEl.textContent = '10-min cycle';
+    if (timeEl) timeEl.textContent = '7:00 + 3:00';
+    if (fill) fill.style.width = '0%';
+    if (btn) btn.textContent = '\ud83d\udd01 Start cycle';
+    return;
+  }
+  const phase = state.cycle.phase;
+  const remain = (typeof remainOverride === 'number')
+    ? remainOverride
+    : Math.max(0, Math.round((state.cycle.endsAt - Date.now()) / 1000));
+  if (btn) btn.textContent = phase === 'wrap' ? '\ud83d\udd01 New cycle' : '\u23f9 Stop';
+  if (phase === 'research') {
+    wrap.className = 'cycle-box cycle-research';
+    if (phaseEl) phaseEl.textContent = '\ud83d\udd0e Research';
+    if (timeEl) timeEl.textContent = fmtTime(remain);
+    if (fill) fill.style.width = Math.round((1 - remain / CYCLE_RESEARCH_SEC) * 100) + '%';
+  } else if (phase === 'call') {
+    wrap.className = 'cycle-box cycle-call';
+    if (phaseEl) phaseEl.textContent = '\ud83d\udcde Call';
+    if (timeEl) timeEl.textContent = fmtTime(remain);
+    if (fill) fill.style.width = Math.round((1 - remain / CYCLE_CALL_SEC) * 100) + '%';
+  } else if (phase === 'wrap') {
+    wrap.className = 'cycle-box cycle-wrap';
+    if (phaseEl) phaseEl.textContent = '\u270d\ufe0f Wrap \u2014 log notes';
+    if (timeEl) timeEl.textContent = 'done';
+    if (fill) fill.style.width = '100%';
+  }
+}
+window.toggleCycle = toggleCycle;
+
 // ============== AUTO-SCORING ==============
 function scoreCall(call, durationSec) {
   let score = 0;
@@ -1518,6 +1639,7 @@ function logCall() {
   setTimeout(() => {
     clearForm();
     resetTimer();
+    if (state.cycle && state.cycle.active && typeof stopCycle === 'function') stopCycle();
     maybeRotateVariant();
     if (state.autoAdvanceAfterLog !== false && typeof nextProspect === 'function') {
       // Temporarily restore selectedProspectN so nextProspect computes the right offset
@@ -2097,6 +2219,7 @@ function bindKeyboard() {
     else if (e.key === '1') { manualSwitchVariant('A'); }
     else if (e.key === '2') { manualSwitchVariant('B'); }
     else if (e.key === '3') { manualSwitchVariant('C'); }
+    else if (e.key === '4') { manualSwitchVariant('D'); }
   });
 }
 
@@ -2612,6 +2735,9 @@ async function init() {
   // Big timer banner buttons
   document.getElementById('btStart').addEventListener('click', toggleTimer);
   document.getElementById('btReset').addEventListener('click', resetTimer);
+  const cycleBtn = document.getElementById('cycleBtn');
+  if (cycleBtn) cycleBtn.addEventListener('click', toggleCycle);
+  if (typeof renderCycle === 'function') renderCycle();
 
   // Sticky recon-card collapse toggle (v3.7)
   const reconCollapseBtn = document.getElementById('reconCollapseBtn');

@@ -143,9 +143,9 @@
         industry: raw.industry,
         register: raw.register
       };
-    } else if (raw.A || raw.B || raw.C) {
+    } else if (raw.A || raw.B || raw.C || raw.D) {
       variantsSrc = {};
-      ['A', 'B', 'C'].forEach(function (k) { if (raw[k]) variantsSrc[k] = raw[k]; });
+      ['A', 'B', 'C', 'D'].forEach(function (k) { if (raw[k]) variantsSrc[k] = raw[k]; });
       const m = raw._meta || {};
       metaSrc = {
         target_length_sec: m.target_length_sec || raw.target_length_sec || 220,
@@ -161,7 +161,7 @@
 
     const out = { _meta: metaSrc };
     let hasAnyBeats = false;
-    ['A', 'B', 'C'].forEach(function (k) {
+    ['A', 'B', 'C', 'D'].forEach(function (k) {
       const v = variantsSrc[k];
       if (!v) return;
       if (!isObj(v)) {
@@ -192,7 +192,7 @@
     });
 
     if (!hasAnyBeats) errors.push('scripts.json: no usable beats in any variant');
-    if (!out.A && !out.B && !out.C) errors.push('scripts.json: no usable variants after normalization');
+    if (!out.A && !out.B && !out.C && !out.D) errors.push('scripts.json: no usable variants after normalization');
 
     return makeResult(out, errors, warnings);
   }

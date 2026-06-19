@@ -517,6 +517,69 @@ function renderCardNotes(slug) {
   return `<div class="dash-notes"><div class="dash-notes-head">Recent call notes</div>${rows}</div>`;
 }
 
+// ============================================================================
+// Team — by rep. Rolls up each rep's effort (calls / connects / booked) and
+// their most recent notes so Zack, Jessica, and Tony's work is tracked per
+// person. Reads the same merged cloud+local calls as the rest of the card.
+// ============================================================================
+function renderTeamBlock(slug) {
+  const calls = (typeof getBrandPerf === 'function' ? getBrandPerf(slug) : [])
+    .filter(c => c && c.ts);
+  if (!calls.length) {
+    return `<div class="dash-empty">No rep activity yet — calls are attributed by rep as they’re logged.</div>`;
+  }
+  // Group by rep (caller). Unknown -> 'Unassigned'.
+  const byRep = {};
+  calls.forEach(c => {
+    const rep = (c.caller && String(c.caller).trim()) || 'Unassigned';
+    if (!byRep[rep]) byRep[rep] = [];
+    byRep[rep].push(c);
+  });
+  const CONNECTED_NO = ['NA', 'VM', 'WN', 'DNC', 'NL'];
+  const BOOKED = ['BK', 'SH', 'CL'];
+  const reps = Object.keys(byRep).sort((a, b) => byRep[b].length - byRep[a].length);
+  const blocks = reps.map(rep => {
+    const list = byRep[rep].slice().sort((a, b) => new Date(b.ts) - new Date(a.ts));
+    const total = list.length;
+    // connected: prefer explicit flag, fall back to outcome class
+    const connects = list.filter(c => (typeof c.connected === 'boolean')
+      ? c.connected
+      : !CONNECTED_NO.includes(c.outcome)).length;
+    const booked = list.filter(c => BOOKED.includes(c.outcome)).length;
+    const connectRate = total ? Math.round((connects / total) * 100) : 0;
+    const lastTs = list[0] && list[0].ts;
+    // latest 2 notes from this rep
+    const noteRows = list
+      .map(c => ({ c, note: c.notes || c.next_step || c.what_worked || c.objection_raised || '' }))
+      .filter(x => x.note)
+      .slice(0, 2)
+      .map(({ c, note }) => {
+        const o = DASH_OUTCOME[c.outcome] || { label: c.outcome || '\u2014', cls: 'mut' };
+        return `<div class="team-note">
+          <span class="dnr-badge bg-${o.cls}">${escapeHtml(o.label)}</span>
+          <span class="team-note-co">${escapeHtml(c.company || c.domain || '')}</span>
+          <span class="team-note-txt">${escapeHtml(String(note).slice(0, 120))}</span>
+        </div>`;
+      }).join('');
+    return `
+      <div class="team-rep">
+        <div class="team-rep-head">
+          <span class="team-rep-name">\ud83d\udc64 ${escapeHtml(rep)}</span>
+          <span class="team-rep-last">${lastTs ? 'last: ' + dashRelTime(lastTs) : ''}</span>
+        </div>
+        <div class="team-rep-stats">
+          <span class="team-stat"><b>${total}</b> calls</span>
+          <span class="team-stat"><b>${connects}</b> connects</span>
+          <span class="team-stat"><b>${connectRate}%</b> connect rate</span>
+          <span class="team-stat"><b>${booked}</b> booked</span>
+        </div>
+        ${noteRows ? `<div class="team-rep-notes">${noteRows}</div>` : ''}
+      </div>`;
+  }).join('');
+  return `<div class="team-block">${blocks}</div>`;
+}
+window.renderTeamBlock = renderTeamBlock;
+
 // Email dropdown picker (replaces the always-open 3-email stack)
 function renderEmailDropdown(slug) {
   const e = (window.FOLLOWUP_EMAILS || {})[slug];
@@ -786,6 +849,7 @@ function renderBrandCard(slug, brand, intel, mode) {
   if (true) {
     const heroBlock = window.renderHeroBlock({ liveCount, liveLabel, soonCount, nextWindow, mode, totalProspects, pipelineVal });
     const notesBlock = window.renderCardNotes(slug);
+    const teamBlock = window.renderTeamBlock(slug);
     const emailDropdown = window.renderEmailDropdown(slug);
     return `
       <article class="dash-card dash-card-v315" data-brand="${slug}" style="--ink:${theme.ink};--gold:${theme.gold};--cream:${theme.cream};--highlight:${theme.highlight};">
@@ -802,6 +866,10 @@ function renderBrandCard(slug, brand, intel, mode) {
         <div class="dash-card-body">
           ${heroBlock}
           ${notesBlock}
+          <details class="dash-disc">
+            <summary class="dash-disc-sum">\ud83d\udc65 Team \u2014 by rep</summary>
+            <div class="dash-disc-body">${teamBlock}</div>
+          </details>
           <details class="dash-disc">
             <summary class="dash-disc-sum">\u2709\ufe0f Follow-up emails</summary>
             <div class="dash-disc-body">${emailDropdown}</div>
