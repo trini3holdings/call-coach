@@ -76,6 +76,7 @@ let state = {
   sidePane: 'stats',
   timer: { running: false, startedAt: 0, accumulated: 0, intervalId: null },
   calls: [],
+  events: [],                 // v3.16 — append-only audit trail {id, ts, call_id, brand, type, from, to, by, prospect_id, company}
   selectedProspectN: null,
   customProspects: [],
   prospectOverrides: {},      // v3.8.9 — per-prospect field overrides keyed by domain or 'n-<id>'
@@ -111,6 +112,7 @@ function loadState() {
   try {
     const s = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
     if (s.calls && Array.isArray(s.calls)) state.calls = s.calls;
+    if (s.events && Array.isArray(s.events)) state.events = s.events;
     if (s.variant) state.variant = s.variant;
     if (s.brand && BRANDS[s.brand]) state.brand = s.brand;
     if (s.caller) state.caller = s.caller;
@@ -138,6 +140,7 @@ function saveState() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       calls: state.calls,
+      events: state.events,
       variant: state.variant,
       brand: state.brand,
       caller: state.caller,
@@ -162,6 +165,24 @@ function saveState() {
     }));
   } catch (e) { /* quota */ }
 }
+
+// ============== EVENT LOG (v3.16 — append-only audit trail) ==============
+// Records every meaningful state change so we can track funnel progression
+// (dial → connect → disposition → re-disposition) over time, not just the
+// final mutable row. Mirrors to data/<brand>/events.jsonl via GitHub sync.
+function logEvent(type, fields) {
+  if (!state.events) state.events = [];
+  const ev = Object.assign({
+    id: `${Date.now()}-${Math.random().toString(36).slice(2,8)}`,
+    ts: Date.now(),
+    type: type,                 // 'call_logged' | 'disposition_changed' | 'call_deleted'
+    by: state.caller || 'unknown',
+    brand: state.brand
+  }, fields || {});
+  state.events.push(ev);
+  return ev;
+}
+window.logEvent = logEvent;
 
 // ============== BACKEND (Google Apps Script Web App) ==============
 async function backendCall(payload) {
@@ -1408,11 +1429,25 @@ function logCall() {
     }
   }
 
+  const _ts = Date.now();
+  // v3.16 — connected = a real conversation happened (not NA/VM/WN/DNC)
+  const _connected = !['NA', 'VM', 'WN', 'DNC', 'NL'].includes(outcome);
+  // dial_attempt = how many times this prospect has been dialed before, +1
+  const _priorAttempts = (state.calls || []).filter(c =>
+    c.brand === state.brand &&
+    ((state.selectedProspectN && c.prospectN === state.selectedProspectN) ||
+     (!state.selectedProspectN && c.company === document.getElementById('company').value.trim() && c.company))
+  ).length;
   const call = {
-    ts: Date.now(),
+    ts: _ts,
+    call_id: `${_ts}-${(state.caller || 'x').replace(/\s+/g,'').slice(0,8)}-${Math.random().toString(36).slice(2,7)}`,
+    created_at: new Date(_ts).toISOString(),
+    updated_at: new Date(_ts).toISOString(),
     brand: state.brand,
     caller: state.caller,
     variant: state.variant,
+    connected: _connected,
+    dial_attempt: _priorAttempts + 1,
     company: document.getElementById('company').value.trim(),
     domain: '',
     market: document.getElementById('market').value.trim(),
@@ -1436,6 +1471,15 @@ function logCall() {
 
   call.score = scoreCall(call, duration);
   state.calls.push(call);
+  // v3.16 — audit trail: record the call as a funnel event
+  logEvent('call_logged', {
+    call_id: call.call_id,
+    to: call.outcome,
+    connected: call.connected,
+    dial_attempt: call.dial_attempt,
+    prospect_id: call.prospectN || null,
+    company: call.company || call.domain || ''
+  });
   // v3.7.2 — mirror into cloudCalls[brand] immediately so the picker
   // reflects the new dial even before sync completes.
   if (!state.cloudCalls[state.brand]) state.cloudCalls[state.brand] = [];

@@ -164,6 +164,9 @@
   function callsForBrand(slug) {
     return (state.calls || []).filter(c => (c.brand || state.brand) === slug);
   }
+  function eventsForBrand(slug) {
+    return (state.events || []).filter(e => (e.brand || state.brand) === slug);
+  }
 
   function overridesForBrand(slug) {
     // prospectOverrides is keyed by domain — and overrides are not brand-tagged.
@@ -185,6 +188,7 @@
         caller: state.caller || 'unknown'
       },
       call_logs: callsForBrand(slug),
+      events: eventsForBrand(slug),
       prospect_overrides: overridesForBrand(slug),
       deleted_prospects: deletionsForBrand(slug)
     };
@@ -205,13 +209,26 @@
       pulled.brands++;
       shas[slug] = file.sha;
 
-      // Merge call logs by ts — only add new ones
-      const seenTs = new Set((state.calls || []).map(c => c.ts));
+      // Merge call logs by call_id (fallback to ts for legacy rows) — only add new ones
+      const callKey = c2 => c2.call_id || ('ts:' + c2.ts);
+      const seenKeys = new Set((state.calls || []).map(callKey));
       (file.data.call_logs || []).forEach(call => {
-        if (!seenTs.has(call.ts)) {
+        const k = callKey(call);
+        if (!seenKeys.has(k)) {
           state.calls.push(call);
-          seenTs.add(call.ts);
+          seenKeys.add(k);
           pulled.calls++;
+        }
+      });
+
+      // Merge events by id (append-only audit trail)
+      state.events = state.events || [];
+      const seenEv = new Set(state.events.map(e => e.id));
+      (file.data.events || []).forEach(ev => {
+        if (ev && ev.id && !seenEv.has(ev.id)) {
+          state.events.push(ev);
+          seenEv.add(ev.id);
+          pulled.events = (pulled.events || 0) + 1;
         }
       });
 
