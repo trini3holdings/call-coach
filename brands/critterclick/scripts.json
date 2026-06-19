@@ -5,7 +5,7 @@
   "variants": {
     "A": {
       "name": "The Missed-Call Leak",
-      "desc": "Booking-process leak angle. Emergency wildlife caller is already panicking — your site loses them at the booking button before the phone even rings. $2K-$6K/week anchor. Tease third issue. Dual-path close.",
+      "desc": "Booking-process leak angle. Emergency wildlife caller is already panicking — your site loses them at the booking button before the phone even rings. $8K-$24K/mo anchor. Tease third issue. Dual-path close.",
       "beats": [
         {
           "t": 10,
@@ -37,7 +37,7 @@
           "t": 36,
           "phase": "AGITATION",
           "title": "The Booking Button Costs You the Job",
-          "line": "Here's what's actually happening. <em>The homeowner taps your ad, counts to three, and your phone number isn't front and center</em> — so they back out and tap the next shop. The next shop picks up, gets the job, and gets paid <em>$400 to $600 by 9 in the morning</em>. The ones who do find your number land on a booking process that asks them to fill out a form before they've even said what's in their attic. By the time they figure it out, they've already called two other shops. That's the <em>$2,000 to $6,000 a week</em>. Getting your phone number visible and making it easy to book — those are <em>week-one quick wins</em>. But there's a <em>third issue on your site that costs more than both of those combined</em>. I'd rather show you that one with your page open.",
+          "line": "Here's what's actually happening. <em>The homeowner taps your ad, counts to three, and your phone number isn't front and center</em> — so they back out and tap the next shop. The next shop picks up, gets the job — and gets paid for it. The ones who do find your number land on a booking process that asks them to fill out a form before they've even said what's in their attic. By the time they figure it out, they've already called two other shops. That's the <em>$8K to $24K a month</em>. Getting your phone number visible and making it easy to book — those are <em>week-one quick wins</em>. But there's a <em>third issue on your site that costs more than both of those combined</em>. I'd rather show you that one with your page open.",
           "responses": [
             "What's the third issue?",
             "Show me",
@@ -89,13 +89,13 @@
     },
     "B": {
       "name": "Midnight Emergency Steal",
-      "desc": "Homeowner hears scratching at 11pm. Taps your ad, your site doesn't make it easy to call or book. They tap the next ad. The next shop gets the $600 job by 9am. Steal-frame audit. $2K-$6K/week anchor. Dual-path close.",
+      "desc": "Homeowner hears scratching at 11pm. Taps your ad, your site doesn't make it easy to call or book. They tap the next ad. The next shop gets that job. Steal-frame audit. $8K-$24K/mo anchor. Dual-path close.",
       "beats": [
         {
           "t": 10,
           "phase": "OPEN",
           "title": "Midnight Capture Frame",
-          "line": "Hi, my name is {caller} with CritterClick — I review wildlife removal sites for a living. Quick question — <em>do you know how many homeowners hear something scratching in their attic at night, tap your ad, and end up booking the next shop?</em> If we capture even half of those on your site, that's <em>$2,000 to $6,000 a week in new jobs for you</em>. Who's the right person to talk to about this?",
+          "line": "Hi, my name is {caller} with CritterClick — I review wildlife removal sites for a living. Quick question — <em>do you know how many homeowners hear something scratching in their attic at night, tap your ad, and end up booking the next shop?</em> If we capture even half of those on your site, that's <em>$8K to $24K a month in new jobs for you</em>. Who's the right person to talk to about this?",
           "responses": [
             "That'd be me",
             "How would you capture them?",
@@ -121,7 +121,7 @@
           "t": 34,
           "phase": "AGITATION",
           "title": "Next Shop Gets the Morning Job",
-          "line": "Here's what's actually happening. <em>The homeowner taps your ad at 11pm, can't find your number fast enough, and taps the next shop.</em> The next shop has a phone number right at the top. They pick up — or they have a callback request button that works. <em>The next shop gets the $600 job by 9 in the morning. You never even showed up on that homeowner's screen for more than 3 seconds.</em> The ones who do find your number hit a booking process that slows them down before they've decided anything. They open two more tabs and forget you. That's the <em>$2,000 to $6,000 a week</em>. Fixing the phone visibility and the booking path — those are <em>week-one quick wins</em>. But there's a <em>third issue on your site that costs more than both of those combined</em>. I'd rather show you that one with your page open.",
+          "line": "Here's what's actually happening. <em>The homeowner taps your ad at 11pm, can't find your number fast enough, and taps the next shop.</em> The next shop has a phone number right at the top. They pick up — or they have a callback request button that works. <em>The next shop gets that job — not you. You never even showed up on that homeowner's screen for more than 3 seconds.</em> The ones who do find your number hit a booking process that slows them down before they've decided anything. They open two more tabs and forget you. That's the <em>$8K to $24K a month</em>. Fixing the phone visibility and the booking path — those are <em>week-one quick wins</em>. But there's a <em>third issue on your site that costs more than both of those combined</em>. I'd rather show you that one with your page open.",
           "responses": [
             "What's the third issue?",
             "Show me",
@@ -173,13 +173,13 @@
     },
     "C": {
       "name": "3-Issue Reveal",
-      "desc": "Names two of three issues outright in plain English (top of page + how they actually book), teases the third for the audit. $2K-$6K/week anchor. Dual-path close.",
+      "desc": "Names two of three issues outright in plain English (top of page + how they actually book), teases the third for the audit. $8K-$24K/mo anchor. Dual-path close.",
       "beats": [
         {
           "t": 10,
           "phase": "OPEN",
           "title": "Three Wins Frame",
-          "line": "Hi, my name is {caller} with CritterClick — I review wildlife removal sites for a living. I pulled up your site and I'm seeing <em>three specific fixes to your booking process</em> that together would put roughly <em>$2,000 to $6,000 a week in new jobs on your calendar</em>. Do you know who I can talk to about this?",
+          "line": "Hi, my name is {caller} with CritterClick — I review wildlife removal sites for a living. I pulled up your site and I'm seeing <em>three specific fixes to your booking process</em> that together would put roughly <em>$8K to $24K a month in new jobs on your calendar</em>. Do you know who I can talk to about this?",
           "responses": [
             "That'd be me",
             "What three fixes?",
@@ -205,7 +205,7 @@
           "t": 38,
           "phase": "AGITATION",
           "title": "Walk Through Two Of Three",
-          "line": "So here's what's actually happening. <em>The top of your page</em> doesn't have a phone number front and center, and there's no urgency — no reason for a panicked homeowner to call right now instead of scrolling. So they back out and tap the next shop. The ones who stay long enough hit <em>how they actually try to reach you</em> — you're asking them to fill out a form before they've even said what's in their attic. That's a wall. They open two more tabs and forget you. That's the <em>$2,000 to $6,000 a week</em>. Those two are <em>week-one quick wins</em>. But there's a <em>third issue on your site that costs more than both of those combined</em>. I'd rather show you that one with your page open.",
+          "line": "So here's what's actually happening. <em>The top of your page</em> doesn't have a phone number front and center, and there's no urgency — no reason for a panicked homeowner to call right now instead of scrolling. So they back out and tap the next shop. The ones who stay long enough hit <em>how they actually try to reach you</em> — you're asking them to fill out a form before they've even said what's in their attic. That's a wall. They open two more tabs and forget you. That's the <em>$8K to $24K a month</em>. Those two are <em>week-one quick wins</em>. But there's a <em>third issue on your site that costs more than both of those combined</em>. I'd rather show you that one with your page open.",
           "responses": [
             "What's the third one?",
             "Show me",
