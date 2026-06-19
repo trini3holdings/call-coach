@@ -1155,11 +1155,16 @@ function renderObjections() {
 }
 
 // ============== TIMER ==============
+// v3.19: hard cap on call length — a call window can never exceed 3 minutes.
+const MAX_CALL_SEC = 3 * 60;
 function currentElapsedSec() {
+  let sec;
   if (state.timer.running) {
-    return state.timer.accumulated + Math.floor((Date.now() - state.timer.startedAt) / 1000);
+    sec = state.timer.accumulated + Math.floor((Date.now() - state.timer.startedAt) / 1000);
+  } else {
+    sec = state.timer.accumulated;
   }
-  return state.timer.accumulated;
+  return Math.min(sec, MAX_CALL_SEC);
 }
 function fmtTime(sec) {
   const m = Math.floor(sec / 60), s = sec % 60;
@@ -1173,6 +1178,13 @@ function tickTimer() {
   // surfaces as a compact readout inside the cycle box during the Call phase.
   const dur = document.getElementById('cycleCallDur');
   if (dur) dur.textContent = state.timer.running ? ('\ud83d\udcde ' + fmtTime(sec)) : '';
+  // v3.19: enforce the 3-minute max — auto-pause the call timer at the cap.
+  if (state.timer.running && sec >= MAX_CALL_SEC) {
+    state.timer.accumulated = MAX_CALL_SEC;
+    pauseTimer();
+    if (dur) dur.textContent = '\ud83d\udcde 03:00 \u00b7 max';
+    if (typeof showToast === 'function') showToast('\u23f1\ufe0f 3-minute call cap reached \u2014 wrap it up');
+  }
   renderBeats();
 }
 function scriptTargetLength() {
@@ -1225,7 +1237,7 @@ function resetTimer() {
 // CALL: dial + run the script (auto-starts the call-recording timer so
 //       call length is captured). WRAP: log the call with notes.
 const CYCLE_RESEARCH_SEC = 7 * 60;
-const CYCLE_CALL_SEC = 3 * 60;
+const CYCLE_CALL_SEC = MAX_CALL_SEC; // v3.19: call window == hard call cap (3:00)
 
 function cycleChime() {
   // Short audible beep so reps don't have to watch the clock.
