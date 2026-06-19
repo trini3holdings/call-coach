@@ -90,7 +90,7 @@ let state = {
   // v3.7.2 — TZ gating
   tzGateEnabled: true,        // block prospects outside their callable window
   tzGateMode: 'block',        // 'block' (hide) | 'warn' (show w/ warning) | 'off'
-  dedupDays: 30,              // skip prospects called by anyone in last N days
+  dedupDays: 7,               // skip prospects called by anyone in last N days (max 7)
   lockedVariant: null,
   manualVariant: false,
   // v3.2 backend
@@ -133,7 +133,11 @@ function loadState() {
     if (s.cloudProspects && Array.isArray(s.cloudProspects)) state.cloudProspects = s.cloudProspects;
     if (s.cloudCalls && typeof s.cloudCalls === 'object') state.cloudCalls = s.cloudCalls;
     if (typeof s.tzGateMode === 'string') state.tzGateMode = s.tzGateMode;
-    if (typeof s.dedupDays === 'number') state.dedupDays = s.dedupDays;
+    if (typeof s.dedupDays === 'number') {
+      // v3.18: options capped at 7 days — clamp any legacy saved value (14/30/60/90) down to 7.
+      const allowedDedup = [0, 1, 2, 3, 7];
+      state.dedupDays = allowedDedup.includes(s.dedupDays) ? s.dedupDays : (s.dedupDays > 7 ? 7 : 0);
+    }
     if (s.saidBeats && typeof s.saidBeats === 'object') state.saidBeats = s.saidBeats;
     if (typeof s.reconCardCollapsed === 'boolean') state.reconCardCollapsed = s.reconCardCollapsed;
   } catch (e) { /* fresh */ }
@@ -1165,19 +1169,10 @@ function tickTimer() {
   const sec = currentElapsedSec();
   const el = document.getElementById('timerDisplay');
   if (el) el.textContent = fmtTime(sec);
-  // Big timer banner
-  const btE = document.getElementById('btElapsed');
-  if (btE) btE.textContent = fmtTime(sec);
-  const variant = SCRIPTS[state.variant];
-  const target = (SCRIPTS && variant) ? scriptTargetLength() : 0;
-  const btT = document.getElementById('btTarget');
-  if (btT) btT.textContent = fmtTime(target);
-  const fill = document.getElementById('btBarFill');
-  if (fill && target > 0) {
-    const pct = Math.min(100, Math.round((sec / target) * 100));
-    fill.style.width = pct + '%';
-    fill.classList.toggle('over', sec > target);
-  }
+  // v3.18: the standalone big-timer display was removed — the call duration now
+  // surfaces as a compact readout inside the cycle box during the Call phase.
+  const dur = document.getElementById('cycleCallDur');
+  if (dur) dur.textContent = state.timer.running ? ('\ud83d\udcde ' + fmtTime(sec)) : '';
   renderBeats();
 }
 function scriptTargetLength() {
@@ -1220,10 +1215,7 @@ function resetTimer() {
   const tD = document.getElementById('timerDisplay'); if (tD) tD.textContent = '00:00';
   const tS3 = document.getElementById('timerStart'); if (tS3) tS3.textContent = 'Start';
   const tH3 = document.getElementById('timerHint'); if (tH3) tH3.textContent = 'Press Ctrl+S to start';
-  const btE = document.getElementById('btElapsed'); if (btE) btE.textContent = '00:00';
-  const btS = document.getElementById('btStart'); if (btS) btS.textContent = '▶ Start';
-  const fill = document.getElementById('btBarFill'); if (fill) { fill.style.width = '0%'; fill.classList.remove('over'); }
-  const phEl = document.getElementById('btPhase'); if (phEl) phEl.textContent = 'Press Start · Ctrl+S';
+  const dur = document.getElementById('cycleCallDur'); if (dur) dur.textContent = '';
   renderBeats();
 }
 
@@ -1313,12 +1305,14 @@ function renderCycle(remainOverride) {
   const timeEl = document.getElementById('cycleTime');
   const fill = document.getElementById('cycleFill');
   const btn = document.getElementById('cycleBtn');
+  const hintEl = document.getElementById('cycleHint');
   if (!wrap) return;
   if (!state.cycle.active) {
     wrap.className = 'cycle-box';
-    if (phaseEl) phaseEl.textContent = '10-min cycle';
-    if (timeEl) timeEl.textContent = '7:00 + 3:00';
+    if (phaseEl) phaseEl.textContent = '10-minute work cycle';
+    if (timeEl) timeEl.textContent = '7:00 research + 3:00 call';
     if (fill) fill.style.width = '0%';
+    if (hintEl) hintEl.textContent = 'Research \u2192 Call \u2192 Wrap';
     if (btn) btn.textContent = '\ud83d\udd01 Start cycle';
     return;
   }
@@ -1329,18 +1323,21 @@ function renderCycle(remainOverride) {
   if (btn) btn.textContent = phase === 'wrap' ? '\ud83d\udd01 New cycle' : '\u23f9 Stop';
   if (phase === 'research') {
     wrap.className = 'cycle-box cycle-research';
-    if (phaseEl) phaseEl.textContent = '\ud83d\udd0e Research';
+    if (phaseEl) phaseEl.textContent = '\ud83d\udd0e Research \u2014 prep the prospect';
     if (timeEl) timeEl.textContent = fmtTime(remain);
+    if (hintEl) hintEl.textContent = 'Pull up the prospect, read the script, prep your notes';
     if (fill) fill.style.width = Math.round((1 - remain / CYCLE_RESEARCH_SEC) * 100) + '%';
   } else if (phase === 'call') {
     wrap.className = 'cycle-box cycle-call';
-    if (phaseEl) phaseEl.textContent = '\ud83d\udcde Call';
+    if (phaseEl) phaseEl.textContent = '\ud83d\udcde Call \u2014 dial now';
     if (timeEl) timeEl.textContent = fmtTime(remain);
+    if (hintEl) hintEl.textContent = 'Run the script \u2014 call duration is recording';
     if (fill) fill.style.width = Math.round((1 - remain / CYCLE_CALL_SEC) * 100) + '%';
   } else if (phase === 'wrap') {
     wrap.className = 'cycle-box cycle-wrap';
-    if (phaseEl) phaseEl.textContent = '\u270d\ufe0f Wrap \u2014 log notes';
+    if (phaseEl) phaseEl.textContent = '\u270d\ufe0f Wrap \u2014 log the call';
     if (timeEl) timeEl.textContent = 'done';
+    if (hintEl) hintEl.textContent = 'Pick an outcome and save your notes';
     if (fill) fill.style.width = '100%';
   }
 }
@@ -2293,7 +2290,7 @@ async function init() {
   const tzGateInit = document.getElementById('tzGateMode');
   if (tzGateInit) tzGateInit.value = state.tzGateMode || 'block';
   const dedupInit = document.getElementById('dedupDays');
-  if (dedupInit) dedupInit.value = String(state.dedupDays != null ? state.dedupDays : 30);
+  if (dedupInit) dedupInit.value = String(state.dedupDays != null ? state.dedupDays : 7);
 
   document.getElementById('topbarDate').textContent =
     new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -2732,9 +2729,12 @@ async function init() {
     });
   });
 
-  // Big timer banner buttons
-  document.getElementById('btStart').addEventListener('click', toggleTimer);
-  document.getElementById('btReset').addEventListener('click', resetTimer);
+  // Big timer banner — v3.18: the standalone call timer was removed; the 10-min
+  // cycle owns the banner. Keep null-guards for any legacy buttons.
+  const btStartEl = document.getElementById('btStart');
+  if (btStartEl) btStartEl.addEventListener('click', toggleTimer);
+  const btResetEl = document.getElementById('btReset');
+  if (btResetEl) btResetEl.addEventListener('click', resetTimer);
   const cycleBtn = document.getElementById('cycleBtn');
   if (cycleBtn) cycleBtn.addEventListener('click', toggleCycle);
   if (typeof renderCycle === 'function') renderCycle();
