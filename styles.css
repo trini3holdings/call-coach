@@ -104,6 +104,11 @@ body {
 .sync-badge.offline { background: #555; color: #ccc; }
 .sync-badge.error { background: var(--danger); color: #fff; }
 .sync-badge.syncing { background: var(--gold); color: var(--ink); }
+.sync-badge.queued { background: var(--gold); color: var(--ink); }
+.sync-freshness {
+  font-size: 10px; color: #9aa; font-weight: 500;
+  letter-spacing: 0.2px; white-space: nowrap;
+}
 
 /* ============ LEGEND BAR ============ */
 .legend-bar {
@@ -782,6 +787,16 @@ kbd {
   outline: 2px solid var(--gold);
   background: var(--highlight);
 }
+
+/* v3.23 — per-row sync status indicator */
+.log-sync {
+  font-size: 11px; line-height: 1; width: 14px;
+  text-align: center; flex: 0 0 auto;
+  cursor: help;
+}
+.log-sync.synced { color: var(--success); }
+.log-sync.queued { color: var(--gold); }
+.log-sync.local  { color: var(--text-dim); opacity: 0.7; }
 
 /* v3.21 — back/forward nav bar above the call log */
 .log-nav {

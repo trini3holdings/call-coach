@@ -99,6 +99,7 @@ let state = {
   backendUrl: 'https://call-coach-api.pplx.app/port/5000/',
   syncQueue: [],
   lastSyncTs: 0,
+  syncedCallIds: [],          // v3.23 — call_ids confirmed persisted to backend (for per-row ✓ indicator)
   sheetUrlByBrand: {},        // brand → master sheet URL (LEGACY — kept for back-compat)
   masterSheetUrl: '',         // v3.8: single master sheet (all brands)
   // v3.3 UX
@@ -130,6 +131,7 @@ function loadState() {
     if (s.backendUrl) state.backendUrl = s.backendUrl;
     if (s.syncQueue && Array.isArray(s.syncQueue)) state.syncQueue = s.syncQueue;
     if (s.lastSyncTs) state.lastSyncTs = s.lastSyncTs;
+    if (s.syncedCallIds && Array.isArray(s.syncedCallIds)) state.syncedCallIds = s.syncedCallIds;
     if (s.sheetUrlByBrand) state.sheetUrlByBrand = s.sheetUrlByBrand;
     if (s.masterSheetUrl) state.masterSheetUrl = s.masterSheetUrl;
     if (s.cloudProspects && Array.isArray(s.cloudProspects)) state.cloudProspects = s.cloudProspects;
@@ -166,6 +168,7 @@ function saveState() {
       backendUrl: state.backendUrl,
       syncQueue: state.syncQueue,
       lastSyncTs: state.lastSyncTs,
+      syncedCallIds: state.syncedCallIds,
       sheetUrlByBrand: state.sheetUrlByBrand,
       masterSheetUrl: state.masterSheetUrl,
       saidBeats: state.saidBeats,
@@ -215,8 +218,8 @@ function setSyncBadge(status) {
   if (!el) return;
   el.className = 'sync-badge ' + status;
   const label = {
-    offline: '● No sheet linked',
-    online: '● Sheet synced',
+    offline: '● Local only',
+    online: '● Synced',
     syncing: '● Syncing…',
     error: '● Sync error',
     queued: `● ${state.syncQueue.length} queued`
@@ -224,6 +227,27 @@ function setSyncBadge(status) {
   el.textContent = label;
   const qc = document.getElementById('queueCount');
   if (qc) qc.textContent = state.syncQueue.length;
+  updateSyncFreshness();
+}
+
+// v3.23 — "Last synced Xs ago" freshness readout next to the sync badge.
+function fmtAgo(ms) {
+  if (!ms) return 'never';
+  const s = Math.floor((Date.now() - ms) / 1000);
+  if (s < 5) return 'just now';
+  if (s < 60) return `${s}s ago`;
+  const m = Math.floor(s / 60);
+  if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h ago`;
+  return `${Math.floor(h / 24)}d ago`;
+}
+
+function updateSyncFreshness() {
+  const el = document.getElementById('syncFreshness');
+  if (!el) return;
+  if (!state.backendUrl) { el.textContent = ''; return; }
+  el.textContent = state.lastSyncTs ? `synced ${fmtAgo(state.lastSyncTs)}` : '';
 }
 
 async function pingBackend(silent) {
@@ -261,6 +285,9 @@ async function drainSyncQueue() {
           state.masterSheetUrl = r.sheetUrl;
           state.sheetUrlByBrand[job.brand] = r.sheetUrl;  // back-compat
         }
+        // v3.23 — mark this call_id confirmed-synced for the per-row ✓ indicator
+        const cid = job.call && job.call.call_id;
+        if (cid && !state.syncedCallIds.includes(cid)) state.syncedCallIds.push(cid);
         successCount++;
       } else if (job.kind === 'deleteCall') {
         // v3.21 — remove a call from the backend SQLite store
@@ -280,7 +307,10 @@ async function drainSyncQueue() {
     setTimeout(drainSyncQueue, SYNC_RETRY_MS);
   } else {
     setSyncBadge('online');
-    if (successCount > 0) showToast(`Synced ${successCount} call${successCount > 1 ? 's' : ''} to Sheets`);
+    if (successCount > 0) {
+      showToast(`Synced ${successCount} call${successCount > 1 ? 's' : ''}`);
+      if (typeof renderCallLog === 'function') renderCallLog();  // v3.23 — flip per-row dots ⏳ → ✓
+    }
   }
 }
 
@@ -314,12 +344,45 @@ async function loadCloudCalls() {
     const r = await backendCall({ action: 'listCalls', brand: state.brand, sinceTs });
     if (r.calls && Array.isArray(r.calls)) {
       state.cloudCalls[state.brand] = r.calls;
+      state.lastSyncTs = Date.now();   // v3.23 — inbound pull counts as a sync for freshness readout
+      // v3.23 — any call_id the backend returns is confirmed-persisted (covers teammates' rows + this rep's older calls)
+      for (const row of r.calls) {
+        if (row.call_id && !state.syncedCallIds.includes(row.call_id)) state.syncedCallIds.push(row.call_id);
+      }
       saveState();
       renderProspectPicker();
       if (typeof renderReconCard === 'function') renderReconCard(); // refresh history panel with teammates' notes
+      if (typeof renderCallLog === 'function') renderCallLog();      // refresh per-row sync dots
+      updateSyncFreshness();
     }
   } catch (e) {
     console.warn('listCalls failed:', e);
+  }
+}
+
+// v3.23 — Smart inbound refresh: re-pull teammates' calls when the rep returns
+// to the tab AND every 60s while the tab is active. Polling pauses while the
+// tab is hidden to avoid hammering the backend in the background.
+let _inboundPollTimer = null;
+function startInboundRefresh() {
+  stopInboundRefresh();
+  if (document.visibilityState !== 'visible') return;
+  _inboundPollTimer = setInterval(() => {
+    if (document.visibilityState === 'visible' && state.backendUrl && state.brand) {
+      loadCloudCalls();
+    }
+  }, 60000);
+}
+function stopInboundRefresh() {
+  if (_inboundPollTimer) { clearInterval(_inboundPollTimer); _inboundPollTimer = null; }
+}
+function handleVisibilityRefresh() {
+  if (document.visibilityState === 'visible') {
+    // Returned to the tab — pull fresh teammate data immediately, then resume polling.
+    if (state.backendUrl && state.brand) loadCloudCalls();
+    startInboundRefresh();
+  } else {
+    stopInboundRefresh();  // pause polling while hidden
   }
 }
 
@@ -1527,6 +1590,19 @@ function renderProgressBar(calledToday, totalProspects) {
 }
 
 // ============== CALL LOG ==============
+// v3.23 — per-row sync status for the Recent Calls log.
+// check = confirmed persisted to the shared backend
+// hourglass = queued / in-flight (waiting to sync)
+// disk = local only (no backend linked — lives in this browser)
+function callSyncStatus(c) {
+  const cid = c && c.call_id;
+  if (!state.backendUrl) return { icon: '💾', cls: 'local', title: 'Local only — no shared database linked' };
+  if (cid && state.syncedCallIds.includes(cid)) return { icon: '✓', cls: 'synced', title: 'Synced to shared database' };
+  const queued = (state.syncQueue || []).some(j => j.kind === 'logCall' && j.call && j.call.call_id === cid);
+  if (queued) return { icon: '⏳', cls: 'queued', title: 'Queued — will sync when online' };
+  return { icon: '⏳', cls: 'queued', title: 'Pending sync' };
+}
+
 function renderCallLog() {
   const log = document.getElementById('callLog');
   if (!log) return;
@@ -1546,6 +1622,7 @@ function renderCallLog() {
   log.innerHTML = recent.map((c, i) => `
     <div class="log-row ${state.logCursor === i ? 'log-row-sel' : ''}" data-cid="${c.call_id || ''}" data-i="${i}">
       <span class="log-outcome ${c.outcome.toLowerCase()}">${c.outcome}</span>
+      <span class="log-sync ${callSyncStatus(c).cls}" title="${callSyncStatus(c).title}">${callSyncStatus(c).icon}</span>
       <span class="log-company" style="flex:1;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHTML(c.company || '\u2014')}</span>
       ${c.followup && c.followup.date ? `<span class="log-followup" title="Follow-up ${c.followup.date}">\ud83d\udcc5</span>` : ''}
       <span class="log-score" title="Auto-score">${c.score || 0}</span>
@@ -3053,6 +3130,14 @@ async function init() {
     }
   });
   window.addEventListener('offline', () => setSyncBadge('offline'));
+
+  // v3.23 — Smart inbound refresh: re-pull teammates' calls on tab refocus + every 60s while active.
+  document.addEventListener('visibilitychange', handleVisibilityRefresh);
+  window.addEventListener('focus', handleVisibilityRefresh);
+  startInboundRefresh();
+
+  // v3.23 — keep the "synced Xs ago" readout ticking so reps always see live data freshness.
+  setInterval(updateSyncFreshness, 5000);
 }
 
 // ============== v3.10.0 — GITHUB SHEET UI ==============
