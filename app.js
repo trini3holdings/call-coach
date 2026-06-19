@@ -1641,14 +1641,22 @@ function cancelEditCall() {
 }
 
 // v3.21 — delete a logged call locally + on the backend
+// v3.22 — delete with an 8-second undo window (no blocking confirm).
+// The call is removed from the UI immediately and stashed; the backend
+// deleteCall only fires when the window expires. Undo restores it in place.
 function deleteCallById(callId) {
   if (!callId) return;
+  // If a previous pending delete is still open, finalize it first.
+  if (state._pendingDelete) finalizePendingDelete();
   const idx = (state.calls || []).findIndex(c => c.call_id === callId);
   if (idx < 0) { showToast('Call not found'); return; }
   const removed = state.calls[idx];
-  if (!confirm(`Delete this call?\n\n${removed.outcome} \u00b7 ${removed.company || '\u2014'} \u00b7 score ${removed.score || 0}\n\nThis cannot be undone.`)) return;
+  // Stash enough to fully restore (call + its original index).
+  state._pendingDelete = { call: removed, idx, brand: removed.brand };
+  // Remove from the active list + cloud mirror so the UI updates now.
   state.calls.splice(idx, 1);
   if (state.cloudCalls && state.cloudCalls[removed.brand]) {
+    state._pendingDelete.cloudRow = state.cloudCalls[removed.brand].find(c => c.ts === removed.ts) || null;
     state.cloudCalls[removed.brand] = state.cloudCalls[removed.brand].filter(c => c.ts !== removed.ts);
   }
   if (state.editingCallId === callId) cancelEditCall();
@@ -1658,17 +1666,74 @@ function deleteCallById(callId) {
   renderCallLog();
   if (typeof renderReconCard === 'function') renderReconCard();
   if (typeof renderProspectPicker === 'function') renderProspectPicker();
-  if (state.backendUrl) {
-    state.syncQueue.push({ kind: 'deleteCall', brand: removed.brand, call_id: callId, queuedAt: Date.now() });
+  // Show the undo toast in delete mode.
+  showDeleteUndoToast(removed);
+}
+
+// Finalize a pending delete: commit it to the backend and clear the stash.
+function finalizePendingDelete() {
+  const pd = state._pendingDelete;
+  if (!pd) return;
+  state._pendingDelete = null;
+  if (state._deleteTimer) { clearTimeout(state._deleteTimer); state._deleteTimer = null; }
+  const t = document.getElementById('undoToast');
+  if (t) t.classList.add('hidden');
+  if (state.backendUrl && pd.call) {
+    state.syncQueue.push({ kind: 'deleteCall', brand: pd.brand, call_id: pd.call.call_id, queuedAt: Date.now() });
     saveState();
     drainSyncQueue();
   }
-  showToast('Call deleted');
+}
+
+// Restore a pending delete (user hit Undo within the window).
+function undoDeleteCall() {
+  const pd = state._pendingDelete;
+  if (!pd) return;
+  if (state._deleteTimer) { clearTimeout(state._deleteTimer); state._deleteTimer = null; }
+  // Re-insert at the original index (clamped).
+  const at = Math.min(Math.max(pd.idx, 0), state.calls.length);
+  state.calls.splice(at, 0, pd.call);
+  if (pd.cloudRow) {
+    if (!state.cloudCalls[pd.brand]) state.cloudCalls[pd.brand] = [];
+    state.cloudCalls[pd.brand].push(pd.cloudRow);
+  }
+  state._pendingDelete = null;
+  saveState();
+  renderStats();
+  renderCallLog();
+  if (typeof renderReconCard === 'function') renderReconCard();
+  if (typeof renderProspectPicker === 'function') renderProspectPicker();
+  const t = document.getElementById('undoToast');
+  if (t) t.classList.add('hidden');
+  showToast('Delete undone — call restored');
+}
+
+// Show the shared undo toast configured for a delete (8s window).
+function showDeleteUndoToast(removed) {
+  const t = document.getElementById('undoToast');
+  if (!t) { // no toast element — just finalize immediately
+    finalizePendingDelete();
+    return;
+  }
+  state._undoMode = 'delete';
+  const msg = t.querySelector('.undo-toast-msg');
+  if (msg) msg.textContent = `Deleted: ${removed.company || removed.outcome || 'call'}`;
+  t.classList.remove('hidden');
+  if (state._deleteTimer) clearTimeout(state._deleteTimer);
+  state._deleteTimer = setTimeout(() => { finalizePendingDelete(); state._undoMode = null; }, 8000);
+}
+
+// Single dispatcher for the toast's Undo button — routes to delete-undo or save-undo.
+function handleUndoToastClick() {
+  if (state._undoMode === 'delete' || state._pendingDelete) { undoDeleteCall(); state._undoMode = null; return; }
+  undoLastCall();
 }
 
 function logCall() {
   const outcome = document.getElementById('outcome').value;
   if (!outcome) { alert('Pick an outcome first.'); return; }
+  // v3.22 — commit any open delete before logging a new/edited call.
+  if (state._pendingDelete) finalizePendingDelete();
   const duration = currentElapsedSec();
 
   // Build follow-up sub-object if enabled
@@ -1810,11 +1875,15 @@ function logCall() {
 function showUndoToast() {
   const t = document.getElementById('undoToast');
   if (!t) return;
+  state._undoMode = 'save';
+  const msg = t.querySelector('.undo-toast-msg');
+  if (msg) msg.textContent = 'Call saved.';
   t.classList.remove('hidden');
   if (state._undoTimer) clearTimeout(state._undoTimer);
   state._undoTimer = setTimeout(() => {
     t.classList.add('hidden');
     state.lastSavedCallIdx = null;
+    state._undoMode = null;
   }, 8000);
 }
 
@@ -2438,6 +2507,10 @@ function setFollowupDays(days) {
 // ============== INIT ==============
 async function init() {
   loadState();
+  // v3.22 — commit any delete that was left pending when the app last closed
+  // (its 8s undo window can't survive a reload), then clear transient flags.
+  if (state._pendingDelete) { finalizePendingDelete(); }
+  state._undoMode = null; state._deleteTimer = null;
 
   const brandSel = document.getElementById('brandSelect');
   brandSel.innerHTML = Object.values(BRANDS).map(b =>
@@ -2954,7 +3027,7 @@ async function init() {
 
   // Undo-last-call toast button
   const undoBtn = document.getElementById('undoToastBtn');
-  if (undoBtn) undoBtn.addEventListener('click', undoLastCall);
+  if (undoBtn) undoBtn.addEventListener('click', handleUndoToastClick);
 
   // v3.8.3: recon card returned to inline column layout — clear stale sticky-collapse state
   state.reconCardCollapsed = false;
