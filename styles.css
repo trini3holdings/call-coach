@@ -2056,3 +2056,18 @@ body.view-dashboard .dashboard-view {
 /* v3.15: Do-Not-Call secondary link reads as a compliance/danger action */
 .qo-link-dnc { color: #c0392b; font-weight: 600; }
 .qo-link-dnc:hover { color: #e74c3c; }
+
+/* ---- Phase 1a: Twilio softphone control bar ---- */
+.dialer-bar{display:flex;align-items:center;gap:8px;margin:8px 0 4px;flex-wrap:wrap}
+.dialer-status{font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap;border:1px solid var(--border,#d8d8d8);color:#555;background:#f6f6f6}
+.dialer-status.dialer-ready{color:#0a7d28;border-color:#a8dcb5;background:#eafaef}
+.dialer-status.dialer-oncall{color:#fff;background:#0a7d28;border-color:#0a7d28;animation:dialerPulse 1.4s ease-in-out infinite}
+.dialer-status.dialer-connecting{color:#8a6d00;border-color:#e6d28a;background:#fbf6e3}
+.dialer-status.dialer-offline,.dialer-status.dialer-idle{color:#777;background:#f1f1f1}
+.dialer-status.dialer-error{color:#a11;border-color:#e7b2b2;background:#fbeaea}
+@keyframes dialerPulse{0%,100%{opacity:1}50%{opacity:.6}}
+.dialer-btn{font-size:13px;font-weight:600;padding:6px 12px;border-radius:8px;border:1px solid var(--border,#d0d0d0);cursor:pointer;background:#fff;transition:filter .12s}
+.dialer-btn:hover:not(:disabled){filter:brightness(.96)}
+.dialer-btn:disabled{opacity:.45;cursor:not-allowed}
+.dialer-call{background:#0a7d28;color:#fff;border-color:#0a7d28}
+.dialer-hang{background:#c0392b;color:#fff;border-color:#c0392b}

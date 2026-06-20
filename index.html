@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="styles.css?v=3.28.0" />
+<link rel="stylesheet" href="styles.css?v=3.29.0" />
 </head>
 <body>
 
@@ -338,6 +338,14 @@
               <input type="text" id="phone" />
             </label>
           </div>
+          <!-- Phase 1a: Twilio softphone control bar -->
+          <div class="dialer-bar" id="dialerBar">
+            <span class="dialer-status dialer-idle" id="dialerStatus" title="Browser dialer">○ Dialer</span>
+            <button type="button" id="dialerCallBtn" class="dialer-btn dialer-call" disabled
+                    onclick="window.Dialer&&Dialer.call(document.getElementById('phone').value)">📞 Call</button>
+            <button type="button" id="dialerHangBtn" class="dialer-btn dialer-hang" disabled
+                    onclick="window.Dialer&&Dialer.hangup()">⛔ Hang up</button>
+          </div>
           <label class="form-row">
             <span>Prospect Email</span>
             <input type="email" id="prospectEmail" placeholder="for follow-up emails" />
@@ -541,11 +549,14 @@
   </div>
 </div>
 
-<script src="validators.js?v=3.28.0"></script>
-<script src="market_timezones.js?v=3.28.0"></script>
-<script src="acronyms.js?v=3.28.0"></script>
-<script src="dashboard.js?v=3.28.0"></script>
-<script src="app.js?v=3.28.0"></script>
-<script src="github-sync.js?v=3.28.0"></script>
+<script src="validators.js?v=3.29.0"></script>
+<script src="market_timezones.js?v=3.29.0"></script>
+<script src="acronyms.js?v=3.29.0"></script>
+<script src="dashboard.js?v=3.29.0"></script>
+<script src="app.js?v=3.29.0"></script>
+<script src="github-sync.js?v=3.29.0"></script>
+<!-- Phase 1a: Twilio Voice SDK (browser softphone) + dialer module -->
+<script src="https://sdk.twilio.com/js/voice/releases/2.12.3/twilio.min.js"></script>
+<script src="dialer.js?v=3.29.0"></script>
 </body>
 </html>
