@@ -2,10 +2,11 @@
   "brand": "conversion-exotics",
   "meta": {
     "version": "3.10.0",
-    "last_updated": "2026-06-19T00:17:36.655Z",
+    "last_updated": "2026-06-23T20:48:00.708Z",
     "caller": "Zack"
   },
   "call_logs": [],
+  "events": [],
   "prospect_overrides": {},
   "deleted_prospects": {}
 }
