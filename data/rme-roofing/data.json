@@ -2,10 +2,11 @@
   "brand": "rme-roofing",
   "meta": {
     "version": "3.10.0",
-    "last_updated": "2026-06-19T00:17:38.573Z",
+    "last_updated": "2026-06-23T20:48:03.694Z",
     "caller": "Zack"
   },
   "call_logs": [],
+  "events": [],
   "prospect_overrides": {},
   "deleted_prospects": {}
 }
