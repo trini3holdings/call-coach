@@ -2,7 +2,7 @@
   "brand": "conversionjet",
   "meta": {
     "version": "3.10.0",
-    "last_updated": "2026-06-19T00:17:37.294Z",
+    "last_updated": "2026-06-23T20:48:01.770Z",
     "caller": "Zack"
   },
   "call_logs": [
@@ -272,6 +272,7 @@
       "score": 30
     }
   ],
+  "events": [],
   "prospect_overrides": {},
   "deleted_prospects": {}
 }
