@@ -118,7 +118,8 @@ function loadState() {
     const s = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
     if (s.calls && Array.isArray(s.calls)) state.calls = s.calls;
     if (s.events && Array.isArray(s.events)) state.events = s.events;
-    if (s.variant) state.variant = s.variant;
+    // v3.30.0: B/C retired. Coerce any saved B/C (or unknown) back to A; D (voicemails) is fine.
+    if (s.variant) state.variant = (s.variant === 'A' || s.variant === 'D') ? s.variant : 'A';
     if (s.brand && BRANDS[s.brand]) state.brand = s.brand;
     if (s.caller) state.caller = s.caller;
     if (s.sidePane) state.sidePane = s.sidePane;
@@ -127,6 +128,8 @@ function loadState() {
     if (s.deletedProspectKeys && typeof s.deletedProspectKeys === 'object') state.deletedProspectKeys = s.deletedProspectKeys;
     if (typeof s.autoAdvanceAfterLog === 'boolean') state.autoAdvanceAfterLog = s.autoAdvanceAfterLog;
     if (s.lockedVariant) state.lockedVariant = s.lockedVariant;
+    // v3.30.0: clear stale winner-lock pointing at a retired B/C variant.
+    if (state.lockedVariant && state.lockedVariant !== 'A' && state.lockedVariant !== 'D') state.lockedVariant = null;
     if (s.manualVariant) state.manualVariant = s.manualVariant;
     if (s.backendUrl) state.backendUrl = s.backendUrl;
     if (s.syncQueue && Array.isArray(s.syncQueue)) state.syncQueue = s.syncQueue;
@@ -1467,34 +1470,20 @@ function updateLiveScore() {
 }
 
 // ============== AUTO-ROTATION ==============
+// v3.30.0: only the A script is live for calls (B/C retired, D = voicemails).
+// Rotation is now a no-op that always returns A — kept as a stub so callers
+// elsewhere don't break. A/B test scaffolding can return if more call scripts
+// are added later.
+const CALL_VARIANTS = ['A'];
 function getVariantCallCounts() {
-  return {
-    A: state.calls.filter(c => c.variant === 'A').length,
-    B: state.calls.filter(c => c.variant === 'B').length,
-    C: state.calls.filter(c => c.variant === 'C').length
-  };
+  const counts = {};
+  CALL_VARIANTS.forEach(v => { counts[v] = state.calls.filter(c => c.variant === v).length; });
+  return counts;
 }
 
 function computeAutoVariant() {
-  if (state.lockedVariant) return state.lockedVariant;
-  const c = getVariantCallCounts();
-  if (c.A < VARIANT_ROTATION_THRESHOLD || c.B < VARIANT_ROTATION_THRESHOLD || c.C < VARIANT_ROTATION_THRESHOLD) {
-    const sorted = [['A', c.A], ['B', c.B], ['C', c.C]].sort((x, y) => x[1] - y[1] || x[0].localeCompare(y[0]));
-    return sorted[0][0];
-  }
-  const rates = ['A', 'B', 'C'].map(v => {
-    const total = c[v];
-    const booked = state.calls.filter(call => call.variant === v && ['BK', 'SH', 'CL'].includes(call.outcome)).length;
-    return { v, rate: total ? booked / total : 0 };
-  }).sort((a, b) => b.rate - a.rate);
-  if (rates[0].rate - rates[1].rate >= WINNER_LOCK_GAP) {
-    state.lockedVariant = rates[0].v;
-    saveState();
-    showToast(`🏆 Winner locked: Variant ${rates[0].v} (${Math.round(rates[0].rate * 100)}% book rate)`);
-    return rates[0].v;
-  }
-  const sorted = [['A', c.A], ['B', c.B], ['C', c.C]].sort((x, y) => x[1] - y[1] || x[0].localeCompare(y[0]));
-  return sorted[0][0];
+  // Single live call script — always A.
+  return 'A';
 }
 
 function maybeRotateVariant() {
@@ -1548,11 +1537,10 @@ function renderStats() {
 
   const vStats = document.getElementById('variantStats');
   if (vStats) {
-    vStats.innerHTML = ['A', 'B', 'C'].map(v => {
+    vStats.innerHTML = CALL_VARIANTS.map(v => {
       const vCalls = state.calls.filter(c => c.variant === v).length;
       const vBooked = state.calls.filter(c => c.variant === v && ['BK', 'SH', 'CL'].includes(c.outcome)).length;
-      const isLocked = state.lockedVariant === v;
-      return `<div class="variant-stats-row ${isLocked ? 'locked' : ''}"><span class="label">${v}${isLocked ? ' 🔒' : ''}</span><span>${vCalls} calls · ${vBooked} booked</span></div>`;
+      return `<div class="variant-stats-row"><span class="label">${v} · Booking Wall</span><span>${vCalls} calls · ${vBooked} booked</span></div>`;
     }).join('');
   }
   const cStats = document.getElementById('callerStats');
@@ -1564,16 +1552,11 @@ function renderStats() {
     }).join('');
   }
 
-  const aN = c.A, bN = c.B, cN = c.C;
-  let bannerMsg;
-  if (state.lockedVariant) {
-    bannerMsg = `🔒 Winner locked: Variant ${state.lockedVariant}. Manual override still works.`;
-  } else if (aN >= VARIANT_ROTATION_THRESHOLD && bN >= VARIANT_ROTATION_THRESHOLD && cN >= VARIANT_ROTATION_THRESHOLD) {
-    bannerMsg = `All 3 variants at ${VARIANT_ROTATION_THRESHOLD}+ calls. Watching for winner-lock (≥15pp gap).`;
-  } else {
-    bannerMsg = `Auto-rotating A→B→C until each hits ${VARIANT_ROTATION_THRESHOLD}. Current: A=${aN}, B=${bN}, C=${cN}.`;
+  const aN = c.A || 0;
+  const samplingEl = document.getElementById('samplingMsg');
+  if (samplingEl) {
+    samplingEl.textContent = `Single live script: A · Booking Wall open. ${aN} calls logged. (📞 D = voicemails.)`;
   }
-  document.getElementById('samplingMsg').textContent = bannerMsg;
 
   renderProgressBar(today.length, PROSPECTS.length);
 }

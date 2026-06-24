@@ -11,15 +11,15 @@
         {
           "t": 9,
           "phase": "OPEN",
-          "title": "Cost-Led Leak Open",
-          "line": "Hello, my name is {caller} with ConversionJet. I audit private charter websites for a living. Yours has a <em>leak that's costing roughly $100K to $300K a month in lost charter revenue</em>. Who would be the right person to speak with about that?",
+          "title": "I Couldn't Get a Quote",
+          "line": "Hi — I was just on your site trying to <em>price a trip</em> and the quote step wouldn't load for me. Took forever, then nothing. <em>Who's the right person to mention that to?</em> … I appreciate it — the reason I'm flagging it is I look at charter sites for a living, and if a buyer with a card in hand can't get a quote, that's <em>caliber of client you don't get a second shot at</em>.",
           "responses": [
             "That would be me",
             "May I ask what this is regarding?",
             "Who is this, again?"
           ],
           "followup": "Understood — give me thirty seconds and I'll show you exactly where the revenue is leaking.",
-          "note": "COLD open, cost-led + gatekeeper-aware, HNW DISCREET register. Lead with the LEAK and the $ MONTHLY figure, pause, then ask who to speak with. Composed, neutral, NO exclamation, NO urgency tropes, NO jargon (no Part 135 / FBO / empty-leg / jet card / HNW). First-name-only variant. Anchor = recoverable charter requests x $15K-$75K/trip = roughly $100K-$300K/mo."
+          "note": "HNW register — understated. No dollar figure out loud, no 'leak' talk. You're a buyer who hit friction, mentioning it as a courtesy. Calm, unhurried, slightly clipped. The pivot is a quiet 'I do this for a living' — never salesy. Let the silence do work."
         },
         {
           "t": 24,
@@ -85,174 +85,6 @@
           ],
           "followup": "Perfect — what's the best email for the calendar invite (or the sample)?",
           "note": "Assumptive close — don't offer 'next week' unless they push. If 'send sample', commit to a follow-up call: 'I'll send it today — when can I call you back to walk through it?' Email is the soft fallback, NOT the goal."
-        }
-      ]
-    },
-    "B": {
-      "name": "Peer Comparison",
-      "desc": "Status loss + FOMO. Opens with the peer benchmark — three competitors in market, all beating them on speed-to-quote. Best for operators with ego in the game (Owners, Directors of Sales).",
-      "beats": [
-        {
-          "t": 9,
-          "phase": "OPEN",
-          "title": "Peer Comparison",
-          "line": "Hi, my name is {caller} calling from ConversionJet — I audit private charter sites for a living. I just finished comparing your site against three other operators in your market — and there's a clear opportunity to pull ahead on the one thing that decides who gets the booking. Do you know who I can talk to about this?",
-          "responses": [
-            "That's me / I handle marketing",
-            "Let me transfer you",
-            "What's the opportunity?"
-          ],
-          "followup": "I'd rather walk you through it with your page open — 60 seconds and you'll see exactly where the revenue is sitting. Worth it?",
-          "note": "GAIN-led: frame as an opportunity to CAPTURE bookings, not a loss to competitors. DO NOT name the three operators on the cold call — that's the audit hook. If pushed, say: 'I'll walk you through them on a shared screen.' Plural 'three' is the curiosity."
-        },
-        {
-          "t": 17,
-          "phase": "PROBLEM",
-          "title": "Side-by-Side Load Gap",
-          "line": "Here's where they're losing it. Their pages load in <em>3 to 4 seconds</em>, ask for a route, show a price range. <em>Yours takes 14</em>, asks for a phone number, drops a contact form. The buyer is already typing into a competitor's quote form before your site finishes loading.",
-          "responses": [
-            "Our site isn't that slow",
-            "How did you measure?",
-            "Mobile or desktop?"
-          ],
-          "followup": "I tested all four on mobile this morning, same connection, same time. I'll show you the actual load comparison on the audit.",
-          "note": "If they dispute the load time, DO NOT argue — offer to show on the audit. The screenshot proof is what closes the meeting. Mobile-only, never desktop."
-        },
-        {
-          "t": 36,
-          "phase": "AGITATION",
-          "title": "Monthly Math",
-          "line": "Now do the math on a month of this. Say <em>20 buyers a week</em> hit your ad and your competitors' ads at the same time. <em>14 of them</em> never wait out your load. The 6 that do see a page that doesn't sell them. The other operators? Same 20 buyers, three-second load, route and price on screen. <em>They're booking 12 of yours every month.</em> That's the <em>$25,000 to $75,000 a week</em> — except it's not a week, it's a compounding lead off your top line.",
-          "responses": [
-            "That math seems aggressive",
-            "What's the fix?",
-            "Show me how you got 12"
-          ],
-          "followup": "Conservative actually — I'd rather walk you through the math on the audit with your real numbers, not my estimates.",
-          "note": "If they push on the 12-of-20 number, do NOT debate it — anchor to 'I'd rather use YOUR ad spend numbers on the audit.' Pulls them toward the meeting."
-        },
-        {
-          "t": 17,
-          "phase": "SOLUTION",
-          "title": "Same Playbook",
-          "line": "A bit about me — I've diagnosed <em>over 100 charter and aircraft sites</em> against the same 10-point checklist. The three operators ahead of your site aren't doing anything you can't. They just closed the gap I'm describing. <em>It's the same playbook every time.</em>",
-          "responses": [
-            "What's the playbook?",
-            "How fast can the gap close?",
-            "What do those operators do differently?"
-          ],
-          "followup": "I'll walk through the full playbook on the audit — most operators implement the first three plays in under two weeks.",
-          "note": "Frame the gap as CLOSEABLE, not structural. The word 'playbook' implies repeatable — lean into it. Never reveal specific plays here."
-        },
-        {
-          "t": 33,
-          "phase": "AUDIT OFFER",
-          "title": "$3K Audit, Free",
-          "line": "Here's where I'd take this. <em>In 30 minutes, shared screen, your website open in front of us.</em> I'll walk through every issue in plain English, name the dollars lost on each one, and you keep the <em>prioritized fix-list</em>. The audit runs <em>$3,000</em> — <em>but, I'll run it for free</em>. The only thing you have to lose is the <em>$25,000 to $75,000 a week</em> in lost charters from the issues I named. No pitch on the call. By minute 20 most operators already know if they're running the fixes in-house or would prefer having me handle it.",
-          "responses": [
-            "What's the catch?",
-            "Why are you running it for free?",
-            "What do I need to have ready?"
-          ],
-          "followup": "No catch — I get to see what's actually breaking on charter sites in your market, you get the fix-list either way. If we're a fit after, we talk. If not, you keep the list.",
-          "note": "Identical to Variant A. Lead with 'No pitch on the call.' Never discount the $3K anchor."
-        },
-        {
-          "t": 30,
-          "phase": "CLOSE",
-          "title": "Dual Path — Call or Email",
-          "line": "Two ways we can do this. Either I book you in for the <em>30 minutes this week</em> — I've got <em>Thursday at 10 or Friday at 2</em>, Central — or I send you a <em>sample audit</em> I did for another charter operator so you can see exactly what you'd get before we ever talk. Which makes more sense for you?",
-          "responses": [
-            "Thursday at 10 works",
-            "Friday at 2",
-            "Send the sample first"
-          ],
-          "followup": "Perfect — what's the best email for the calendar invite (or the sample)?",
-          "note": "Identical to Variant A. Email is the soft fallback, NOT the goal."
-        }
-      ]
-    },
-    "C": {
-      "name": "Hidden Quote-Flow Issue",
-      "desc": "Curiosity gap + loss aversion. Opens with the bigger quote-flow problem A only teased. Best for operators who think their site is already fine — defangs the 'we just redesigned' objection.",
-      "beats": [
-        {
-          "t": 11,
-          "phase": "OPEN",
-          "title": "Hidden Quote-Flow Issue",
-          "line": "Hi, my name is {caller} calling from ConversionJet — I audit private charter sites for a living. I saw your company is running ads for <em>private charter flights</em>, I pulled up your site this morning, and found <em>a fix on your quote request flow</em> — it would recover <em>more revenue than every other improvement on the page combined</em>. Do you know who I can talk to about this?",
-          "responses": [
-            "That's me / I handle the site",
-            "Let me transfer you",
-            "What's the fix?"
-          ],
-          "followup": "I'd rather walk you through it with your page open — 60 seconds and you'll see the opportunity. It's larger than most operators expect.",
-          "note": "GAIN-led open: frame as a revenue FIX to capture, not a problem costing money. DO NOT reveal the specific quote-flow fix on the cold call — curiosity is the entire close mechanic. If pushed, deflect to 'I'll show you on a shared screen.'"
-        },
-        {
-          "t": 22,
-          "phase": "PROBLEM",
-          "title": "Quote Form Is the Bleeder",
-          "line": "Quick context — you're paying <em>$40 to $90 per click</em> to get a buyer to your page, and the <em>quote request form is where 80 percent of those clicks die</em>. Buyers will sit through a slow page, a generic headline, a buried phone number — but the moment the form asks them something it shouldn't, or asks it in the wrong order, they're gone. And the buyers booking the <em>biggest trips</em> are the first ones to leave.",
-          "responses": [
-            "Why do the biggest trips bounce first?",
-            "What's wrong with our form?",
-            "Where do you get $40-$90 per click?"
-          ],
-          "followup": "Bigger trip = more cautious buyer, more comparison shopping. I'll show you the exact pattern on your form during the audit.",
-          "note": "CPC numbers are from public Google Ads benchmarks for charter terms — defendable. DO NOT reveal the specific form issues yet. Save for Beat 3."
-        },
-        {
-          "t": 34,
-          "phase": "AGITATION",
-          "title": "Form Friction Walked",
-          "line": "Here's what's happening on your quote flow. The form opens by asking for <em>name, phone, and email</em> — before it asks anything about the trip. You're demanding contact info from a buyer who hasn't decided to talk to you yet.\n\nThe ones who push through get to the trip section, and the form asks for <em>departure city as free text</em>. No autocomplete. They start typing, second-guess the format, and leave.\n\nThat's the <em>$25,000 to $75,000 a week</em>. Every <em>$40 to $90 click</em> you paid for is funding it.",
-          "responses": [
-            "What's the fix?",
-            "Every form does that",
-            "I want to see this"
-          ],
-          "followup": "Not every form — the operators converting at 2-3x your rate ask for the trip first, contact info last. I'd rather walk through it with your page open.",
-          "note": "'Every form does that' is the most common objection — pre-loaded comeback is in the followup. Never argue, always pivot to 'let me show you on the audit.'"
-        },
-        {
-          "t": 17,
-          "phase": "SOLUTION",
-          "title": "Same Pattern, Fixed Before",
-          "line": "A bit about me — I've diagnosed <em>over 100 charter and aircraft sites</em> against the same 10-point checklist. The quote-flow pattern I just walked you through isn't unique to your site. <em>I've fixed it before</em>, and the conversion math holds every time.",
-          "responses": [
-            "Which operators have you fixed it for?",
-            "What's on the 10-point checklist?",
-            "How long does the fix take?"
-          ],
-          "followup": "I'll walk through the checklist on the audit — typical fix is 1-2 weeks of dev work, paid back in lost charters inside the first month.",
-          "note": "Stay vague on operator names, specific on timeline. The '1-2 weeks' anchor sets expectation BEFORE the audit ask."
-        },
-        {
-          "t": 33,
-          "phase": "AUDIT OFFER",
-          "title": "$3K Audit, Free",
-          "line": "Here's where I'd take this. <em>In 30 minutes, shared screen, your website open in front of us.</em> I'll walk through every issue in plain English, name the dollars lost on each one, and you keep the <em>prioritized fix-list</em>. The audit runs <em>$3,000</em> — <em>but, I'll run it for free</em>. The only thing you have to lose is the <em>$25,000 to $75,000 a week</em> in lost charters from the issues I named. No pitch on the call. By minute 20 most operators already know if they're running the fixes in-house or would prefer having me handle it.",
-          "responses": [
-            "What's the catch?",
-            "Why are you running it for free?",
-            "What do I need to have ready?"
-          ],
-          "followup": "No catch — I get to see what's actually breaking on charter sites in your market, you get the fix-list either way. If we're a fit after, we talk. If not, you keep the list.",
-          "note": "Identical to A/B. Lead with 'No pitch on the call.' Never discount the $3K anchor."
-        },
-        {
-          "t": 30,
-          "phase": "CLOSE",
-          "title": "Dual Path — Call or Email",
-          "line": "Two ways we can do this. Either I book you in for the <em>30 minutes this week</em> — I've got <em>Thursday at 10 or Friday at 2</em>, Central — or I send you a <em>sample audit</em> I did for another charter operator so you can see exactly what you'd get before we ever talk. Which makes more sense for you?",
-          "responses": [
-            "Thursday at 10 works",
-            "Friday at 2",
-            "Send the sample first"
-          ],
-          "followup": "Perfect — what's the best email for the calendar invite (or the sample)?",
-          "note": "Identical to A/B. Email is the soft fallback, NOT the goal."
         }
       ]
     },
