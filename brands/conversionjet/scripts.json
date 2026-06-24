@@ -1,122 +1,122 @@
 {
-  "brand": "ConversionJet",
-  "audit_value": 3000,
-  "target_length_sec": 180,
-  "register": "Private aviation operators — plain English, no insider jargon. NEVER use: 'Part 135', 'ARGUS', 'Wyvern', 'fractional ownership', 'jet card', 'empty-leg', 'flight department KPI', 'HNW', 'FBO'. NEVER use personal-name tokens ({first_name}, {prospect_name}) — calling businesses, not individuals. NEVER use Miner-style apology hedges ('appreciate you picking up', 'out of the blue', 'I know this is out of nowhere'). NEVER use casual/slang permission ('got 90 seconds', 'got a minute', 'grab someone', 'cool?', 'shoot me your email'). NEVER use 'Quick on me'. NEVER use {company} in beat copy — use 'your site' instead. Tone: discreet, surgical, neutral, composed. No hype, no slang, no emoji, no high-pressure. PAS + Jeremy Miner NEPQ + neuromarketing structure. Close on booked call OR email-for-sample-audit.",
-  "variants": {
-    "A": {
-      "name": "Dollar-Anchored Leak",
-      "desc": "PAS + NEPQ. Opens with the dollar-loss anchor on the quote page. Walks the buyer journey, holds back the third issue for the audit. Best for operators running ads where the leak is page-load + hero + phone placement.",
-      "beats": [
-        {
-          "t": 9,
-          "phase": "OPEN",
-          "title": "I Couldn't Get a Quote",
-          "line": "Hi — I was just on your site trying to <em>price a trip</em> and the quote step wouldn't load for me. Took forever, then nothing. <em>Who's the right person to mention that to?</em> … I appreciate it — the reason I'm flagging it is I look at charter sites for a living, and if a buyer with a card in hand can't get a quote, that's <em>caliber of client you don't get a second shot at</em>.",
-          "responses": [
-            "That would be me",
-            "May I ask what this is regarding?",
-            "Who is this, again?"
-          ],
-          "followup": "Understood — give me thirty seconds and I'll show you exactly where the revenue is leaking.",
-          "note": "HNW register — understated. No dollar figure out loud, no 'leak' talk. You're a buyer who hit friction, mentioning it as a courtesy. Calm, unhurried, slightly clipped. The pivot is a quiet 'I do this for a living' — never salesy. Let the silence do work."
-        },
-        {
-          "t": 24,
-          "phase": "PROBLEM",
-          "title": "The 3-Second Mobile Window",
-          "line": "Quick context — when a buyer pulls up a charter site from their phone, they decide in about <em>3 seconds</em> whether you're worth waiting on. Every second past that cuts bookings around <em>20 percent</em>. Most charter sites load in 15 to 20 seconds on mobile. When was the last time someone on your team pulled your site up on a phone and requested a quote end-to-end?",
-          "responses": [
-            "Honestly, not in a while",
-            "We just redesigned it",
-            "Our designer handles that"
-          ],
-          "followup": "That's the issue — most operators haven't tested their own quote flow on mobile in months. The buyers have.",
-          "note": "Mobile-only question — do NOT let them shift to desktop. If 'we just redesigned it', say: 'Then this'll either confirm it's working or surface something the redesign missed.' Stay on mobile."
-        },
-        {
-          "t": 40,
-          "phase": "AGITATION",
-          "title": "Buyer Walks Away",
-          "line": "So here's what's happening on your site. That same buyer from the back of the car — they tap your ad. Page takes <em>12 to 15 seconds</em> to load. By the time it renders, they're already losing patience.\n\nFirst thing they see? A headline that doesn't mention their route, their aircraft, or a price. By second 8, they're scrolling for a phone number — yours isn't pinned in the top right, so they hunt for it. By the time they find it buried in the footer, they've already opened the next operator in another tab.\n\nThat's where the <em>$25,000 to $75,000 a week</em> goes.\n\nTwo fixes — pinning the phone, rewriting the hero — are <em>afternoon work for a developer</em>. There's a third issue on your quote flow costing you <em>more than both combined</em>. I'd rather walk you through that one with your page open in front of us.",
-          "responses": [
-            "What's the third issue?",
-            "We can fix the first two ourselves",
-            "How long does the audit take?"
-          ],
-          "followup": "I'd rather show you on a shared screen — it's faster than describing it, and you'll see the dollar cost on each one.",
-          "note": "DO NOT reveal the third issue on the cold call — curiosity gap is what books the audit. If pushed hard, say 'It's a 30-second walk-through with your page open — describing it doesn't do it justice.'"
-        },
-        {
-          "t": 18,
-          "phase": "SOLUTION",
-          "title": "100-Site Checklist",
-          "line": "A bit about me, I've diagnosed <em>over 100 charter and aircraft sites</em> against the same 10-point checklist. Same conversion math every time — trip values get bigger, speed-to-quote window shorter. The two issues I named on your site aren't theory; they're the same two I've fixed before.",
-          "responses": [
-            "Which operators have you worked with?",
-            "What's on the 10-point checklist?",
-            "How much do you charge to do the fix?"
-          ],
-          "followup": "I'll walk you through the full checklist on the audit — that 30 minutes is literally the checklist applied to your page.",
-          "note": "No name-dropping competitors. Stay vague on names, specific on numbers. If asked pricing, deflect: 'Pricing depends on what we find — that's the audit.'"
-        },
-        {
-          "t": 33,
-          "phase": "AUDIT OFFER",
-          "title": "$3K Audit, Free",
-          "line": "Here's where I'd take this. <em>In 30 minutes, shared screen, your website open in front of us.</em> I'll walk through every issue in plain English, name the dollars lost on each one, and you keep the <em>prioritized fix-list</em>. The audit runs <em>$3,000</em> — <em>but, I'll run it for free</em>. The only thing you have to lose is the <em>$25,000 to $75,000 a week</em> in lost charters from the issues I named. No pitch on the call. By minute 20 most operators already know if they're running the fixes in-house or would prefer having me handle it.",
-          "responses": [
-            "What's the catch?",
-            "Why are you running it for free?",
-            "What do I need to have ready?"
-          ],
-          "followup": "No catch — I get to see what's actually breaking on charter sites in your market, you get the fix-list either way. If we're a fit after, we talk. If not, you keep the list.",
-          "note": "Lead with 'No pitch on the call' — that's the trust unlock. If 'why free?', use followup verbatim. Never discount the $3K anchor — it's the value frame."
-        },
-        {
-          "t": 30,
-          "phase": "CLOSE",
-          "title": "Dual Path — Call or Email",
-          "line": "Two ways we can do this. Either I book you in for the <em>30 minutes this week</em> — I've got <em>Thursday at 10 or Friday at 2</em>, Central — or I send you a <em>sample audit</em> I did for another charter operator so you can see exactly what you'd get before we ever talk. Which makes more sense for you?",
-          "responses": [
-            "Thursday at 10 works",
-            "Friday at 2",
-            "Send the sample first"
-          ],
-          "followup": "Perfect — what's the best email for the calendar invite (or the sample)?",
-          "note": "Assumptive close — don't offer 'next week' unless they push. If 'send sample', commit to a follow-up call: 'I'll send it today — when can I call you back to walk through it?' Email is the soft fallback, NOT the goal."
-        }
-      ]
+ "brand": "ConversionJet",
+ "audit_value": 3000,
+ "target_length_sec": 180,
+ "register": "Private aviation operators — plain English, no insider jargon. NEVER use: 'Part 135', 'ARGUS', 'Wyvern', 'fractional ownership', 'jet card', 'empty-leg', 'flight department KPI', 'HNW', 'FBO'. NEVER use personal-name tokens ({first_name}, {prospect_name}) — calling businesses, not individuals. NEVER use Miner-style apology hedges ('appreciate you picking up', 'out of the blue', 'I know this is out of nowhere'). NEVER use casual/slang permission ('got 90 seconds', 'got a minute', 'grab someone', 'cool?', 'shoot me your email'). NEVER use 'Quick on me'. NEVER use {company} in beat copy — use 'your site' instead. Tone: discreet, surgical, neutral, composed. No hype, no slang, no emoji, no high-pressure. PAS + Jeremy Miner NEPQ + neuromarketing structure. Close on booked call OR email-for-sample-audit.",
+ "variants": {
+  "A": {
+   "name": "Dollar-Anchored Leak",
+   "desc": "PAS + NEPQ. Opens with the dollar-loss anchor on the quote page. Walks the buyer journey, holds back the third issue for the audit. Best for operators running ads where the leak is page-load + hero + phone placement.",
+   "beats": [
+    {
+     "t": 9,
+     "phase": "OPEN",
+     "title": "Real Reason I Called",
+     "line": "Hi — I'll be upfront, this is a cold call, so I'll keep it short. I was on your site a moment ago, and the reason I'm calling is the way the quote step is built right now, an operator ready to <em>book a trip</em> can't get a number quickly and moves on. <em>Is that something worth mentioning to you, or is there a better person?</em> … Appreciate it. Give me thirty seconds, and if it isn't relevant you can end the call: right now that's the kind of ready buyer your site is quietly losing.",
+     "responses": [
+      "That'd be me",
+      "Why? / What's this about?",
+      "Who is this again?"
+     ],
+     "followup": "Understood — this is a cold call. Thirty seconds to show you where it's leaking, then you decide if it's worth more.",
+     "note": "PERMISSION-BASED, no $ spoken (status register). NEVER personal-name tokens, NEVER apology hedges like 'out of the blue'. 'Upfront, this is a cold call' is composed, not apologetic — discreet and surgical. You named the real quote-step issue, so a follow-up keeps you honest. Downward inflection on the cold-call line, measured pace, then the time-box. Status/caliber framing, never dollars."
     },
-    "D": {
-      "name": "Voicemails — EURO / PAS / NEPQ",
-      "desc": "Three ready-to-leave voicemails, one per framework: <b>EURO</b> (Empathy·Urgency·Reason·Offer), <b>PAS</b> (Problem·Agitate·Solve), and <b>NEPQ</b> (a curiosity question that leaves an open loop). Each is ~20-25s and drives ONE low-friction CTA: text back and I’ll send a 60-second sample of your own page. Pick one per prospect; pair with the text follow-up shown under each.",
-      "beats": [
-        {
-          "t": 22,
-          "phase": "EURO VM",
-          "title": "EURO — Empathy · Urgency · Reason · Offer",
-          "line": "Good afternoon, this is {caller} with ConversionJet. I work with a small number of operators who don't compete on price, and I noticed your page <em>is quietly leaving caliber on the table</em>. So I prepared <em>a private, rebuilt version of it</em> — just so you can see the difference for yourself. If it's of interest, a short reply to this number is all it takes.",
-          "followup": "Text follow-up (send right after): “{caller}, ConversionJet — the rebuilt version of your page I mentioned: [link]. Have a look when it suits you.”",
-          "note": "EURO = Empathy (respect their time by being spare, not by announcing it) → Urgency (understated — 'so I prepared it') → Reason (see it for yourself) → Offer (the rebuilt page). Under ~20 seconds. Discreet register: unhurried, low volume, zero hype or exclamation — restraint signals caliber. Never say 'I'll be brief' or 'quick one' — busy-talk reads low-status. Say the number slowly, twice. End on the offer."
-        },
-        {
-          "t": 24,
-          "phase": "PAS VM",
-          "title": "PAS — Problem · Agitate · Solve",
-          "line": "{caller} with ConversionJet again. When the right buyer finds you, they decide in seconds whether you're the caliber they expect — and a slow, ordinary page quietly tells them you're not, even when you are. So you lose the one who looked, hesitated, and moved on — and you never hear about it. I've rebuilt your page to <em>signal the caliber you actually are</em>. A brief reply and I'll send it across privately.",
-          "followup": "Text follow-up: “{caller}, ConversionJet — the rebuilt version that closes the gap I mentioned: [link]. No reply needed unless it's of interest.”",
-          "note": "PAS = name the Problem (the page undersells you) → Agitate the hidden cost (the buyer you never hear from) → Solve (the rebuild). Understate the agitation — imply the loss, never push it. No 'leak,' no dollar figure for this register; the loss is status, not spend. Let a half-beat of silence sit before 'and you never hear about it.'"
-        },
-        {
-          "t": 24,
-          "phase": "NEPQ VM",
-          "title": "NEPQ — Curiosity Question",
-          "line": "{caller} with ConversionJet. One question, then I'll leave you to your day. If your page were quietly costing you the buyers you most want — the ones who simply move on without a word — when would you want to know? I've already rebuilt it, so the difference speaks for itself. A short reply to this number and it's yours to review.",
-          "followup": "Text follow-up: “{caller}, ConversionJet — the answer to the question I left you: [link]. A quiet look at your page, rebuilt.”",
-          "note": "NEPQ = a neutral, status-quo-disrupting question ('when would you want to know?') that opens a loop the callback closes. Do NOT answer it on the VM — the unanswered loop earns the call back. Tone: quietly assured, almost rhetorical — let the silence do the work. No self-deprecation, no 'curious what you think' — assurance, not eagerness."
-        }
-      ]
+    {
+     "t": 24,
+     "phase": "PROBLEM",
+     "title": "The 3-Second Mobile Window",
+     "line": "Quick context — when a buyer pulls up a charter site from their phone, they decide in about <em>3 seconds</em> whether you're worth waiting on. Every second past that cuts bookings around <em>20 percent</em>. Most charter sites load in 15 to 20 seconds on mobile. When was the last time someone on your team pulled your site up on a phone and requested a quote end-to-end?",
+     "responses": [
+      "Honestly, not in a while",
+      "We just redesigned it",
+      "Our designer handles that"
+     ],
+     "followup": "That's the issue — most operators haven't tested their own quote flow on mobile in months. The buyers have.",
+     "note": "Mobile-only question — do NOT let them shift to desktop. If 'we just redesigned it', say: 'Then this'll either confirm it's working or surface something the redesign missed.' Stay on mobile."
+    },
+    {
+     "t": 40,
+     "phase": "AGITATION",
+     "title": "Buyer Walks Away",
+     "line": "So here's what's happening on your site. That same buyer from the back of the car — they tap your ad. Page takes <em>12 to 15 seconds</em> to load. By the time it renders, they're already losing patience.\n\nFirst thing they see? A headline that doesn't mention their route, their aircraft, or a price. By second 8, they're scrolling for a phone number — yours isn't pinned in the top right, so they hunt for it. By the time they find it buried in the footer, they've already opened the next operator in another tab.\n\nThat's where the <em>$25,000 to $75,000 a week</em> goes.\n\nTwo fixes — pinning the phone, rewriting the hero — are <em>afternoon work for a developer</em>. There's a third issue on your quote flow costing you <em>more than both combined</em>. I'd rather walk you through that one with your page open in front of us.",
+     "responses": [
+      "What's the third issue?",
+      "We can fix the first two ourselves",
+      "How long does the audit take?"
+     ],
+     "followup": "I'd rather show you on a shared screen — it's faster than describing it, and you'll see the dollar cost on each one.",
+     "note": "DO NOT reveal the third issue on the cold call — curiosity gap is what books the audit. If pushed hard, say 'It's a 30-second walk-through with your page open — describing it doesn't do it justice.'"
+    },
+    {
+     "t": 18,
+     "phase": "SOLUTION",
+     "title": "100-Site Checklist",
+     "line": "A bit about me, I've diagnosed <em>over 100 charter and aircraft sites</em> against the same 10-point checklist. Same conversion math every time — trip values get bigger, speed-to-quote window shorter. The two issues I named on your site aren't theory; they're the same two I've fixed before.",
+     "responses": [
+      "Which operators have you worked with?",
+      "What's on the 10-point checklist?",
+      "How much do you charge to do the fix?"
+     ],
+     "followup": "I'll walk you through the full checklist on the audit — that 30 minutes is literally the checklist applied to your page.",
+     "note": "No name-dropping competitors. Stay vague on names, specific on numbers. If asked pricing, deflect: 'Pricing depends on what we find — that's the audit.'"
+    },
+    {
+     "t": 33,
+     "phase": "AUDIT OFFER",
+     "title": "$3K Audit, Free",
+     "line": "Here's where I'd take this. <em>In 30 minutes, shared screen, your website open in front of us.</em> I'll walk through every issue in plain English, name the dollars lost on each one, and you keep the <em>prioritized fix-list</em>. The audit runs <em>$3,000</em> — <em>but, I'll run it for free</em>. The only thing you have to lose is the <em>$25,000 to $75,000 a week</em> in lost charters from the issues I named. No pitch on the call. By minute 20 most operators already know if they're running the fixes in-house or would prefer having me handle it.",
+     "responses": [
+      "What's the catch?",
+      "Why are you running it for free?",
+      "What do I need to have ready?"
+     ],
+     "followup": "No catch — I get to see what's actually breaking on charter sites in your market, you get the fix-list either way. If we're a fit after, we talk. If not, you keep the list.",
+     "note": "Lead with 'No pitch on the call' — that's the trust unlock. If 'why free?', use followup verbatim. Never discount the $3K anchor — it's the value frame."
+    },
+    {
+     "t": 30,
+     "phase": "CLOSE",
+     "title": "Dual Path — Call or Email",
+     "line": "Two ways we can do this. Either I book you in for the <em>30 minutes this week</em> — I've got <em>Thursday at 10 or Friday at 2</em>, Central — or I send you a <em>sample audit</em> I did for another charter operator so you can see exactly what you'd get before we ever talk. Which makes more sense for you?",
+     "responses": [
+      "Thursday at 10 works",
+      "Friday at 2",
+      "Send the sample first"
+     ],
+     "followup": "Perfect — what's the best email for the calendar invite (or the sample)?",
+     "note": "Assumptive close — don't offer 'next week' unless they push. If 'send sample', commit to a follow-up call: 'I'll send it today — when can I call you back to walk through it?' Email is the soft fallback, NOT the goal."
     }
+   ]
+  },
+  "D": {
+   "name": "Voicemails — EURO / PAS / NEPQ",
+   "desc": "Three ready-to-leave voicemails, one per framework: <b>EURO</b> (Empathy·Urgency·Reason·Offer), <b>PAS</b> (Problem·Agitate·Solve), and <b>NEPQ</b> (a curiosity question that leaves an open loop). Each is ~20-25s and drives ONE low-friction CTA: text back and I’ll send a 60-second sample of your own page. Pick one per prospect; pair with the text follow-up shown under each.",
+   "beats": [
+    {
+     "t": 22,
+     "phase": "EURO VM",
+     "title": "EURO — Empathy · Urgency · Reason · Offer",
+     "line": "Good afternoon, this is {caller} with ConversionJet. I work with a small number of operators who don't compete on price, and I noticed your page <em>is quietly leaving caliber on the table</em>. So I prepared <em>a private, rebuilt version of it</em> — just so you can see the difference for yourself. If it's of interest, a short reply to this number is all it takes.",
+     "followup": "Text follow-up (send right after): “{caller}, ConversionJet — the rebuilt version of your page I mentioned: [link]. Have a look when it suits you.”",
+     "note": "EURO = Empathy (respect their time by being spare, not by announcing it) → Urgency (understated — 'so I prepared it') → Reason (see it for yourself) → Offer (the rebuilt page). Under ~20 seconds. Discreet register: unhurried, low volume, zero hype or exclamation — restraint signals caliber. Never say 'I'll be brief' or 'quick one' — busy-talk reads low-status. Say the number slowly, twice. End on the offer."
+    },
+    {
+     "t": 24,
+     "phase": "PAS VM",
+     "title": "PAS — Problem · Agitate · Solve",
+     "line": "{caller} with ConversionJet again. When the right buyer finds you, they decide in seconds whether you're the caliber they expect — and a slow, ordinary page quietly tells them you're not, even when you are. So you lose the one who looked, hesitated, and moved on — and you never hear about it. I've rebuilt your page to <em>signal the caliber you actually are</em>. A brief reply and I'll send it across privately.",
+     "followup": "Text follow-up: “{caller}, ConversionJet — the rebuilt version that closes the gap I mentioned: [link]. No reply needed unless it's of interest.”",
+     "note": "PAS = name the Problem (the page undersells you) → Agitate the hidden cost (the buyer you never hear from) → Solve (the rebuild). Understate the agitation — imply the loss, never push it. No 'leak,' no dollar figure for this register; the loss is status, not spend. Let a half-beat of silence sit before 'and you never hear about it.'"
+    },
+    {
+     "t": 24,
+     "phase": "NEPQ VM",
+     "title": "NEPQ — Curiosity Question",
+     "line": "{caller} with ConversionJet. One question, then I'll leave you to your day. If your page were quietly costing you the buyers you most want — the ones who simply move on without a word — when would you want to know? I've already rebuilt it, so the difference speaks for itself. A short reply to this number and it's yours to review.",
+     "followup": "Text follow-up: “{caller}, ConversionJet — the answer to the question I left you: [link]. A quiet look at your page, rebuilt.”",
+     "note": "NEPQ = a neutral, status-quo-disrupting question ('when would you want to know?') that opens a loop the callback closes. Do NOT answer it on the VM — the unanswered loop earns the call back. Tone: quietly assured, almost rhetorical — let the silence do the work. No self-deprecation, no 'curious what you think' — assurance, not eagerness."
+    }
+   ]
   }
+ }
 }

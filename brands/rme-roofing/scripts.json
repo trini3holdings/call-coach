@@ -1,121 +1,121 @@
 {
-  "brand": "RME Roofing",
-  "audit_value": 3000,
-  "target_length_sec": 180,
-  "variants": {
-    "A": {
-      "name": "The Lead Leak",
-      "desc": "Plain-English lead-flow angle. Paying $40-$75/click in DFW, but the lead form is broken or the phone is buried. You're buying traffic that never becomes a job. Three issues, tease the third. Close with calendar or sample audit.",
-      "beats": [
-        {
-          "t": 10,
-          "phase": "OPEN",
-          "title": "Your Site Wouldn't Let Me Call",
-          "line": "Hey — I was on your site about a <em>roof</em>, ready to call, and I could not find the dang number. Tapped around, gave up. <em>Who runs the website for y'all?</em> … Good — 'cause here's the thing: you're paying <em>$40 to $75 a click</em> to get folks to that page, and if I bailed, they're bailing too. That's <em>$60K to $120K a month</em> in jobs you already paid for, gone.",
-          "responses": [
-            "That'd be me",
-            "Why? / What's this about?",
-            "Who is this again?"
-          ],
-          "followup": "Got it — give me 30 seconds and I'll show you exactly where the leak is.",
-          "note": "Blue-collar-direct DFW. Talk like a homeowner who got annoyed — 'the dang number', 'y'all'. The gatekeeper hears a real caller and routes you up. Pivot on 'here's the thing' — plain, a little blunt, no agency polish. Wasted-ad-spend is the gut-punch; lean on it."
-        },
-        {
-          "t": 22,
-          "phase": "PROBLEM",
-          "title": "Paying Per Click, Losing the Job",
-          "line": "Here's the deal — you're paying <em>$40 to $75 per click</em> in this market. That's real money for every homeowner who taps your ad. And right now, when they land on your site, a big chunk of them can't figure out how to reach you. <em>No sticky phone number on mobile, form that requires too many steps, or a number that goes to voicemail</em>. When did someone on your team last try to get a quote from your own site on a phone?",
-          "responses": [
-            "Honestly, not recently",
-            "We get leads fine",
-            "We just updated the site"
-          ],
-          "followup": "Yeah — that's what most owners say. The lead flow issue is just the first one. The bigger ones come after.",
-          "note": "Plain English. $40-$75/click anchor from DFW market_cpc.json. Ends with a question they can't answer well."
-        },
-        {
-          "t": 36,
-          "phase": "AGITATION",
-          "title": "The Three Leaks",
-          "line": "Here's what's actually happening. <em>A homeowner with hail damage taps your ad, lands on your site, and can't find a clear way to call you</em> — so they go to the next ad. You paid $40 to $75 for that click and never got a shot at the job. The ones who do stay hit your contact form and it's four fields before they've even decided. By the time they figure it out, they've opened two other roofers in other tabs. That's the <em>$15,000 to $30,000 a week in lost jobs</em>. Cleaning up <em>the top of your page</em> and making <em>how they reach you</em> obvious — those are <em>week-one quick wins</em>. But there's a <em>third issue on your lead flow that costs more than both combined</em>. I'd rather show you that one with your site open.",
-          "responses": [
-            "What's the third issue?",
-            "Show me",
-            "How much would this cost to fix?"
-          ],
-          "followup": "Fair — and that's exactly what the audit answers. Pricing comes after.",
-          "note": "Tease the third issue. Do NOT reveal it on the call. The reveal is the audit. B2B framing — 'jobs' not 'bookings'."
-        },
-        {
-          "t": 18,
-          "phase": "SOLUTION",
-          "title": "100+ Roofing Sites, Same 3 Leaks",
-          "line": "I've done this on <em>over 100 roofing sites</em> — same 10-point checklist, same lead flow, same three leaks every time. The shops that fix the top two see their lead-to-call rate climb in the first week. The ones that fix all three usually <em>double their close rate on paid traffic inside 30 days</em>.",
-          "responses": [
-            "Okay…",
-            "How long does the fix take?",
-            "Sounds like a sales pitch"
-          ],
-          "followup": "Fair — and that's exactly why I lead with the audit, not the pitch.",
-          "note": "Credibility frame. 100+ sites. Same checklist. Pattern recognition. Roofing-owner language: lead-to-call rate, close rate."
-        },
-        {
-          "t": 33,
-          "phase": "AUDIT OFFER",
-          "title": "Free $3,000 Audit",
-          "line": "Here's what I want to do. I run a <em>$3,000 conversion audit</em> — and I'd like to do yours free. <em>Thirty minutes. Your live site on screen.</em> Every leak named in plain English, with <em>dollar-anchored estimates per leak</em> — what each one is costing you in jobs per week. You walk away with a <em>sequenced one-week plan — every fix shipped at once</em>, ranked by lead impact. <em>Yours to keep whether you hire me to ship it or not.</em> Not vibes — math.",
-          "responses": [
-            "Yeah I'd look at that",
-            "Send it over first",
-            "What's the catch?"
-          ],
-          "followup": "No catch — I'm running a handful of these personally this quarter for case studies. That's the only ask.",
-          "note": "Verbatim voice from Conversion Exotics. $3K free. One-week plan. All fixes shipped at once."
-        },
-        {
-          "t": 30,
-          "phase": "CLOSE",
-          "title": "Calendar or Sample",
-          "line": "Two ways we can do this. I've got <em>Thursday at 10</em> or <em>Friday at 2</em> open — pick one and I'll send the calendar invite. Or, if you'd rather see what this looks like first, give me your email and I'll send over a <em>sample audit I did for another roofing company</em> — full plan, dollar numbers, the whole thing. Which one would you prefer?",
-          "responses": [
-            "Thursday at 10",
-            "Friday at 2",
-            "Send me the sample first"
-          ],
-          "followup": "Done — calendar invite or sample audit hits your inbox in 60 seconds.",
-          "note": "Dual-path close. Booked call OR sample audit. Either is a win. 'Roofing company' not 'rental shop'."
-        }
-      ]
+ "brand": "RME Roofing",
+ "audit_value": 3000,
+ "target_length_sec": 180,
+ "variants": {
+  "A": {
+   "name": "The Lead Leak",
+   "desc": "Plain-English lead-flow angle. Paying $40-$75/click in DFW, but the lead form is broken or the phone is buried. You're buying traffic that never becomes a job. Three issues, tease the third. Close with calendar or sample audit.",
+   "beats": [
+    {
+     "t": 10,
+     "phase": "OPEN",
+     "title": "Real Reason I Called",
+     "line": "Hey — I'll be straight with you, this is a cold call, so I'll keep it short and you can hang up on me. I was on your site about a <em>roof</em>, and the reason I'm calling is the number's buried and the form's a pain, so folks ready to call just give up. <em>You the right guy to mention that to?</em> … Good. Give me 30 seconds, and if it's a waste of your time, hang up: you're paying <em>$40 to $75 a click</em> to send 'em there, so that's <em>$60K to $120K a month</em> in jobs you already paid for, gone.",
+     "responses": [
+      "That'd be me",
+      "Why? / What's this about?",
+      "Who is this again?"
+     ],
+     "followup": "Fair enough — this is a cold call. Thirty seconds, I'll show you exactly where the money's leaking, then you call it.",
+     "note": "PERMISSION-BASED, blue-collar DFW. 'I'll be straight with you, this is a cold call' is the honest open that out-converts pretext ~12x (Gong). You named the real buried-number issue — true, so a follow-up doesn't catch you in a lie. Talk plain: 'the dang number', 'y'all' if it fits. Wasted ad spend is the gut-punch — land it after they grant the 30 seconds. Downward, confident, then pause."
     },
-    "D": {
-      "name": "Voicemails — EURO / PAS / NEPQ",
-      "desc": "Three ready-to-leave voicemails, one per framework: <b>EURO</b> (Empathy·Urgency·Reason·Offer), <b>PAS</b> (Problem·Agitate·Solve), and <b>NEPQ</b> (a curiosity question that leaves an open loop). Each is ~20-25s and drives ONE low-friction CTA: text back and I’ll send a 60-second sample of your own page. Pick one per prospect; pair with the text follow-up shown under each.",
-      "beats": [
-        {
-          "t": 22,
-          "phase": "EURO VM",
-          "title": "EURO — Empathy · Urgency · Reason · Offer",
-          "line": "Hey, it’s {caller} with RME Roofing. Thirty seconds. You’re paying <em>$40 to $75 a click</em> for roofing leads here in DFW — I pulled up your page, and a chunk of that money is getting wasted. Folks click your ad, the page is slow or the quote button’s buried, and they bounce before they ever call. It’s a quick fix — I already rebuilt <em>a 60-second sample of your own page</em> so you can see it. Text me back at this number — no pitch, just the sample.",
-          "followup": "Text follow-up (send right after): “{caller} from RME Roofing — that 60-sec sample of your page I left a VM about: [link]. Take a look when you’re off the roof.”",
-          "note": "EURO for a roofer: lead with the money they’re already spending. Plain English, no jargon, no fluff. — Urgency = wasted ad spend, Reason = quick fix, Offer = the sample. Say the number slowly, twice."
-        },
-        {
-          "t": 24,
-          "phase": "PAS VM",
-          "title": "PAS — Problem · Agitate · Solve",
-          "line": "{caller} again with RME Roofing. Think about it — someone’s got storm damage, they search, they click your ad that you <em>paid</em> for. Page takes too long or they can’t find the quote button, so they back out and call the next roofer on the list. You bought that lead and handed it to your competition. That’s real money — <em>$40 to $75</em> every time it happens. I’ve got <em>a mobile-first page where the quote button actually works</em> ready to show you. Text me back and I’ll send the sample.",
-          "followup": "Text follow-up: “{caller}, RME Roofing — the fix so you stop handing paid leads to the next roofer: [link]. 60-sec look at your own page.”",
-          "note": "PAS for roofers: the agitation is wasted ad spend handed to competitors — that stings a roofer more than vague “conversion” talk. Blue-collar direct. Pause before “you bought that lead and handed it to your competition.”"
-        },
-        {
-          "t": 24,
-          "phase": "NEPQ VM",
-          "title": "NEPQ — Curiosity Question",
-          "line": "Hey, {caller} with RME Roofing — one straight question, then I’ll let you get back to it. If your website was quietly wasting <em>$40 to $75 on every click</em> you pay for, would you even know? Most roofers don’t — the calls just don’t come in, and you figure it’s a slow stretch. I rebuilt <em>a 60-second sample of your own page</em>, and the gap surprised me. Text this number back and I’ll send it — worst case, you find out your page is already solid.",
-          "followup": "Text follow-up: “That question I left you — here’s the answer: [link]. 60-sec look at your page, rebuilt. Tell me what you think.”",
-          "note": "NEPQ for roofers: “would you even know?” opens the loop. Do NOT answer on the VM. Straight-shooter tone, no hype. Fixed the old grammar bug (“$X a click in jobs”) — now “wasting $X on every click you pay for.”"
-        }
-      ]
+    {
+     "t": 22,
+     "phase": "PROBLEM",
+     "title": "Paying Per Click, Losing the Job",
+     "line": "Here's the deal — you're paying <em>$40 to $75 per click</em> in this market. That's real money for every homeowner who taps your ad. And right now, when they land on your site, a big chunk of them can't figure out how to reach you. <em>No sticky phone number on mobile, form that requires too many steps, or a number that goes to voicemail</em>. When did someone on your team last try to get a quote from your own site on a phone?",
+     "responses": [
+      "Honestly, not recently",
+      "We get leads fine",
+      "We just updated the site"
+     ],
+     "followup": "Yeah — that's what most owners say. The lead flow issue is just the first one. The bigger ones come after.",
+     "note": "Plain English. $40-$75/click anchor from DFW market_cpc.json. Ends with a question they can't answer well."
+    },
+    {
+     "t": 36,
+     "phase": "AGITATION",
+     "title": "The Three Leaks",
+     "line": "Here's what's actually happening. <em>A homeowner with hail damage taps your ad, lands on your site, and can't find a clear way to call you</em> — so they go to the next ad. You paid $40 to $75 for that click and never got a shot at the job. The ones who do stay hit your contact form and it's four fields before they've even decided. By the time they figure it out, they've opened two other roofers in other tabs. That's the <em>$15,000 to $30,000 a week in lost jobs</em>. Cleaning up <em>the top of your page</em> and making <em>how they reach you</em> obvious — those are <em>week-one quick wins</em>. But there's a <em>third issue on your lead flow that costs more than both combined</em>. I'd rather show you that one with your site open.",
+     "responses": [
+      "What's the third issue?",
+      "Show me",
+      "How much would this cost to fix?"
+     ],
+     "followup": "Fair — and that's exactly what the audit answers. Pricing comes after.",
+     "note": "Tease the third issue. Do NOT reveal it on the call. The reveal is the audit. B2B framing — 'jobs' not 'bookings'."
+    },
+    {
+     "t": 18,
+     "phase": "SOLUTION",
+     "title": "100+ Roofing Sites, Same 3 Leaks",
+     "line": "I've done this on <em>over 100 roofing sites</em> — same 10-point checklist, same lead flow, same three leaks every time. The shops that fix the top two see their lead-to-call rate climb in the first week. The ones that fix all three usually <em>double their close rate on paid traffic inside 30 days</em>.",
+     "responses": [
+      "Okay…",
+      "How long does the fix take?",
+      "Sounds like a sales pitch"
+     ],
+     "followup": "Fair — and that's exactly why I lead with the audit, not the pitch.",
+     "note": "Credibility frame. 100+ sites. Same checklist. Pattern recognition. Roofing-owner language: lead-to-call rate, close rate."
+    },
+    {
+     "t": 33,
+     "phase": "AUDIT OFFER",
+     "title": "Free $3,000 Audit",
+     "line": "Here's what I want to do. I run a <em>$3,000 conversion audit</em> — and I'd like to do yours free. <em>Thirty minutes. Your live site on screen.</em> Every leak named in plain English, with <em>dollar-anchored estimates per leak</em> — what each one is costing you in jobs per week. You walk away with a <em>sequenced one-week plan — every fix shipped at once</em>, ranked by lead impact. <em>Yours to keep whether you hire me to ship it or not.</em> Not vibes — math.",
+     "responses": [
+      "Yeah I'd look at that",
+      "Send it over first",
+      "What's the catch?"
+     ],
+     "followup": "No catch — I'm running a handful of these personally this quarter for case studies. That's the only ask.",
+     "note": "Verbatim voice from Conversion Exotics. $3K free. One-week plan. All fixes shipped at once."
+    },
+    {
+     "t": 30,
+     "phase": "CLOSE",
+     "title": "Calendar or Sample",
+     "line": "Two ways we can do this. I've got <em>Thursday at 10</em> or <em>Friday at 2</em> open — pick one and I'll send the calendar invite. Or, if you'd rather see what this looks like first, give me your email and I'll send over a <em>sample audit I did for another roofing company</em> — full plan, dollar numbers, the whole thing. Which one would you prefer?",
+     "responses": [
+      "Thursday at 10",
+      "Friday at 2",
+      "Send me the sample first"
+     ],
+     "followup": "Done — calendar invite or sample audit hits your inbox in 60 seconds.",
+     "note": "Dual-path close. Booked call OR sample audit. Either is a win. 'Roofing company' not 'rental shop'."
     }
+   ]
+  },
+  "D": {
+   "name": "Voicemails — EURO / PAS / NEPQ",
+   "desc": "Three ready-to-leave voicemails, one per framework: <b>EURO</b> (Empathy·Urgency·Reason·Offer), <b>PAS</b> (Problem·Agitate·Solve), and <b>NEPQ</b> (a curiosity question that leaves an open loop). Each is ~20-25s and drives ONE low-friction CTA: text back and I’ll send a 60-second sample of your own page. Pick one per prospect; pair with the text follow-up shown under each.",
+   "beats": [
+    {
+     "t": 22,
+     "phase": "EURO VM",
+     "title": "EURO — Empathy · Urgency · Reason · Offer",
+     "line": "Hey, it’s {caller} with RME Roofing. Thirty seconds. You’re paying <em>$40 to $75 a click</em> for roofing leads here in DFW — I pulled up your page, and a chunk of that money is getting wasted. Folks click your ad, the page is slow or the quote button’s buried, and they bounce before they ever call. It’s a quick fix — I already rebuilt <em>a 60-second sample of your own page</em> so you can see it. Text me back at this number — no pitch, just the sample.",
+     "followup": "Text follow-up (send right after): “{caller} from RME Roofing — that 60-sec sample of your page I left a VM about: [link]. Take a look when you’re off the roof.”",
+     "note": "EURO for a roofer: lead with the money they’re already spending. Plain English, no jargon, no fluff. — Urgency = wasted ad spend, Reason = quick fix, Offer = the sample. Say the number slowly, twice."
+    },
+    {
+     "t": 24,
+     "phase": "PAS VM",
+     "title": "PAS — Problem · Agitate · Solve",
+     "line": "{caller} again with RME Roofing. Think about it — someone’s got storm damage, they search, they click your ad that you <em>paid</em> for. Page takes too long or they can’t find the quote button, so they back out and call the next roofer on the list. You bought that lead and handed it to your competition. That’s real money — <em>$40 to $75</em> every time it happens. I’ve got <em>a mobile-first page where the quote button actually works</em> ready to show you. Text me back and I’ll send the sample.",
+     "followup": "Text follow-up: “{caller}, RME Roofing — the fix so you stop handing paid leads to the next roofer: [link]. 60-sec look at your own page.”",
+     "note": "PAS for roofers: the agitation is wasted ad spend handed to competitors — that stings a roofer more than vague “conversion” talk. Blue-collar direct. Pause before “you bought that lead and handed it to your competition.”"
+    },
+    {
+     "t": 24,
+     "phase": "NEPQ VM",
+     "title": "NEPQ — Curiosity Question",
+     "line": "Hey, {caller} with RME Roofing — one straight question, then I’ll let you get back to it. If your website was quietly wasting <em>$40 to $75 on every click</em> you pay for, would you even know? Most roofers don’t — the calls just don’t come in, and you figure it’s a slow stretch. I rebuilt <em>a 60-second sample of your own page</em>, and the gap surprised me. Text this number back and I’ll send it — worst case, you find out your page is already solid.",
+     "followup": "Text follow-up: “That question I left you — here’s the answer: [link]. 60-sec look at your page, rebuilt. Tell me what you think.”",
+     "note": "NEPQ for roofers: “would you even know?” opens the loop. Do NOT answer on the VM. Straight-shooter tone, no hype. Fixed the old grammar bug (“$X a click in jobs”) — now “wasting $X on every click you pay for.”"
+    }
+   ]
   }
+ }
 }

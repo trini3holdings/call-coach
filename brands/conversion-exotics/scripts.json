@@ -1,121 +1,121 @@
 {
-  "brand": "Conversion Exotics",
-  "audit_value": 3000,
-  "target_length_sec": 180,
-  "variants": {
-    "A": {
-      "name": "The CTA Leak",
-      "desc": "Plain-English booking-process angle. Leads with the $5K-$15K/week leak. Three issues, tease the third. Close with calendar or sample audit.",
-      "beats": [
-        {
-          "t": 10,
-          "phase": "OPEN",
-          "title": "Tried to Book, Couldn't",
-          "line": "Hey — I was on your site trying to <em>book a car for this weekend</em> and the booking wouldn't go through. Couldn't even see what was available. <em>Who handles the site for you?</em> … Appreciate it — reason I bring it up, I audit rental sites all day, and a renter who wanted to <em>hand you a deposit</em> just couldn't. That's <em>$20K to $60K a month</em> in bookings slipping out the door.",
-          "responses": [
-            "That'd be me",
-            "Why? / What's this about?",
-            "Who is this again?"
-          ],
-          "followup": "Got it — give me 30 seconds and I'll show you exactly where the leak is.",
-          "note": "Specialty-operator polish. You're a would-be renter who hit a wall — a little incredulous, because luxury buyers expect it to just work. Pivot on 'reason I bring it up' — smooth, operator-to-operator. 'Hand you a deposit' is the sting: a ready buyer, lost."
-        },
-        {
-          "t": 22,
-          "phase": "PROBLEM",
-          "title": "3-Second Decision",
-          "line": "Here's the deal — when a luxury renter taps your ad from their phone, they decide in about <em>3 seconds</em> whether you're worth waiting on. <em>Every one-second delay cuts conversions roughly 32 percent</em>. Most exotic rental sites load in 5 to 8 seconds on mobile. When was the last time someone on your team pulled your site up on a phone and booked a rental end-to-end?",
-          "responses": [
-            "Honestly, not recently",
-            "It's fine, we get bookings",
-            "We just redid the site"
-          ],
-          "followup": "Yeah — that's what most owners say. The site loading is just the first leak. The bigger ones come after.",
-          "note": "Plain English. Mobile speed as door-opener, not the main point."
-        },
-        {
-          "t": 38,
-          "phase": "AGITATION",
-          "title": "The Three Leaks",
-          "line": "Here's what's actually happening. <em>A renter taps your ad, counts to three, and opens the next one</em> — they never even see your fleet. The ones who wait it out land on a page that doesn't show a price, doesn't show the car they came for, and asks them to fill out a form before they've decided anything. By the time they figure out how to book, they've already opened two competitors in other tabs. That's the <em>$5,000 to $15,000 a week</em>. Cleaning up the top of the page and making the booking obvious — those are <em>week-one quick wins</em>. But there's a <em>third issue on your booking process that costs more than both combined</em>. I'd rather show you that one with your page open.",
-          "responses": [
-            "What's the third issue?",
-            "Show me",
-            "How much would this cost to fix?"
-          ],
-          "followup": "Fair — and that's exactly what the audit answers. Pricing comes after.",
-          "note": "Tease the third issue. Do NOT reveal it on the call. The reveal is the audit."
-        },
-        {
-          "t": 18,
-          "phase": "SOLUTION",
-          "title": "100+ Sites, Same 3 Leaks",
-          "line": "I've done this on <em>over 100 exotic and luxury car rental sites</em> — same 10-point checklist, same booking process, same three leaks every time. The shops that fix the top two see bookings climb in the first week. The ones that fix all three usually <em>double their weekend bookings inside 30 days</em>.",
-          "responses": [
-            "Okay…",
-            "How long does the fix take?",
-            "Sounds like a sales pitch"
-          ],
-          "followup": "Fair — and that's exactly why I lead with the audit, not the pitch.",
-          "note": "Credibility frame. 100+ sites. Same checklist. Pattern recognition."
-        },
-        {
-          "t": 33,
-          "phase": "AUDIT OFFER",
-          "title": "Free $3,000 Audit",
-          "line": "Here's what I want to do. I run a <em>$3,000 conversion audit</em> — and I'd like to do yours free. <em>Thirty minutes. Your live site on screen.</em> Every leak named in plain English no agency would dare use, with <em>dollar-anchored estimates per leak</em>. You walk away with a <em>sequenced one-week plan — every fix shipped at once</em>, ranked by booking impact. <em>Yours to keep whether you hire me to ship it or not.</em> Not vibes — math.",
-          "responses": [
-            "Yeah I'd look at that",
-            "Send it over first",
-            "What's the catch?"
-          ],
-          "followup": "No catch — I'm running a handful of these personally this quarter for case studies. That's the only ask.",
-          "note": "Verbatim site language. $3K free. One-week plan. All fixes shipped at once."
-        },
-        {
-          "t": 30,
-          "phase": "CLOSE",
-          "title": "Calendar or Sample",
-          "line": "Two ways we can do this. I've got <em>Thursday at 10</em> or <em>Friday at 2</em> open — pick one and I'll send the calendar invite. Or, if you'd rather see what this looks like first, give me your email and I'll send over a <em>sample audit I did for another exotic rental shop</em> — full plan, dollar numbers, the whole thing. Which one would you prefer?",
-          "responses": [
-            "Thursday at 10",
-            "Friday at 2",
-            "Send me the sample first"
-          ],
-          "followup": "Done — calendar invite or sample audit hits your inbox in 60 seconds.",
-          "note": "Dual-path close. Booked call OR sample audit. Either is a win."
-        }
-      ]
+ "brand": "Conversion Exotics",
+ "audit_value": 3000,
+ "target_length_sec": 180,
+ "variants": {
+  "A": {
+   "name": "The CTA Leak",
+   "desc": "Plain-English booking-process angle. Leads with the $5K-$15K/week leak. Three issues, tease the third. Close with calendar or sample audit.",
+   "beats": [
+    {
+     "t": 10,
+     "phase": "OPEN",
+     "title": "Real Reason I Called",
+     "line": "Hey — I'll be honest, this is a cold call, so I'll be quick and you can cut me off. I was on your site looking at the fleet, and the reason I'm calling is the booking step makes a renter who's ready to <em>put down a deposit</em> work too hard, and they bounce. <em>Are you the right person for that, or is there someone else?</em> … Appreciate it. Give me 30 seconds, and if it's not worth it, hang up: that's roughly <em>$20K to $60K a month</em> in bookings slipping out the door.",
+     "responses": [
+      "That'd be me",
+      "Why? / What's this about?",
+      "Who is this again?"
+     ],
+     "followup": "Fair — this is a cold call. Thirty seconds to show you where the bookings are leaking, then you decide.",
+     "note": "PERMISSION-BASED, specialty-operator polish. 'I'll be honest, this is a cold call' is upfront, not apologetic — luxury buyers respect directness. You named the real booking-step friction, so a follow-up keeps you honest. 'Put down a deposit' is the sting: a ready buyer, lost. Smooth, operator-to-operator, downward inflection on the cold-call line, then the time-box."
     },
-    "D": {
-      "name": "Voicemails — EURO / PAS / NEPQ",
-      "desc": "Three ready-to-leave voicemails, one per framework: <b>EURO</b> (Empathy·Urgency·Reason·Offer), <b>PAS</b> (Problem·Agitate·Solve), and <b>NEPQ</b> (a curiosity question that leaves an open loop). Each is ~20-25s and drives ONE low-friction CTA: text back and I’ll send a 60-second sample of your own page. Pick one per prospect; pair with the text follow-up shown under each.",
-      "beats": [
-        {
-          "t": 22,
-          "phase": "EURO VM",
-          "title": "EURO — Empathy · Urgency · Reason · Offer",
-          "line": "Hey, it’s {caller} with Conversion Exotics. Thirty seconds. I build <em>high-converting booking pages for specialty and exotic operators</em>, and I looked at yours — it’s losing bookings right at the final step, somewhere around <em>$5K to $15K a week</em>. It’s a fast fix, and I already rebuilt <em>a 60-second sample of your own booking page</em> so you can just see it. Text me back at this number — no pitch, just the sample.",
-          "followup": "Text follow-up (send right after): “{caller} from Conversion Exotics — that 60-sec sample of your booking page I left a VM about: [link]. Have a look when you can.”",
-          "note": "EURO for a specialty operator: a touch more polished than the trades, still direct. Lead with the weekly booking loss. Short breath-lines. Say the number slowly, twice. End on the offer."
-        },
-        {
-          "t": 24,
-          "phase": "PAS VM",
-          "title": "PAS — Problem · Agitate · Solve",
-          "line": "{caller} again with Conversion Exotics. Here’s what’s happening: someone finds you, they’re ready to book, they start filling it out — then the page makes them work for it, and they abandon it halfway and go book somewhere else. Every one of those is a customer who <em>wanted</em> to pay you. That’s <em>$5K to $15K a week</em> slipping through the booking form. I’ve got <em>a mobile-first booking page built to capture the booking, not lose it</em> ready to show you. Text me back and I’ll send the sample.",
-          "followup": "Text follow-up: “{caller}, Conversion Exotics — the fix for those abandoned bookings, on your own page: [link]. Quick 60-sec look.”",
-          "note": "PAS: the agitation is the abandoned booking — a customer who wanted to pay and couldn’t. Fixed the old broken sentence. Pause before the dollar figure. Keep it confident, not desperate."
-        },
-        {
-          "t": 24,
-          "phase": "NEPQ VM",
-          "title": "NEPQ — Curiosity Question",
-          "line": "Hey, {caller} with Conversion Exotics — one honest question, then I’ll let you go. If your booking page was quietly costing you <em>$5K to $15K a week</em> in customers who give up at checkout, would you even know? Most operators don’t — the bookings just don’t land, and you assume it’s a slow week. I rebuilt <em>a 60-second sample of your own booking page</em>, and the gap surprised me. Text this number back and I’ll send it — worst case, you find out your page is already dialed in.",
-          "followup": "Text follow-up: “That question I left you — here’s the answer: [link]. 60-sec look at your booking page, rebuilt. Curious what you think.”",
-          "note": "NEPQ: “would you even know?” opens the loop. Do NOT answer on the VM. Fixed the old grammar bug. Confident-curious tone; the self-effacing close disarms resistance."
-        }
-      ]
+    {
+     "t": 22,
+     "phase": "PROBLEM",
+     "title": "3-Second Decision",
+     "line": "Here's the deal — when a luxury renter taps your ad from their phone, they decide in about <em>3 seconds</em> whether you're worth waiting on. <em>Every one-second delay cuts conversions roughly 32 percent</em>. Most exotic rental sites load in 5 to 8 seconds on mobile. When was the last time someone on your team pulled your site up on a phone and booked a rental end-to-end?",
+     "responses": [
+      "Honestly, not recently",
+      "It's fine, we get bookings",
+      "We just redid the site"
+     ],
+     "followup": "Yeah — that's what most owners say. The site loading is just the first leak. The bigger ones come after.",
+     "note": "Plain English. Mobile speed as door-opener, not the main point."
+    },
+    {
+     "t": 38,
+     "phase": "AGITATION",
+     "title": "The Three Leaks",
+     "line": "Here's what's actually happening. <em>A renter taps your ad, counts to three, and opens the next one</em> — they never even see your fleet. The ones who wait it out land on a page that doesn't show a price, doesn't show the car they came for, and asks them to fill out a form before they've decided anything. By the time they figure out how to book, they've already opened two competitors in other tabs. That's the <em>$5,000 to $15,000 a week</em>. Cleaning up the top of the page and making the booking obvious — those are <em>week-one quick wins</em>. But there's a <em>third issue on your booking process that costs more than both combined</em>. I'd rather show you that one with your page open.",
+     "responses": [
+      "What's the third issue?",
+      "Show me",
+      "How much would this cost to fix?"
+     ],
+     "followup": "Fair — and that's exactly what the audit answers. Pricing comes after.",
+     "note": "Tease the third issue. Do NOT reveal it on the call. The reveal is the audit."
+    },
+    {
+     "t": 18,
+     "phase": "SOLUTION",
+     "title": "100+ Sites, Same 3 Leaks",
+     "line": "I've done this on <em>over 100 exotic and luxury car rental sites</em> — same 10-point checklist, same booking process, same three leaks every time. The shops that fix the top two see bookings climb in the first week. The ones that fix all three usually <em>double their weekend bookings inside 30 days</em>.",
+     "responses": [
+      "Okay…",
+      "How long does the fix take?",
+      "Sounds like a sales pitch"
+     ],
+     "followup": "Fair — and that's exactly why I lead with the audit, not the pitch.",
+     "note": "Credibility frame. 100+ sites. Same checklist. Pattern recognition."
+    },
+    {
+     "t": 33,
+     "phase": "AUDIT OFFER",
+     "title": "Free $3,000 Audit",
+     "line": "Here's what I want to do. I run a <em>$3,000 conversion audit</em> — and I'd like to do yours free. <em>Thirty minutes. Your live site on screen.</em> Every leak named in plain English no agency would dare use, with <em>dollar-anchored estimates per leak</em>. You walk away with a <em>sequenced one-week plan — every fix shipped at once</em>, ranked by booking impact. <em>Yours to keep whether you hire me to ship it or not.</em> Not vibes — math.",
+     "responses": [
+      "Yeah I'd look at that",
+      "Send it over first",
+      "What's the catch?"
+     ],
+     "followup": "No catch — I'm running a handful of these personally this quarter for case studies. That's the only ask.",
+     "note": "Verbatim site language. $3K free. One-week plan. All fixes shipped at once."
+    },
+    {
+     "t": 30,
+     "phase": "CLOSE",
+     "title": "Calendar or Sample",
+     "line": "Two ways we can do this. I've got <em>Thursday at 10</em> or <em>Friday at 2</em> open — pick one and I'll send the calendar invite. Or, if you'd rather see what this looks like first, give me your email and I'll send over a <em>sample audit I did for another exotic rental shop</em> — full plan, dollar numbers, the whole thing. Which one would you prefer?",
+     "responses": [
+      "Thursday at 10",
+      "Friday at 2",
+      "Send me the sample first"
+     ],
+     "followup": "Done — calendar invite or sample audit hits your inbox in 60 seconds.",
+     "note": "Dual-path close. Booked call OR sample audit. Either is a win."
     }
+   ]
+  },
+  "D": {
+   "name": "Voicemails — EURO / PAS / NEPQ",
+   "desc": "Three ready-to-leave voicemails, one per framework: <b>EURO</b> (Empathy·Urgency·Reason·Offer), <b>PAS</b> (Problem·Agitate·Solve), and <b>NEPQ</b> (a curiosity question that leaves an open loop). Each is ~20-25s and drives ONE low-friction CTA: text back and I’ll send a 60-second sample of your own page. Pick one per prospect; pair with the text follow-up shown under each.",
+   "beats": [
+    {
+     "t": 22,
+     "phase": "EURO VM",
+     "title": "EURO — Empathy · Urgency · Reason · Offer",
+     "line": "Hey, it’s {caller} with Conversion Exotics. Thirty seconds. I build <em>high-converting booking pages for specialty and exotic operators</em>, and I looked at yours — it’s losing bookings right at the final step, somewhere around <em>$5K to $15K a week</em>. It’s a fast fix, and I already rebuilt <em>a 60-second sample of your own booking page</em> so you can just see it. Text me back at this number — no pitch, just the sample.",
+     "followup": "Text follow-up (send right after): “{caller} from Conversion Exotics — that 60-sec sample of your booking page I left a VM about: [link]. Have a look when you can.”",
+     "note": "EURO for a specialty operator: a touch more polished than the trades, still direct. Lead with the weekly booking loss. Short breath-lines. Say the number slowly, twice. End on the offer."
+    },
+    {
+     "t": 24,
+     "phase": "PAS VM",
+     "title": "PAS — Problem · Agitate · Solve",
+     "line": "{caller} again with Conversion Exotics. Here’s what’s happening: someone finds you, they’re ready to book, they start filling it out — then the page makes them work for it, and they abandon it halfway and go book somewhere else. Every one of those is a customer who <em>wanted</em> to pay you. That’s <em>$5K to $15K a week</em> slipping through the booking form. I’ve got <em>a mobile-first booking page built to capture the booking, not lose it</em> ready to show you. Text me back and I’ll send the sample.",
+     "followup": "Text follow-up: “{caller}, Conversion Exotics — the fix for those abandoned bookings, on your own page: [link]. Quick 60-sec look.”",
+     "note": "PAS: the agitation is the abandoned booking — a customer who wanted to pay and couldn’t. Fixed the old broken sentence. Pause before the dollar figure. Keep it confident, not desperate."
+    },
+    {
+     "t": 24,
+     "phase": "NEPQ VM",
+     "title": "NEPQ — Curiosity Question",
+     "line": "Hey, {caller} with Conversion Exotics — one honest question, then I’ll let you go. If your booking page was quietly costing you <em>$5K to $15K a week</em> in customers who give up at checkout, would you even know? Most operators don’t — the bookings just don’t land, and you assume it’s a slow week. I rebuilt <em>a 60-second sample of your own booking page</em>, and the gap surprised me. Text this number back and I’ll send it — worst case, you find out your page is already dialed in.",
+     "followup": "Text follow-up: “That question I left you — here’s the answer: [link]. 60-sec look at your booking page, rebuilt. Curious what you think.”",
+     "note": "NEPQ: “would you even know?” opens the loop. Do NOT answer on the VM. Fixed the old grammar bug. Confident-curious tone; the self-effacing close disarms resistance."
+    }
+   ]
   }
+ }
 }
