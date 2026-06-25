@@ -2071,3 +2071,43 @@ body.view-dashboard .dashboard-view {
 .dialer-btn:disabled{opacity:.45;cursor:not-allowed}
 .dialer-call{background:#0a7d28;color:#fff;border-color:#0a7d28}
 .dialer-hang{background:#c0392b;color:#fff;border-color:#c0392b}
+
+/* ===== PageSpeed Insights block in recon card (v3.31) ===== */
+.recon-psi { margin: 4px 0 10px; }
+.recon-psi-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.recon-psi-title { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gold); }
+.recon-psi-meta { font-size: 10px; color: #8a8a8a; }
+.recon-psi-status { font-size: 10px; padding: 1px 7px; border-radius: 999px; }
+.recon-psi-status.loading { color: #c9a24a; background: rgba(184,137,58,0.12); }
+.recon-psi-status.err { color: #e0a3a3; background: rgba(184,58,58,0.15); }
+.recon-psi-retry {
+  margin-left: auto; font-size: 11px; line-height: 1; cursor: pointer;
+  background: transparent; color: #9a9a9a; border: 1px solid #3a3a3a;
+  border-radius: 6px; padding: 2px 7px; transition: color .12s, border-color .12s;
+}
+.recon-psi-retry:hover { color: var(--gold); border-color: var(--gold); }
+.recon-psi-bar-skel {
+  height: 46px; border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.10) 37%, rgba(255,255,255,0.04) 63%);
+  background-size: 400% 100%; animation: psiShimmer 1.2s ease-in-out infinite;
+}
+@keyframes psiShimmer { 0% { background-position: 100% 0; } 100% { background-position: 0 0; } }
+.recon-psi-gauges { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.psi-gauge {
+  text-align: center; border-radius: var(--radius-sm);
+  border: 1px solid #333; padding: 7px 4px 6px; background: rgba(255,255,255,0.03);
+}
+.psi-gauge-num { font-family: var(--font-display); font-weight: 800; font-size: 18px; line-height: 1; }
+.psi-gauge-lbl { font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.4px; color: #999; margin-top: 3px; }
+.psi-gauge.good .psi-gauge-num { color: #4FB477; }
+.psi-gauge.avg  .psi-gauge-num { color: #E0A93A; }
+.psi-gauge.poor .psi-gauge-num { color: #E06A6A; }
+.psi-gauge.na   .psi-gauge-num { color: #777; }
+.psi-gauge.good { border-color: rgba(79,180,119,0.4); }
+.psi-gauge.avg  { border-color: rgba(224,169,58,0.4); }
+.psi-gauge.poor { border-color: rgba(224,106,106,0.4); }
+.recon-psi-vitals { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.recon-psi-vitals span {
+  font-size: 10px; color: #bdbdbd; background: rgba(255,255,255,0.05);
+  border: 1px solid #333; border-radius: 999px; padding: 2px 8px; font-weight: 600;
+}

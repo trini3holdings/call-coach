@@ -962,6 +962,7 @@ function renderReconCard() {
       ${contactBits.length ? ' · ' + contactBits.join(' · ') : ''}
     </div>
     ${statHTML.length ? `<div class="recon-grid">${statHTML.join('')}</div>` : ''}
+    <div id="reconPsi" class="recon-psi" data-domain="${escapeHTML(domain)}"></div>
     ${leaksHTML}
     ${notesHTML}
     ${historyHTML}
@@ -986,6 +987,9 @@ function renderReconCard() {
     });
   });
 
+  // v3.31 — PageSpeed Insights auto-pull (live, cached) for this prospect's domain
+  if (typeof autoPullPsi === 'function') autoPullPsi(domain);
+
   // v3.9.2 — wire delete button
   body.querySelectorAll('[data-action="delete-prospect"]').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -1003,6 +1007,111 @@ function renderReconCard() {
 }
 function statBox(label, val) {
   return `<div class="recon-stat"><div class="recon-stat-label">${escapeHTML(label)}</div><div class="recon-stat-val">${escapeHTML(String(val))}</div></div>`;
+}
+
+// ============== PAGESPEED INSIGHTS (live auto-pull, v3.31) ==============
+// Pulls Google PSI scores for the selected prospect's domain via the backend
+// proxy (GET {backendUrl}psi?domain=...). Backend caches 24h; we also keep an
+// in-memory cache so re-selecting a prospect in the same session is instant.
+const _psiMem = {};            // { 'domain|strategy': result }
+const _psiInflight = {};       // de-dupe concurrent pulls
+function psiEndpoint() {
+  const base = (state.backendUrl || '').trim();
+  if (!base) return '';
+  return base.replace(/\/+$/, '') + '/psi';
+}
+function psiScoreClass(n) {
+  if (n === null || n === undefined) return 'na';
+  if (n >= 90) return 'good';
+  if (n >= 50) return 'avg';
+  return 'poor';
+}
+function renderPsiBlock(el, domain, data, opts) {
+  opts = opts || {};
+  if (!el) return;
+  // only paint if this block still belongs to the same domain (avoid races)
+  if (el.getAttribute('data-domain') !== domain) return;
+  if (opts.loading) {
+    el.innerHTML = `<div class="recon-psi-head"><span class="recon-psi-title">\u26A1 PageSpeed</span>` +
+      `<span class="recon-psi-status loading">pulling live\u2026</span></div>` +
+      `<div class="recon-psi-bar-skel"></div>`;
+    return;
+  }
+  if (!data || data.ok === false) {
+    const msg = (data && data.error) ? data.error : 'unavailable';
+    const short = /quota|429/i.test(msg) ? 'API key needed' : (/time?d? ?out/i.test(msg) ? 'timed out' : 'unavailable');
+    el.innerHTML = `<div class="recon-psi-head"><span class="recon-psi-title">\u26A1 PageSpeed</span>` +
+      `<span class="recon-psi-status err" title="${escapeHTML(msg)}">${escapeHTML(short)}</span>` +
+      `<button class="recon-psi-retry" type="button" data-psi-retry="${escapeHTML(domain)}">\u21BB retry</button></div>`;
+    const rb = el.querySelector('[data-psi-retry]');
+    if (rb) rb.addEventListener('click', (e) => { e.stopPropagation(); autoPullPsi(domain, true); });
+    return;
+  }
+  const cats = [
+    ['Perf', data.performance],
+    ['A11y', data.accessibility],
+    ['Best Pr.', data.best_practices],
+    ['SEO', data.seo]
+  ];
+  const gauges = cats.map(([lbl, n]) =>
+    `<div class="psi-gauge ${psiScoreClass(n)}"><div class="psi-gauge-num">${n === null || n === undefined ? '\u2013' : n}</div>` +
+    `<div class="psi-gauge-lbl">${escapeHTML(lbl)}</div></div>`
+  ).join('');
+  const vitals = [];
+  if (data.lcp) vitals.push(`LCP ${escapeHTML(data.lcp)}`);
+  if (data.tbt) vitals.push(`TBT ${escapeHTML(data.tbt)}`);
+  if (data.cls) vitals.push(`CLS ${escapeHTML(data.cls)}`);
+  const ageMs = data.fetched_at ? (Date.now() - data.fetched_at) : 0;
+  const ageLabel = !data.fetched_at ? '' :
+    (ageMs < 90000 ? 'just now' : (ageMs < 3600000 ? Math.round(ageMs / 60000) + 'm ago'
+      : (ageMs < 86400000 ? Math.round(ageMs / 3600000) + 'h ago' : Math.round(ageMs / 86400000) + 'd ago')));
+  const flags = [];
+  if (data.cached) flags.push('cached');
+  if (data.stale) flags.push('stale');
+  const meta = [data.strategy || 'mobile', ageLabel, flags.join('/')].filter(Boolean).join(' \u00B7 ');
+  el.innerHTML =
+    `<div class="recon-psi-head"><span class="recon-psi-title">\u26A1 PageSpeed</span>` +
+    `<span class="recon-psi-meta">${escapeHTML(meta)}</span>` +
+    `<button class="recon-psi-retry" type="button" data-psi-retry="${escapeHTML(domain)}" title="Re-pull fresh">\u21BB</button></div>` +
+    `<div class="recon-psi-gauges">${gauges}</div>` +
+    (vitals.length ? `<div class="recon-psi-vitals">${vitals.map(v => `<span>${v}</span>`).join('')}</div>` : '');
+  const rb = el.querySelector('[data-psi-retry]');
+  if (rb) rb.addEventListener('click', (e) => { e.stopPropagation(); autoPullPsi(domain, true); });
+}
+async function autoPullPsi(domain, fresh) {
+  domain = (domain || '').trim();
+  const el = document.getElementById('reconPsi');
+  if (!domain) { if (el) el.innerHTML = ''; return; }
+  if (!state.backendUrl) {
+    if (el) renderPsiBlock(el, domain, { ok: false, error: 'no backend configured' });
+    return;
+  }
+  const strategy = 'mobile';
+  const key = domain + '|' + strategy;
+  // in-memory cache hit (skip if forcing fresh)
+  if (!fresh && _psiMem[key]) { renderPsiBlock(el, domain, _psiMem[key]); return; }
+  if (_psiInflight[key]) { renderPsiBlock(el, domain, null, { loading: true }); return; }
+  renderPsiBlock(el, domain, null, { loading: true });
+  _psiInflight[key] = true;
+  try {
+    const ep = psiEndpoint();
+    const u = ep + '?domain=' + encodeURIComponent(domain) + '&strategy=' + strategy + (fresh ? '&fresh=1' : '');
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 65000);
+    let data;
+    try {
+      const res = await fetch(u, { signal: ctrl.signal });
+      data = await res.json().catch(() => ({ ok: false, error: 'bad response' }));
+    } finally { clearTimeout(t); }
+    if (data && data.ok !== false) _psiMem[key] = data;
+    // re-resolve the element (card may have re-rendered) and paint
+    renderPsiBlock(document.getElementById('reconPsi'), domain, data);
+  } catch (e) {
+    const msg = (e && e.name === 'AbortError') ? 'timed out' : String((e && e.message) || e);
+    renderPsiBlock(document.getElementById('reconPsi'), domain, { ok: false, error: msg });
+  } finally {
+    delete _psiInflight[key];
+  }
 }
 function escapeHTML(s) {
   return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
