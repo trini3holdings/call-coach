@@ -3253,7 +3253,49 @@ async function init() {
 
   // v3.23 — keep the "synced Xs ago" readout ticking so reps always see live data freshness.
   setInterval(updateSyncFreshness, 5000);
+
+  // v3.33 — deep-link router: Slack follow-up reminders link straight to a client card.
+  //   URL form:  ?card=<brand-slug>/<company-or-domain>   e.g. ?card=conversion-exotics/Acme%20Exotics
+  //   or hash:   #card=<brand-slug>/<company-or-domain>
+  try { await handleCardDeepLink(); } catch (e) { console.warn('deep-link:', e); }
 }
+
+// v3.33 — open a specific client card from a Slack reminder link.
+async function handleCardDeepLink() {
+  const params = new URLSearchParams(location.search);
+  let raw = params.get('card') || '';
+  if (!raw && location.hash.startsWith('#card=')) raw = decodeURIComponent(location.hash.slice(6));
+  if (!raw) return;
+  raw = decodeURIComponent(raw);
+  const slash = raw.indexOf('/');
+  const slug = slash >= 0 ? raw.slice(0, slash) : (state.brand || '');
+  const needle = (slash >= 0 ? raw.slice(slash + 1) : raw).trim().toLowerCase();
+  if (!needle) return;
+
+  // Enter the brand's call-coach view first so PROSPECTS is populated for that brand.
+  if (slug && BRANDS[slug]) {
+    if (typeof window.enterBrand === 'function') await window.enterBrand(slug);
+  }
+
+  // Match by company name first, then domain (both case-insensitive, tolerant of https/www).
+  const norm = (s) => String(s || '').trim().toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/+$/, '');
+  const target = norm(needle);
+  const match = PROSPECTS.find(p =>
+    norm(p.company) === target ||
+    norm(p.domain) === target ||
+    (p.company && norm(p.company).includes(target)) ||
+    (p.domain && norm(p.domain).includes(target))
+  );
+  if (match) {
+    if (typeof selectProspect === 'function') selectProspect(match.n);
+    const rc = document.getElementById('reconCard');
+    if (rc && rc.scrollIntoView) rc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (typeof showToast === 'function') showToast('Opened from follow-up reminder: ' + (match.company || match.domain));
+  } else if (typeof showToast === 'function') {
+    showToast('Follow-up link: could not find "' + needle + '" in ' + (BRANDS[slug]?.name || slug || 'this brand'));
+  }
+}
+window.handleCardDeepLink = handleCardDeepLink;
 
 // ============== v3.10.0 — GITHUB SHEET UI ==============
 function initGitHubSyncUI() {
